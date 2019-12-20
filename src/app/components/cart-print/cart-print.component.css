@@ -1,0 +1,79 @@
+header {
+    position: fixed;
+    top: 0;
+}
+#order-header {
+    border-bottom: solid black 5px;
+    display: grid;
+    justify-content: center;
+    grid-template-rows: auto auto;
+    font-style: bolder;
+    font-size: x-large;
+}
+.order-header-center {
+    display: grid;
+    justify-content: center;
+}
+#order-id {
+    font-size: medium;
+    margin-bottom: 3%;
+}
+.flex-container {
+    display: grid;
+    gap: 3%;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(auto-fill, auto);
+    margin-top: 3%;
+    width: 100%;
+}
+.mat-toolbar {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    color: black;
+    display: flex;
+    justify-content: center;
+}
+.items-toolbar {
+    background-color: rgb(43, 126, 235);
+    background-image: url(../../../assets/images/buried.png);
+    border: solid black 2px;
+    height: 2rem;
+    width: 100%;
+}
+.top-table {
+    border-bottom: none;
+}
+.bottom-table {
+    border-top: 1px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: flex;
+    font-size: small;
+    height: 1rem;
+    justify-content: space-around;
+}
+.mat-table {
+    border: solid black .25x;
+}
+table {
+    page-break-inside: avoid; 
+    width: 100%; 
+}
+td, th {
+    color: black;
+    border: solid black .5px;
+}
+tr { 
+    page-break-inside:avoid; 
+    page-break-after:auto 
+}
+.no-border {
+    border: none
+}
+.margin-left {
+    margin-left: 20%;
+}
+.half {
+    width: 50%;
+}
+

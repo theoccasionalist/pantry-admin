@@ -1,0 +1,35 @@
+<div id="spinner" *ngIf="loading">
+    <mat-spinner></mat-spinner>
+</div>
+<mat-card id="top-container" *ngIf="!loading">
+    <span id="top-buttons">
+        <span>Shop Edit</span>
+        <button mat-raised-button (click)="onCancelClick()">Cancel</button>
+        <button mat-raised-button (click)="onSaveClick()">Save and Exit</button>
+    </span>
+    <div id="grid-container">
+        <mat-card class="drag-drop-header" id="left-header">Available Types</mat-card>
+        <mat-card class="drag-drop-header">Types in Shop</mat-card> 
+        <cdk-virtual-scroll-viewport class="viewport" itemSize="">
+            <mat-card class="type-container" #availableTypesList="cdkDropList" [cdkDropListData]="availableTypes" [cdkDropListConnectedTo]="[typesInShopList]" (cdkDropListDropped)="dropType($event)" cdkDropList>
+                <mat-card class="margin-top" *ngFor="let availableType of availableTypes" cdkDrag>{{availableType.typeName}}
+                    <ng-container *ngIf="availableType.subTypes">
+                        <span></span>
+                        <mat-card class="margin-top" id="available-sub-type-card" *ngFor="let subType of availableType.subTypes">{{subType.typeName}}</mat-card>
+                    </ng-container>
+                </mat-card>
+            </mat-card>
+        </cdk-virtual-scroll-viewport>    
+        <cdk-virtual-scroll-viewport class="viewport" itemSize=""> 
+            <mat-card class="type-container" #typesInShopList="cdkDropList" [cdkDropListData]="typesInShop" [cdkDropListConnectedTo]="[availableTypesList]" (cdkDropListDropped)="dropType($event)" cdkDropList>
+                <mat-card class="margin-top" *ngFor="let typeInShop of typesInShop" cdkDrag>{{typeInShop.typeName}}
+                    <ng-container *ngIf="typeInShop.subTypes">
+                        <span></span>
+                        <mat-card class="margin-top"  *ngFor="let subType of typeInShop.subTypes">{{subType.typeName}}</mat-card>
+                    </ng-container>
+                </mat-card>
+            </mat-card>
+        </cdk-virtual-scroll-viewport>  
+    </div>
+</mat-card>
+

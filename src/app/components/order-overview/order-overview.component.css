@@ -1,0 +1,10 @@
+#top-container {
+    align-items: center;  
+    background: #603A17;
+    background-image: url(../../../assets/images/buried.png);
+    border: solid black 1px;
+    display: grid;
+    justify-items: center;
+    margin: 3%;
+    margin-top: 2%;
+}

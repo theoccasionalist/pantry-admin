@@ -1,0 +1,44 @@
+@import 'ag-grid-community/dist/styles/ag-grid.css';
+@import 'ag-grid-community/dist/styles/ag-theme-balham.css';
+
+html {  
+    height: 100%;
+}
+body {
+    background-image: url(./assets/images/diagonal_waves.png); 
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+    margin: 0;  
+}
+.green-snackbar {
+    background: green;
+}
+.green-snackbar button {
+    background: #F6D936;
+}
+.mat-content > mat-panel-title, .mat-content > mat-panel-description {
+    flex: 1;
+}
+.mat-raised-button {
+    background-color: #F6D936;
+    border: solid black 1px;
+    color: black;
+}
+.mat-raised-button[disabled][disabled] {
+    color: #202020;
+    background-color: #F6D936;
+    opacity: .3;
+}
+.mat-raised-button[disabled][disabled]:hover {
+    cursor: not-allowed;
+}
+.red-snackbar {
+    background: red;
+}
+.red-snackbar button {
+    background: #F6D936;
+}
+.delete-dialog-container .mat-dialog-container {
+    background-image: url(./assets/images/buried.png); 
+    border: solid black 1px;
+    padding-top: 0px;
+}

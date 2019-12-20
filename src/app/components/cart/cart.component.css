@@ -1,0 +1,46 @@
+.mat-expansion-panel {
+    background-color: #065777;
+    background-image: url(../../../assets/images/buried.png);
+    border: solid black 1px;
+}
+.flex-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(auto-fill, auto);
+    gap: 1rem;
+}
+.margin-left {
+    margin-left: 2em;
+}
+.mat-toolbar {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom: solid black .5px;
+    display: flex;
+    justify-content: center;
+    color: white;
+    
+}
+.items-toolbar {
+    background-color: rgb(43, 126, 235);
+    background-image: url(../../../assets/images/buried.png);
+    border: solid black .5px;
+    height: 2rem;
+    width: 100%;
+}
+.bottom-table {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    height: 1rem;
+}
+.mat-table {
+    background: rgb(24, 21, 21);
+    /* background: #065777; */
+    /* background: rgb(12, 36, 100); */
+    width: 100%;
+}
+.mat-action-row {
+    border-top: 0;
+    cursor: pointer;
+}  

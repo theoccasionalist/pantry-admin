@@ -1,0 +1,24 @@
+<mat-card id="top-container" *ngIf="!loading">
+    <span id="top-buttons" class="margin-bottom">
+        <span id="title">Order</span>
+        <button mat-raised-button (click)="onBackClick()">Back</button>    
+        <button mat-raised-button printSectionId="print-section" [useExistingCss]="true" ngxPrint>Print</button>        
+        <button mat-raised-button [ngClass]="{'unreceived': !order.received }" *ngIf="!order.received" (click)="onReceivedClick()">Mark Received</button>  
+        <button mat-raised-button [ngClass]="{'received': order.received }" *ngIf="order.received" (click)="onReceivedClick()">Mark Unreceived</button>
+    </span>
+    <cdk-virtual-scroll-viewport itemSize="">
+        <div id="expand-grid">
+            <app-family [order]="order" [sliceId]="sliceId"></app-family>
+            <app-cart [order]="order"></app-cart>
+        </div>
+    </cdk-virtual-scroll-viewport>
+</mat-card>
+<div id="print-section" *ngIf="!loading">
+    <header>
+        <div class="header-content">Broad St. Food Pantry Online Order</div>
+    </header>
+    <div class="seperator">Guest and Pick Up Information</div>
+    <app-family-print [order]="order" [sliceId]="sliceId"></app-family-print>
+    <div class="seperator">Cart</div>
+    <app-cart-print [order]="order" [sliceId]="sliceId"></app-cart-print>
+</div>

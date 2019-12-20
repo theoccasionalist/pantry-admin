@@ -1,0 +1,104 @@
+<div id="spinner" *ngIf="loading">
+    <mat-spinner></mat-spinner>
+</div>
+<mat-card id="top-container" *ngIf="!loading">
+    <span id="top-buttons">
+        <span *ngIf="!type.typeName" class="type-title">Type Creation</span>
+        <span *ngIf="type.typeName" class="type-title">Type Edit</span>
+        <button mat-raised-button (click)="onCancelClick()">Cancel</button>
+        <button mat-raised-button *ngIf="!type.typeName" (click)="onAddClick()" [disabled]="!typeForm.valid">Save Type and Exit</button>        
+        <button mat-raised-button *ngIf="type.typeName" (click)="onUpdateClick()" [disabled]="(typeForm.pristine && !deletedOrMoved) || !typeForm.valid">Save Update and Exit</button> 
+    </span>
+    <div id="grid-container">
+        <mat-card class="left-form" [ngClass]="{'in-shop-left-form': inShop}" [formGroup]="typeForm">
+            <div>
+                <mat-form-field>
+                <mat-label>Type Name</mat-label>
+                <input matInput formControlName="typeName"  (change)="onChangeTypeName()">
+                <mat-error *ngIf="typeForm.get('typeName').hasError('required')">{{requiredError}}</mat-error>
+                </mat-form-field>
+            </div>
+            <div id="shop" *ngIf="inShop">Currently in the Shop</div>    
+        </mat-card>
+        <mat-card id="right-form" [formGroup]="typeForm">
+            <mat-card id="init-size-amount" *ngIf="!typeForm.get('typeSizeAmount')">
+                <span>This type does not currently have family size limits.</span>
+                <button mat-raised-button (click)="initSizeAmount()">Create Limits</button> 
+            </mat-card>
+            <span id="add-limit" *ngIf="typeForm.get('typeSizeAmount')">
+                <span>Type Limits per Range of Family Size:</span>
+                <button mat-raised-button (click)="addSizeAmount()">Add Another Limit</button> 
+            </span>
+            <cdk-virtual-scroll-viewport id="limit-viewport"  itemSize="" *ngIf="typeForm.get('typeSizeAmount')">
+                <mat-card class="type-size-amount-card" *ngFor="let element of typeForm.get('typeSizeAmount').controls; let i = index" formArrayName="typeSizeAmount">
+                    <ng-container [formGroupName]="i">
+                        <div class="type-size-amount-form"> 
+                            <mat-form-field >
+                            <mat-label>Minimum Family Size</mat-label>
+                            <mat-select matInput [value]="minFamSize"  formControlName="minFamSize">
+                                <mat-option [value]=1>1</mat-option>
+                                <mat-option [value]=2>2</mat-option>
+                                <mat-option [value]=3>3</mat-option>
+                                <mat-option [value]=4>4</mat-option>
+                                <mat-option [value]=5>5</mat-option>
+                                <mat-option [value]=6>6</mat-option>
+                                <mat-option [value]=7>7</mat-option>
+                                <mat-option [value]=8>8</mat-option>
+                                <mat-option [value]=9>9</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="typeForm.get('typeSizeAmount').controls[i].get('minFamSize').hasError('required')">{{requiredError}}</mat-error>
+                            </mat-form-field>
+                            <mat-form-field>
+                            <mat-label>Maximum Family Size</mat-label>
+                            <mat-select matInput [value]="maxFamSize" formControlName="maxFamSize">
+                                <mat-option [value]=1>1</mat-option>
+                                <mat-option [value]=2>2</mat-option>
+                                <mat-option [value]=3>3</mat-option>
+                                <mat-option [value]=4>4</mat-option>
+                                <mat-option [value]=5>5</mat-option>
+                                <mat-option [value]=6>6</mat-option>
+                                <mat-option [value]=7>7</mat-option>
+                                <mat-option [value]=8>8</mat-option>
+                                <mat-option [value]=9>9</mat-option>
+                            </mat-select>    
+                            <mat-error *ngIf="typeForm.get('typeSizeAmount').controls[i].get('maxFamSize').hasError('required')">{{requiredError}}</mat-error>
+                            </mat-form-field>        
+                            <mat-form-field>
+                            <mat-label>Type Limit</mat-label>
+                            <mat-select matInput [value]="maxAmount" formControlName="maxAmount">
+                                <mat-option [value]=1>1</mat-option>
+                                <mat-option [value]=2>2</mat-option>
+                                <mat-option [value]=3>3</mat-option>
+                                <mat-option [value]=4>4</mat-option>
+                                <mat-option [value]=5>5</mat-option>
+                                <mat-option [value]=6>6</mat-option>
+                                <mat-option [value]=7>7</mat-option>
+                                <mat-option [value]=8>8</mat-option>
+                                <mat-option [value]=9>9</mat-option>
+                            </mat-select>    
+                            <mat-error *ngIf="typeForm.get('typeSizeAmount').controls[i].get('maxAmount').hasError('required')">{{requiredError}}</mat-error>
+                            </mat-form-field>
+                            <span>
+                                <button mat-raised-button (click)="deleteSizeAmount(i)">Delete Limit</button>
+                            </span>       
+                        </div>
+                        <mat-error *ngIf="typeForm.get('typeSizeAmount').controls[i].hasError('minMax')">Minimum size must be equal to or smaller than maximum size.</mat-error>     
+                    </ng-container>      
+                </mat-card>
+            </cdk-virtual-scroll-viewport>          
+        </mat-card>
+    </div>
+    <mat-card id="add-product-container">
+        <mat-card id="available-container">Available Products
+            <cdk-virtual-scroll-viewport id="available-products-viewport" itemSize="" #productList="cdkDropList" [cdkDropListData]="availableProducts" [cdkDropListConnectedTo]="[productTypeList]" (cdkDropListDropped)="dropProduct($event)" cdkDropList>
+                <mat-card class="available-card" *ngFor="let product of availableProducts" cdkDrag>{{product.productName}}</mat-card>
+            </cdk-virtual-scroll-viewport>
+        </mat-card>
+        <mat-card id="in-type-container">Products in this Type
+            <cdk-virtual-scroll-viewport id="in-type-products-viewport" itemSize="" #productTypeList="cdkDropList" [cdkDropListData]="productsInType" [cdkDropListConnectedTo]="[productList]" (cdkDropListDropped)="dropProduct($event)" cdkDropList>
+                <mat-card class="in-type-card" *ngFor="let product of productsInType" cdkDrag>{{product.productName}}</mat-card>
+            </cdk-virtual-scroll-viewport>  
+        </mat-card>
+    </mat-card>
+</mat-card>
+

@@ -1,0 +1,30 @@
+#top-container {
+    background: #603A17;
+    background-image: url(../../../assets/images/buried.png);
+    border: solid black 1px;
+    margin: 3%;
+    margin-top: 2%;
+    margin-bottom: 0;
+    display: flex;
+    justify-content: space-between;
+}
+.cdk-virtual-scroll-viewport {
+    display: flex;
+    height: 73vh;
+    width: 100%;
+}
+.cdk-virtual-scroll-content-wrapper {
+    height: 70vh;
+}
+.mat-expansion-panel {
+    background-color:#71a040;
+    margin-bottom: 2%;
+    border: solid black 1px;
+}
+#spinner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}

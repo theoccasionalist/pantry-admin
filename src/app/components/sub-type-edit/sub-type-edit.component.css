@@ -1,0 +1,78 @@
+.mat-card {
+    border: solid black 1px;
+}
+#top-container {
+    background: #603A17;
+    background-image: url(../../../assets/images/buried.png);
+    margin: 3%;
+    margin-top: 2%;
+    min-width: 1200px;
+}
+#top-buttons {
+    display: grid;
+    font-size: x-large;
+    grid-template-columns: 70% 15% 15%;
+}
+#top-buttons button {
+    margin-left: 10%
+}
+#grid-container {
+    margin-top: 2%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 10% 90%;
+}
+.drag-drop-header {
+    display: flex;
+    align-items: center;
+    background-color: #03354b;
+    background-image: url(../../../assets/images/buried.png);
+    justify-content: center;
+    font-size: large;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+#left-header {
+    margin-right: 5%;
+}
+#sub-type-viewport {
+    height: 53vh;
+}
+.sub-type-card {
+    margin-bottom: 2%;
+}
+#sub-type-container {
+    background-color: #065777;
+    background-image: url(../../../assets/images/buried.png);
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    font-size: large;
+    margin-right: 5%;
+}
+#super-type-container {
+    background-color: #065777;
+    background-image: url(../../../assets/images/buried.png);
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    font-size: large;
+}
+.super-type-card-container {
+    background-image: url(../../../assets/images/buried.png);
+    margin-bottom: 2%;
+}
+.super-type-card {
+    margin-top: 2%;
+}
+#super-type-viewport {
+    height: 54vh;
+}
+.no {
+    background-color: red
+}
+#spinner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}

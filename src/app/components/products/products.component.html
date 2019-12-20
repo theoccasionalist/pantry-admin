@@ -1,0 +1,23 @@
+<div id="spinner" *ngIf="loading">
+    <mat-spinner></mat-spinner>
+</div>
+<div id="ag-grid-super-container">
+    <mat-card id="ag-grid-sub-container" *ngIf="!loading">
+        <span id="button-grid-container">
+            <span id="products-title">Products</span>
+            <button mat-raised-button (click)="onCreateProductClick()">Create Product</button>
+        </span>
+        <ag-grid-angular 
+        style="width: 1120px; height: 500px;" 
+        class="ag-theme-balham"
+        [columnDefs]="columnDefs"
+        [defaultColDef]="defaultColDef"
+        [gridOptions]="gridOptions"
+        [suppressCellSelection]="true"
+        [pagination]="true"
+        [paginationAutoPageSize]="true"
+        [rowData]="rowData">
+        </ag-grid-angular>
+    </mat-card>
+</div>
+

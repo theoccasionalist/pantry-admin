@@ -1,0 +1,64 @@
+<mat-expansion-panel (opened)="panelOpenState=true" (closed)="panelOpenState=false" [expanded]="panelOpenState" *ngIf="!print">
+    <mat-expansion-panel-header>
+        <mat-panel-title>Guest and Pick Up Information</mat-panel-title>
+        <mat-panel-description>{{panelOpenState ? 'close' : 'open'}}</mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-card id="info-outer-grid">
+        <div>
+            <div class="info-header">Contact</div>   
+            <mat-card class="info-card">                
+                <div id="contact-inner-grid">
+                    <div>
+                        <div class="info info-label">First Name:</div>
+                        <div class="info info-label">Last Name:</div>
+                        <div class="info info-label">Zip Code:</div>
+                        <div class="info info-label">Phone Number:</div>
+                        <div class="info info-label">Email Address:</div>
+                    </div>
+                    <div>
+                        <div class="info">{{family.firstName}}</div>
+                        <div class="info">{{family.lastName}}</div>
+                        <div class="info">{{family.zipCode}}</div>
+                        <div class="info">{{family.phoneNumber}}</div>
+                        <div class="info">{{family.emailAddress ? family.emailAddress : 'Not Provided' }}</div>
+                    </div>
+                </div>        
+            </mat-card>
+        </div>    
+        <div>
+            <div class="info-header">Household</div>   
+            <mat-card class="info-card">
+                <div id="household-inner-grid">   
+                    <div>
+                        <div class="info info-label">Family Size:</div>
+                        <div class="info info-label">School Children:</div>
+                        <div class="info info-label">Infants:</div>
+                    </div>
+                    <div>
+                        <div class="info">{{family.familySize}}</div>
+                        <div class="info">{{family.schoolChildren ? family.schoolChildren : 'None' }}</div>
+                        <div class="info">{{family.infants ? 'Yes' : 'No'}}</div>
+                    </div>
+                </div>    
+            </mat-card>    
+        </div>
+        <div>
+            <div class="info-header">Pick Up</div>   
+            <mat-card class="info-card">
+                <div id="pick-up-inner-grid">   
+                    <div>
+                        <div class="info info-label">Date:</div>
+                        <div class="info info-label">Location:</div>
+                        <div class="info info-label">Order Id:</div>
+                    </div>
+                    <div>
+                        <div class="info">{{pickUpDate}}</div>
+                        <div class="info">{{family.referral ? 'CELC' : 'Broad St.' }}</div>
+                        <div class="info">{{sliceId}}</div>
+                    </div>
+                </div>    
+            </mat-card>    
+        </div>      
+    </mat-card>
+</mat-expansion-panel>
+<div *ngIf="print">Hello</div>

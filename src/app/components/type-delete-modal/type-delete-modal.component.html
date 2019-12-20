@@ -1,0 +1,9 @@
+<mat-card>
+    <p>This action will permanently delete {{type.typeName}}.  Permanently deleting a type removes it
+    from the shop and unassigns&mdash;but does not delete&mdash;any products currently assigned to it.</p>
+</mat-card>
+<p id="proceed-prompt">Do you wish to proceed?</p>
+<span>
+    <button mat-raised-button (click)="onCancelClick()">Cancel</button>
+    <button mat-raised-button (click)="onProceedClick()">Proceed</button>
+</span>

@@ -1,0 +1,31 @@
+<div id="spinner" *ngIf="loading">
+    <mat-spinner></mat-spinner>
+</div>
+<mat-card id="top-container" *ngIf="!loading">
+    <span id="top-buttons">
+        <span>Set Sub-Types</span>
+        <button mat-raised-button (click)="onCancelClick()">Cancel</button>
+        <button mat-raised-button (click)="onSaveClick()">Save and Exit</button>
+    </span>
+    <div id="grid-container" cdkDropListGroup>
+        <mat-card class="drag-drop-header" id="left-header">Available Sub-Types</mat-card>
+        <mat-card class="drag-drop-header">Available Super-Types</mat-card> 
+        <cdk-virtual-scroll-viewport id="sub-type-viewport" itemSize="">
+            <mat-card id="sub-type-container" [cdkDropListData]="possibleSubs" (cdkDropListDropped)="dropIntoSubs($event)" cdkDropList>
+                <mat-card class="sub-type-card" *ngFor="let subType of possibleSubs" cdkDrag>{{subType.typeName}}</mat-card>
+            </mat-card>
+        </cdk-virtual-scroll-viewport>
+        <cdk-virtual-scroll-viewport id="super-type-viewport" itemSize="">  
+            <mat-card id="super-type-container">
+                <ng-container *ngFor="let superType of possibleSupers">
+                    <mat-card class="super-type-card-container" [cdkDropListData]="superType.subTypes" (cdkDropListDropped)="dropIntoSupers($event, superType)" cdkDropList>
+                        <span>{{superType.typeName}}</span>
+                        <mat-card class="super-type-card" *ngFor="let subType of superType.subTypes" cdkDrag>
+                            {{subType.typeName}}
+                        </mat-card>
+                    </mat-card>
+                </ng-container>
+            </mat-card>
+        </cdk-virtual-scroll-viewport>
+    </div>
+</mat-card>

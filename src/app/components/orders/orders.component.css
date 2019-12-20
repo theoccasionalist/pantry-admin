@@ -1,0 +1,23 @@
+#order-title {
+    font-size: x-large;
+    margin-bottom: 1%;
+}
+.cdk-virtual-scroll-viewport {
+    height: 60vh;
+    width: 1160px;
+}
+#ag-grid-container {
+    background-color: #065777;
+    background-image: url(../../../assets/images/black-paper.png);
+    border: solid black 1px;
+    display: grid;
+    justify-content: center;
+    max-width: 1200px;
+}
+#spinner {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 80vh;
+}

@@ -1,0 +1,33 @@
+#ag-grid-sub-container {
+    background-color: #065777;
+    background-image: url(../../../assets/images/black-paper.png);
+    border: solid black 1px;
+    display: grid;
+    grid-template-rows: 10% 90%;
+    max-width: 830px;
+}
+#ag-grid-super-container {
+    display: flex;
+    justify-content: center;
+}
+button {
+    border: solid black 1px;
+}
+#button-grid-container {
+    display: grid;
+    grid-template-columns: 50% 25% 25%;
+    margin-bottom: 3%;
+}
+#button-grid-container button {
+    margin-left: 5%;
+}
+#types-title {
+    font-size: x-large;
+}
+#spinner {
+    display: flex;
+    background-color:#71a040;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

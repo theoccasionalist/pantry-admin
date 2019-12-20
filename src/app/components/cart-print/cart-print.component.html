@@ -1,0 +1,26 @@
+<div class="flex-container">
+    <div *ngFor="let type of order.cart">
+        <table class="no-border">
+            <tr class="no-border"><td class="no-border">
+                <mat-toolbar class="items-toolbar top-table">{{type.typeName}}</mat-toolbar>
+                <table mat-table [dataSource]="type.items">
+                    <ng-container matColumnDef="column1">
+                    <th class="half" mat-header-cell *matHeaderCellDef>Product</th>
+                    <td class="half" mat-cell *matCellDef="let item"><div>{{item.productName}}</div></td>
+                    </ng-container>
+                    <ng-container matColumnDef="column2">
+                    <th mat-header-cell *matHeaderCellDef><span class="margin-left">Amount</span></th>
+                    <td mat-cell *matCellDef="let item"><span class="margin-left">{{item.amount}}</span></td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="columns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: columns"></tr>
+                </table>
+                <div class="items-toolbar bottom-table">
+                    <span>{{'Family: ' + order.family.lastName}}</span>
+                    <span>{{' Order Id: ' + sliceId}}</span>
+                </div>
+            </td></tr>
+        </table>
+    </div>    
+</div>
+   

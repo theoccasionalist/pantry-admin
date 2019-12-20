@@ -1,0 +1,55 @@
+<div class="info-header">Contact</div>   
+<mat-card>                
+    <div id="contact-inner-grid">
+        <div>
+            <div class="info info-label">First Name:</div>
+            <div class="info info-label">Last Name:</div>
+            <div class="info info-label">Zip Code:</div>
+            <div class="info info-label">Phone Number:</div>
+            <div class="info info-label">Email Address:</div>
+        </div>
+        <div>
+            <div class="info">{{order.family.firstName}}</div>
+            <div class="info">{{order.family.lastName}}</div>
+            <div class="info">{{order.family.zipCode}}</div>
+            <div class="info">{{order.family.phoneNumber}}</div>
+            <div class="info">{{order.family.emailAddress ? order.family.emailAddress : 'Not Provided' }}</div>
+        </div>
+    </div>        
+</mat-card>
+<div id="house-pick-up-grid">
+    <div>
+        <header class="info-header">Household</header>   
+        <mat-card>
+            <div id="household-inner-grid">   
+                <div>
+                    <div class="info">Family Size:</div>
+                    <div class="info">School Children:</div>
+                    <div class="info">Infants:</div>
+                </div>
+                <div>
+                    <div class="info">{{order.family.familySize}}</div>
+                    <div class="info">{{order.family.schoolChildren ? order.family.schoolChildren : 'None' }}</div>
+                    <div class="info">{{order.family.infants ? 'Yes' : 'No'}}</div>
+                </div>
+            </div>    
+        </mat-card>    
+    </div>
+    <div>
+        <header class="info-header">Pick Up</header>   
+        <mat-card>
+            <div id="pick-up-inner-grid">   
+                <div>
+                    <div class="info">Date:</div>
+                    <div class="info">Location:</div>
+                    <div class="info">Order Id:</div>
+                </div>
+                <div>
+                    <div class="info">{{order.pickUpDate}}</div>
+                    <div class="info">{{order.family.referral ? 'CELC' : 'Broad St.' }}</div>
+                    <div class="info">{{sliceId}}</div>
+                </div>
+            </div>    
+        </mat-card>
+    </div>     
+</div> 

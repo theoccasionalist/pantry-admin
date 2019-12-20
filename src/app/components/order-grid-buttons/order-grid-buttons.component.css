@@ -1,0 +1,13 @@
+button {
+    border: solid black 1px;
+    border-radius: 2px;
+    cursor: pointer;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+#view-button {
+    background: rgb(55, 221, 188);
+}
+#delete-button {
+    background: orangered;
+}

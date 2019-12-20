@@ -1,0 +1,25 @@
+<div id="spinner" *ngIf="loading">
+    <mat-spinner></mat-spinner>
+</div>
+<div id="ag-grid-super-container">
+    <mat-card id="ag-grid-sub-container" *ngIf="!loading">
+        <span id="button-grid-container">
+            <span id="types-title">Types</span>
+            <button mat-raised-button (click)="onSubTypesClick()">Set Sub-Types</button>
+            <button mat-raised-button (click)="onCreateTypeClick()">Create Type</button>
+        </span>
+        <ag-grid-angular 
+        style="width: 760px; height: 500px;" 
+        class="ag-theme-balham"
+        [columnDefs]="columnDefs"
+        [defaultColDef]="defaultColDef"
+        [gridOptions]="gridOptions"
+        [suppressCellSelection]="true"
+        [pagination]="true"
+        [paginationAutoPageSize]="true"
+        [rowData]="rowData">
+        </ag-grid-angular>
+    </mat-card>
+</div>
+
+

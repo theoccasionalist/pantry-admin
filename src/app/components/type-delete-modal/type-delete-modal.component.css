@@ -1,0 +1,13 @@
+.mat-card {
+    background-color: rgb(163, 59, 59);
+    border: solid black 1px;
+    margin-top: 2%;
+}
+#proceed-prompt {
+    display: flex;
+    justify-content: center;
+}
+span {
+    display: flex;
+    justify-content: space-between;
+}

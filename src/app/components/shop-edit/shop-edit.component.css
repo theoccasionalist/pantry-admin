@@ -1,0 +1,59 @@
+
+.mat-card {
+    border: solid black 1px;
+}
+#top-container {
+    background: #603A17;
+    background-image: url(../../../assets/images/buried.png);
+    margin: 3%;
+    margin-top: 2%;
+    min-width: 1200px;
+}
+#top-buttons {
+    display: grid;
+    font-size: x-large;
+    grid-template-columns: 70% 15% 15%;
+}
+#top-buttons button {
+    margin-left: 10%
+}
+#grid-container {
+    margin-top: 2%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 10% 90%;
+}
+.drag-drop-header {
+    display: flex;
+    align-items: center;
+    background-color: #03354b;
+    background-image: url(../../../assets/images/buried.png);
+    justify-content: center;
+    font-size: large;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+#left-header {
+    margin-right: 5%;
+}
+.viewport {
+    height: 54vh;
+}
+.type-container {
+    background-color: #065777;
+    background-image: url(../../../assets/images/buried.png);
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    font-size: large;
+    margin-right: 5%;
+}
+.margin-top {
+    margin-top: 2%;
+}
+#spinner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}

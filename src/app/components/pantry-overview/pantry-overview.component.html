@@ -1,0 +1,51 @@
+<div id="spinner" *ngIf="loading">
+    <mat-spinner></mat-spinner>
+</div>
+<mat-card id="top-container" *ngIf="!loading">
+    <cdk-virtual-scroll-viewport  itemSize="">
+        <mat-expansion-panel 
+        (opened) ="pantryPanelService.setPanelOpenStates('shop',true)" 
+        (closed)="pantryPanelService.setPanelOpenStates('shop',false)" 
+        [expanded]="shopPanelOpenState">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Shop Manager
+                </mat-panel-title>
+                <mat-panel-description>
+                    {{shopPanelOpenState ? 'close' : 'open'}}
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <app-shop></app-shop>
+        </mat-expansion-panel>
+        <mat-expansion-panel 
+        (opened) ="pantryPanelService.setPanelOpenStates('type',true)" 
+        (closed)="pantryPanelService.setPanelOpenStates('type',false)" 
+        [expanded]="typePanelOpenState">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Type Manager
+                </mat-panel-title>
+                <mat-panel-description>
+                    {{typePanelOpenState ? 'close' : 'open'}}
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <app-types></app-types>
+        </mat-expansion-panel>
+        <mat-expansion-panel 
+        (opened) ="pantryPanelService.setPanelOpenStates('product',true)" 
+        (closed)="pantryPanelService.setPanelOpenStates('product',false)" 
+        [expanded]="productPanelOpenState">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Product Manager
+                </mat-panel-title>
+                <mat-panel-description>
+                    {{productPanelOpenState ? 'close' : 'open'}}
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <app-products></app-products>
+        </mat-expansion-panel>
+    </cdk-virtual-scroll-viewport> 
+</mat-card>
+
+

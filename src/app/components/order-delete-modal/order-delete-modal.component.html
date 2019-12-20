@@ -1,0 +1,9 @@
+<mat-card>
+    <p>This will permanently delete order i.d. {{sliceId}}.  Please assure that this order 
+        for the {{order.lastName}} has been accommodated.</p>
+</mat-card>
+<p id="proceed-prompt">Do you wish to proceed?</p>
+<span>
+    <button mat-raised-button (click)="onCancelClick()">Cancel</button>
+    <button mat-raised-button (click)="onProceedClick()">Proceed</button>
+</span>

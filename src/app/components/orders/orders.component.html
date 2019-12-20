@@ -1,0 +1,19 @@
+<div id="spinner" *ngIf="loading">
+    <mat-spinner></mat-spinner>
+</div>
+<mat-card id="ag-grid-container" *ngIf="!loading">
+    <div id="order-title">Orders</div>
+    <cdk-virtual-scroll-viewport  itemSize="">    
+        <ag-grid-angular 
+        style="width: 1140px; height: 500px;" 
+        class="ag-theme-balham"
+        [columnDefs]="columnDefs"
+        [defaultColDef]="defaultColDef"
+        [gridOptions]="gridOptions"
+        [suppressCellSelection]="true"
+        [pagination]="true"
+        [paginationAutoPageSize]="true"
+        [rowData]="rowData">
+        </ag-grid-angular>
+    </cdk-virtual-scroll-viewport >    
+</mat-card>

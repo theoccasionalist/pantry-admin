@@ -1,0 +1,41 @@
+.margin-bottom {
+    margin-bottom: 1%;
+}
+.margin-top {
+    margin-top: 1%;
+}
+.mat-card {
+    border: solid black 1px;
+}
+#shop-title {
+    font-size: x-large;
+}
+.mat-expansion-panel {
+    border: solid black 1px;
+}
+#top-container {
+    background-color: #065777;
+    background-image: url(../../../assets/images/buried.png);
+    margin: 3%;
+}
+#top-button {
+    display: grid;
+    grid-template-columns: 85% 15%;
+}
+#shop-container {
+    background-image: url(../../../assets/images/buried.png);
+    font-size: large;
+}
+.type-card {
+    background-color: #03354b;
+    background-image: url(../../../assets/images/buried.png);
+}
+.product-card {
+    background-color: #065777;
+}
+.sub-type-card {
+    background-image: url(../../../assets/images/buried.png);
+}
+.sub-product-card {
+    background-color: #065777;
+}

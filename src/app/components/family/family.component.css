@@ -1,0 +1,51 @@
+.mat-card {
+    border: solid black 1px;
+}
+button {
+    border: solid black 1px;
+}
+.margin-bottom {
+    margin-bottom: 1%;
+}
+.margin-top {
+    display: flex;
+    justify-content: center;
+    vertical-align: center;
+}
+.mat-expansion-panel {
+    background-color: #065777;
+    background-image: url(../../../assets/images/buried.png);
+    border: solid black 1px;
+}
+#info-outer-grid {
+    background-image: url(../../../assets/images/buried.png);
+    display: grid;
+    grid-template-columns: 50% 20% 20%;
+    gap: 3%;
+}
+.info-header {
+    margin-bottom: 1rem;
+    margin-left: .5rem;
+}
+.info-card {
+    background-color: #03354b;
+}
+#contact-inner-grid {
+    display: grid;
+    grid-template-columns: 30% 70%;
+}
+#household-inner-grid {
+    display: grid;
+    grid-template-columns: 70% 30%;
+}
+#pick-up-inner-grid {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+.info {
+    margin-bottom: 1rem;
+    word-wrap: break-word;
+}
+.info-label {
+    white-space: nowrap;
+}

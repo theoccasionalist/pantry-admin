@@ -1,0 +1,13 @@
+button {
+    border: solid black 1px;
+    border-radius: 2px;
+    cursor: pointer;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+#edit-button {
+    background: yellow;
+}
+#delete-button {
+    background: orangered;
+}

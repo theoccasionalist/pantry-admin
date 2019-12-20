@@ -1,0 +1,93 @@
+button {
+    border: solid black 1px;
+}
+.product-title {
+    font-size: xx-large;
+    font-weight: normal;
+}
+#top-container {
+    background: #603A17;
+    background-image: url(../../../assets/images/buried.png);
+    border: solid black 1px;
+    margin: 3%;
+    margin-top: 2%;
+    min-width: 1200px;
+}
+#top-buttons {
+    display: grid;
+    grid-template-columns: 70% 15% 15%;
+}
+#top-buttons button {
+    margin-left: 10%
+}
+#grid-container {
+    margin-top: 2%;
+    display: grid;
+    grid-template-columns: 20% 80%;
+}
+#grid-container .mat-card {
+    background-color: #065777;
+    border: solid black 1px;
+}
+.left-form {
+    height: 45vh;
+    display: grid;
+    vertical-align: center;
+    justify-content: center;
+}
+.in-shop-left-form {
+    height: 53vh;
+    display: grid;
+    vertical-align: center;
+    justify-content: center;
+}
+#shop {
+    background-color: rgb(161, 103, 103);
+    border: solid black 1px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+#right-form {
+    background-image: url(../../../assets/images/buried.png);
+    margin-left: 1%;
+}
+#init-size-amount {
+    display: grid;
+    grid-template-columns: 80% 20%;
+}
+#init-size-amount span {
+    font-size: large;
+    padding-top: 1%;
+}
+#add-limit {
+    display: grid;
+    grid-template-columns: 80% 20%;
+}
+#add-limit span {
+    font-size: x-large;
+}
+.cdk-virtual-scroll-viewport {
+    height: 39vh;
+    width: 100%;
+}
+.prod-size-amount-card {
+    margin-top: 2%;
+}
+.prod-size-amount-form {
+    display: grid;
+    grid-template-columns: 24% 24% 24% 10%;
+    grid-gap: 5%;
+    vertical-align: center;
+}
+.prod-size-amount-form button {
+    margin-top: 13%;
+}
+#spinner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}

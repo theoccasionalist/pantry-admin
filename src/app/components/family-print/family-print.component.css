@@ -1,0 +1,33 @@
+.info-header {
+    font-size: large;
+    font-style: bolder;
+}
+#info-outer-grid {
+    color: black;
+}
+
+.info {
+    color: black;
+}
+.mat-card {
+    border: solid black 1px;
+    width: auto;
+}
+#contact-inner-grid {
+    display: grid;
+    grid-template-columns: 20% 70%;  
+}
+#house-pick-up-grid {
+    display: grid;
+    grid-template-columns: 45% 45%;
+    gap: 10%;
+    margin-top: 5%;
+}
+#household-inner-grid {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+#pick-up-inner-grid {
+    display: grid;
+    grid-template-columns: 30% 70%;
+}

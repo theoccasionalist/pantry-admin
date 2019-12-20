@@ -1,0 +1,12 @@
+.mat-toolbar {
+    background: #065777;
+    background-image: url(../../../assets/images/black-paper.png);
+
+    border-bottom: solid black 2px;
+    display: grid;
+    grid-template-columns: 10% 2% 10% 68% 10%;
+    min-width: 1200px;
+}
+#title {
+    padding-left: 35%;
+}
