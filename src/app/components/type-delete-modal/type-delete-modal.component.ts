@@ -4,7 +4,8 @@ import { TypeService } from 'src/app/services/type.service';
 import { ShopService } from 'src/app/services/shop.service';
 import { Shop } from 'src/app/models/shop.model';
 import { Type } from 'src/app/models/type.model';
-import { MatSnackBar, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { isArray } from 'util';
 

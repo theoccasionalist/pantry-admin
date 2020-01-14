@@ -4,7 +4,7 @@ import { switchMap, take } from 'rxjs/operators';
 import { ProductService } from 'src/app/services/product.service';
 import { Product } from 'src/app/models/product.model';
 import { FormArray, FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { minMaxValidator, ProductAddComponent } from '../product-add/product-add.component';
 import { forkJoin } from 'rxjs';
 import { ShopService } from 'src/app/services/shop.service';

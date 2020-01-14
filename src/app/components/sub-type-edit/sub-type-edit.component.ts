@@ -3,7 +3,7 @@ import { TypeService } from 'src/app/services/type.service';
 import { Type } from 'src/app/models/type.model';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { ShopType } from 'src/app/models/shop-type.model';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { RefreshService } from 'src/app/services/refresh.service';
 

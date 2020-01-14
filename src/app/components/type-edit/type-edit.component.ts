@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TypeAddComponent } from '../type-add/type-add.component';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormBuilder, FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { ProductService } from 'src/app/services/product.service';
 import { TypeService } from 'src/app/services/type.service';

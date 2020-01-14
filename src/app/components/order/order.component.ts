@@ -4,7 +4,7 @@ import { OrderService } from 'src/app/services/order.service';
 import { switchMap, take } from 'rxjs/operators';
 import { Order } from 'src/app/models/order.model';
 import { CartItemsByType } from 'src/app/models/cart-items-by-type.model';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-order-view',
