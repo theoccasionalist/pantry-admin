@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class TypeService {
-  uri = 'http://localhost:4000';
+  uri = 'http://localhost:4001';
   types: Type[] = [];
 
   constructor(private httpClient: HttpClient) { }

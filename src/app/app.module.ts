@@ -36,6 +36,8 @@ import { FamilyComponent } from './components/family/family.component';
 import { FamilyPrintComponent } from './components/family-print/family-print.component';
 import { CartPrintComponent } from './components/cart-print/cart-print.component';
 import { OrderDeleteModalComponent } from './components/order-delete-modal/order-delete-modal.component';
+import { LogInComponent } from './components/log-in/log-in.component';
+import { CallbackComponent } from './components/callback/callback.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +66,8 @@ import { OrderDeleteModalComponent } from './components/order-delete-modal/order
     FamilyPrintComponent,
     CartPrintComponent,
     OrderDeleteModalComponent,
+    LogInComponent,
+    CallbackComponent,
   ],
   imports: [
     AgGridModule,

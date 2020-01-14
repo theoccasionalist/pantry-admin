@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ShopService {
-  uri = 'http://localhost:4000';
+  uri = 'http://localhost:4001';
 
   constructor(private httpClient: HttpClient) { }
 

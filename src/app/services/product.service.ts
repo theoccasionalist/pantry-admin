@@ -6,7 +6,7 @@ import { Product } from '../models/product.model';
   providedIn: 'root'
 })
 export class ProductService {
-  uri = 'http://localhost:4000';
+  uri = 'http://localhost:4001';
   products: Product[] = [];
 
   constructor(private httpClient: HttpClient) { }
