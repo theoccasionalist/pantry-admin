@@ -3,14 +3,12 @@
 </div>
 <mat-card id="top-container" *ngIf="!loading">
     <span id="top-buttons">
-        <span *ngIf="!product.productName" class="product-title">Product Creation</span>
-        <span *ngIf="product.productName" class="product-title">Product Edit</span>
+        <span *ngIf="!product.productName" class="product-title">Product Create</span>
         <button mat-raised-button (click)="onCancelClick()">Cancel</button>
-        <button mat-raised-button *ngIf="!product.productName" (click)="onAddClick()" [disabled]="!productForm.valid">Save Product and Exit</button>        
-        <button mat-raised-button *ngIf="product.productName" (click)="onUpdateClick()" [disabled]="(productForm.pristine && !limitDeleted) || !productForm.valid">Save Update and Exit</button>  
+        <button mat-raised-button (click)="onAddClick()" [disabled]="!productForm.valid">Save Product and Exit</button>        
     </span>
     <div id="grid-container">
-        <mat-card class="left-form" [ngClass]="{'in-shop-left-form': inShop}" [formGroup]="productForm">
+        <mat-card class="left-form" [formGroup]="productForm">
             <div>
                 <mat-form-field>
                 <mat-label>Product Name</mat-label>
@@ -52,7 +50,6 @@
                 <mat-error *ngIf="productForm.get('infant').hasError('required')">{{requiredError}}</mat-error>
                 </mat-form-field>
             </div>
-            <div id="shop" *ngIf="inShop">Currently in the Shop</div>   
         </mat-card>
         <mat-card id="right-form" [formGroup]="productForm">
             <mat-card id="init-size-amount" *ngIf="!productForm.get('prodSizeAmount')">
@@ -64,12 +61,12 @@
                 <button mat-raised-button (click)="addSizeAmount()">Add Another Limit</button>  
             </span>
             <cdk-virtual-scroll-viewport  itemSize="" *ngIf="productForm.get('prodSizeAmount')">
-                <mat-card class="prod-size-amount-card" *ngFor="let element of productForm.get('prodSizeAmount').controls; let i = index" formArrayName="prodSizeAmount">
+                <mat-card class="prod-size-amount-card" *ngFor="let element of productForm.get('prodSizeAmount')['controls']; let i = index" formArrayName="prodSizeAmount">
                     <ng-container [formGroupName]="i">
                         <div class="prod-size-amount-form">
                             <mat-form-field >
                                 <mat-label>Minimum Family Size</mat-label>
-                                <mat-select matInput [value]="minFamSize"  formControlName="minFamSize">
+                                <mat-select matInput formControlName="minFamSize">
                                     <mat-option [value]=1>1</mat-option>
                                     <mat-option [value]=2>2</mat-option>
                                     <mat-option [value]=3>3</mat-option>
@@ -80,11 +77,11 @@
                                     <mat-option [value]=8>8</mat-option>
                                     <mat-option [value]=9>9</mat-option>
                                 </mat-select>
-                                <mat-error *ngIf="productForm.get('prodSizeAmount').controls[i].get('minFamSize').hasError('required')">{{requiredError}}</mat-error>
+                                <mat-error *ngIf="productForm.get('prodSizeAmount')['controls'][i].get('minFamSize').hasError('required')">{{requiredError}}</mat-error>
                             </mat-form-field>
                             <mat-form-field>
                             <mat-label>Maximum Family Size</mat-label>
-                            <mat-select matInput [value]="maxFamSize" formControlName="maxFamSize">
+                            <mat-select matInput formControlName="maxFamSize">
                                 <mat-option [value]=1>1</mat-option>
                                 <mat-option [value]=2>2</mat-option>
                                 <mat-option [value]=3>3</mat-option>
@@ -95,11 +92,11 @@
                                 <mat-option [value]=8>8</mat-option>
                                 <mat-option [value]=9>9</mat-option>
                             </mat-select>    
-                            <mat-error *ngIf="productForm.get('prodSizeAmount').controls[i].get('maxFamSize').hasError('required')">{{requiredError}}</mat-error>
+                            <mat-error *ngIf="productForm.get('prodSizeAmount')['controls'][i].get('maxFamSize').hasError('required')">{{requiredError}}</mat-error>
                             </mat-form-field>        
                             <mat-form-field>
                             <mat-label>Product Limit</mat-label>
-                            <mat-select matInput [value]="maxAmount" formControlName="maxAmount">
+                            <mat-select matInput formControlName="maxAmount">
                                 <mat-option [value]=1>1</mat-option>
                                 <mat-option [value]=2>2</mat-option>
                                 <mat-option [value]=3>3</mat-option>
@@ -110,13 +107,13 @@
                                 <mat-option [value]=8>8</mat-option>
                                 <mat-option [value]=9>9</mat-option>
                             </mat-select>    
-                            <mat-error *ngIf="productForm.get('prodSizeAmount').controls[i].get('maxAmount').hasError('required')">{{requiredError}}</mat-error>
+                            <mat-error *ngIf="productForm.get('prodSizeAmount')['controls'][i].get('maxAmount').hasError('required')">{{requiredError}}</mat-error>
                             </mat-form-field>
                             <span>
                                 <button mat-raised-button (click)="deleteSizeAmount(i)">Delete Limit</button>
                             </span>  
                         </div> 
-                        <mat-error *ngIf="productForm.get('prodSizeAmount').controls[i].hasError('minMax')">Minimum size must be equal to or smaller than maximum size.</mat-error>    
+                        <mat-error *ngIf="productForm.get('prodSizeAmount')['controls'][i].hasError('minMax')">Minimum size must be equal to or smaller than maximum size.</mat-error>    
                     </ng-container>      
                 </mat-card>
             </cdk-virtual-scroll-viewport>          

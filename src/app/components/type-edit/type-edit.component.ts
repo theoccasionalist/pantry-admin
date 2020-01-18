@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TypeAddComponent } from '../type-add/type-add.component';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormBuilder, FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { ProductService } from 'src/app/services/product.service';
 import { TypeService } from 'src/app/services/type.service';
@@ -15,7 +15,7 @@ import { RefreshService } from 'src/app/services/refresh.service';
 
 @Component({
   selector: 'app-type-edit',
-  templateUrl: '../type-add/type-add.component.html',
+  templateUrl: '../type-edit/type-edit.component.html',
   styleUrls: ['../type-add/type-add.component.css']
 })
 export class TypeEditComponent extends TypeAddComponent implements OnInit {

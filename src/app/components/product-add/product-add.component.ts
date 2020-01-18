@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { ProductService } from 'src/app/services/product.service';
 import { Product } from 'src/app/models/product.model';
 import { FormArray, FormGroup, FormControl, Validators, FormBuilder, ValidatorFn } from '@angular/forms';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 export const minMaxValidator: ValidatorFn = (formGroup: FormGroup) => {
   const minFamSize = formGroup.get('minFamSize').value;
