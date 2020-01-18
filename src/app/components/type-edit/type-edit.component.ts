@@ -15,7 +15,7 @@ import { RefreshService } from 'src/app/services/refresh.service';
 
 @Component({
   selector: 'app-type-edit',
-  templateUrl: '../type-add/type-add.component.html',
+  templateUrl: '../type-edit/type-edit.component.html',
   styleUrls: ['../type-add/type-add.component.css']
 })
 export class TypeEditComponent extends TypeAddComponent implements OnInit {

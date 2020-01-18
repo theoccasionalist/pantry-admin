@@ -13,7 +13,7 @@ import { Type } from 'src/app/models/type.model';
 
 @Component({
   selector: 'app-product-edit',
-  templateUrl: '../product-add/product-add.component.html',
+  templateUrl: '../product-edit/product-edit.component.html',
   styleUrls: ['../product-add/product-add.component.css']
 })
 export class ProductEditComponent extends ProductAddComponent implements OnInit {

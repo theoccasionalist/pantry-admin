@@ -1,4 +1,4 @@
-<mat-expansion-panel (opened)="panelOpenState=true" (closed)="panelOpenState=false" [expanded]="panelOpenState" *ngIf="!print">
+<mat-expansion-panel (opened)="panelOpenState=true" (closed)="panelOpenState=false" [expanded]="panelOpenState">
     <mat-expansion-panel-header>
         <mat-panel-title>Guest and Pick Up Information</mat-panel-title>
         <mat-panel-description>{{panelOpenState ? 'close' : 'open'}}</mat-panel-description>
@@ -61,4 +61,3 @@
         </div>      
     </mat-card>
 </mat-expansion-panel>
-<div *ngIf="print">Hello</div>
