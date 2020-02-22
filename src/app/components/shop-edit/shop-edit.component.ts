@@ -1,44 +1,60 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Type } from 'src/app/models/type.model';
 import { ShopService } from 'src/app/services/shop.service';
 import { TypeService } from 'src/app/services/type.service';
-import { forkJoin } from 'rxjs';
+import { forkJoin, Subscription, combineLatest, Subject, zip, concat } from 'rxjs';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { ShopType } from 'src/app/models/shop-type.model';
 import { Shop } from 'src/app/models/shop.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { DataService } from 'src/app/services/data.service';
+import { take, tap, withLatestFrom, debounceTime, mergeMap, switchMap, first, takeUntil, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-shop-edit',
   templateUrl: './shop-edit.component.html',
   styleUrls: ['./shop-edit.component.css']
 })
-export class ShopEditComponent implements OnInit {
+export class ShopEditComponent implements OnInit, OnDestroy {
   availableTypes: ShopType[] = [];
   loading = true;
-  shop: Shop;
+  shop: Shop = undefined;
+  private subscription = new Subscription();
   types: Type[] = [];
-  typesInShop: ShopType[];
+  typesInShop: ShopType[] = [];
 
-  constructor(private snackBar: MatSnackBar, private router: Router, private shopService: ShopService, private typeService: TypeService) { }
+  shopListener = new Subject();
+  typesListener = new Subject();
+
+  constructor(private dataService: DataService, private snackBar: MatSnackBar, private router: Router, private shopService: ShopService,
+              private typeService: TypeService) { }
 
   ngOnInit() {
-    forkJoin(
-      this.shopService.getShop(),
-      this.typeService.getTypes()
-    ).subscribe(response => {
-      this.shop = response[0];
-      this.typesInShop = this.shop.shop;
-      this.setInShopSubTypes();
-      this.types = response[1];
-      this.setAvailableSuperTypes();
-      this.setAvailableSubTypes();
-      this.removeProductLessType();
-      this.sortTypesByName(this.availableTypes);
-      this.sortTypesByName(this.typesInShop);
-      this.loading = false;
-    });
+    let n = 0;
+    this.subscription.add(
+      combineLatest(
+        this.dataService.getShop(),
+        this.dataService.getTypes()
+      ).subscribe(([shop, types]) => {
+    this.typesInShop.forEach((typeInShop: ShopType) => console.log(typeInShop.subTypes));
+    console.log(shop);
+    this.shop = shop;
+    this.typesInShop = this.shop.shop;
+    this.types = types;
+    this.setInShopSubTypes();
+    this.setAvailableSuperTypes();
+    this.setAvailableSubTypes();
+    this.removeProductLessType();
+    this.sortTypesByName(this.availableTypes);
+    this.sortTypesByName(this.typesInShop);
+    this.loading = false;
+    }));
+  }
+
+  ngOnDestroy() {
+    console.log('edit destroyed');
+    this.subscription.unsubscribe();
   }
 
   dropType(event: CdkDragDrop<Type[]>) {
@@ -62,14 +78,14 @@ export class ShopEditComponent implements OnInit {
           duration: 2000,
           panelClass: ['green-snackbar']
         });
-        this.router.navigate([`/pantry`]);
       } else {
         this.snackBar.open(`Shop failed to update.`, 'Dismiss', {
           duration: 2000,
           panelClass: ['red-snackbar']
         });
-        this.router.navigate([`/pantry`]);
       }
+      this.router.navigate([`/pantry`]);
+      this.dataService.updateShop();
     });
   }
 
@@ -85,8 +101,12 @@ export class ShopEditComponent implements OnInit {
     this.types.forEach((type: Type) => {
       this.availableTypes.forEach((availableType: ShopType) => {
         if (availableType._id === type.superTypeId) {
-          availableType.subTypes = [];
-          availableType.subTypes.push(type);
+          if (!availableType.subTypes) {
+            availableType.subTypes = [];
+          }
+          if (!availableType.subTypes.some((subType: Type) => subType._id === type._id)) {
+            availableType.subTypes.push(type);
+          }
         }
       });
     });
@@ -101,17 +121,31 @@ export class ShopEditComponent implements OnInit {
   }
 
   private setInShopSubTypes() {
-    this.typesInShop.forEach((subType: ShopType) => {
-      if (subType.superTypeId) {
-        this.typesInShop.forEach((superType: ShopType) => {
-          if (subType.superTypeId === superType._id) {
-            superType.subTypes = [];
-            superType.subTypes.push(subType);
-            this.typesInShop = this.typesInShop.filter((typesInShop: ShopType) => typesInShop._id !== subType._id);
-          }
-        });
+    const subTypesInShop: ShopType[] = [];
+    this.typesInShop.forEach((typeInShop: ShopType) => {
+      if (typeInShop.superTypeId) {
+        subTypesInShop.push(typeInShop);
+        this.typesInShop = this.typesInShop.filter((type: ShopType) => type._id !== typeInShop._id);
       }
     });
+    this.setInShopSubTypesHelper(subTypesInShop);
+  }
+
+  private setInShopSubTypesHelper(subTypesInShop: ShopType[]) {
+    console.log('I am called');
+    console.log(subTypesInShop);
+    // this.typesInShop.forEach((superType: ShopType) => {
+    subTypesInShop.forEach((subType: ShopType) => {
+      const superType = this.typesInShop.find((typeInShop: Type) => typeInShop._id === subType.superTypeId);
+      console.log(superType.subTypes);
+      if (!superType.subTypes) {
+        superType.subTypes = [];
+        superType.subTypes.push(subType);
+      } else if (!superType.subTypes.some((subTypeAdd: Type) => subTypeAdd._id === subType._id)) {
+        superType.subTypes.push(subType);
+    }
+    });
+    // });
   }
 
   private sortTypesByName(shopTypes: ShopType[]) {

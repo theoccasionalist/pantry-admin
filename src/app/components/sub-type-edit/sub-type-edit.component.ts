@@ -1,34 +1,47 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TypeService } from 'src/app/services/type.service';
 import { Type } from 'src/app/models/type.model';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { ShopType } from 'src/app/models/shop-type.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { RefreshService } from 'src/app/services/refresh.service';
+import { DataService } from 'src/app/services/data.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-sub-type-edit',
   templateUrl: './sub-type-edit.component.html',
   styleUrls: ['./sub-type-edit.component.css']
 })
-export class SubTypeEditComponent implements OnInit {
+export class SubTypeEditComponent implements OnInit, OnDestroy {
   loading = true;
   possibleSubs: ShopType[] = [];
   possibleSupers: ShopType[] = [];
-  responses: number[] = [];
+  private responses: number[] = [];
+  private subscription = new Subscription();
   types: Type[];
 
-  constructor(private refreshService: RefreshService, private router: Router, private snackBar: MatSnackBar,
+  constructor(private dataService: DataService, private router: Router, private snackBar: MatSnackBar,
               private typeService: TypeService) { }
 
   ngOnInit() {
-    this.typeService.getTypes().subscribe(types => {
-      this.types = types;
-      this.initDragDropArrays();
-      this.initDragDropValues();
-      this.loading = false;
-    });
+    this.subscription.add(
+      this.dataService.getTypes().subscribe((types: Type[]) => {
+        this.types = types;
+        this.initDragDropArrays();
+        this.initDragDropValues();
+        this.sortTypesByName(this.possibleSubs);
+        this.sortTypesByName(this.possibleSupers);
+        this.possibleSupers.forEach((superType: ShopType) => {
+          this.sortTypesByName(superType.subTypes);
+        });
+        this.loading = false;
+      })
+    );
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   dropIntoSubs(event: CdkDragDrop<ShopType[]>) {
@@ -109,7 +122,6 @@ export class SubTypeEditComponent implements OnInit {
         }
       });
     });
-    this.sortTypesByName(this.possibleSupers);
   }
 
   private showResponseStatus() {
@@ -128,7 +140,7 @@ export class SubTypeEditComponent implements OnInit {
       responseComplete = true;
     }
     if (responseComplete) {
-      this.refreshService.openPantryRefresh();
+      this.dataService.updateTypes();
     }
   }
 

@@ -24,6 +24,7 @@ export class TypeService {
   }
 
   getTypes() {
+    console.log('get types called');
     return this.httpClient.get<Type[]>(`${this.uri}/types`);
   }
 

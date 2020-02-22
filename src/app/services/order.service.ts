@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Order } from '../models/order.model';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,11 +16,10 @@ export class OrderService {
   }
 
   getOrders() {
-    return this.httpClient.get<Order[]>(`${this.uri}/orders`);
+    return this.httpClient.get<Order[]>(`${this.uri}/orders/`);
   }
 
   updateOrderReceived(orderId: string, received: object) {
-    console.log(received);
     return this.httpClient.put(`${this.uri}/orders/update-received/${orderId}`, received);
   }
 

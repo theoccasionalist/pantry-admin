@@ -7,14 +7,14 @@
         <div  *ngFor="let type of cart">
             <div class="margin-left">
                 <mat-toolbar class="items-toolbar">{{type.typeName}}</mat-toolbar>
-                <table mat-table [dataSource]="type.items">
+                <table mat-table [dataSource]="type.products">
                     <ng-container matColumnDef="column1">
                     <th mat-header-cell *matHeaderCellDef>Name</th>
-                    <td mat-cell *matCellDef="let item">{{item.productName}}</td>
+                    <td mat-cell *matCellDef="let product">{{product.productName}}</td>
                     </ng-container>
                     <ng-container matColumnDef="column2">
                     <th mat-header-cell *matHeaderCellDef>Amount</th>
-                    <td mat-cell *matCellDef="let item">{{item.amount}}</td>
+                    <td mat-cell *matCellDef="let product">{{product.amount}}</td>
                     </ng-container>
                     <tr mat-header-row *matHeaderRowDef="columns"></tr>
                     <tr mat-row *matRowDef="let row; columns: columns"></tr>

@@ -1,6 +1,6 @@
 export class CartItemsByType {
     typeName: string;
-    items: {
+    products: {
         productName: string;
         amount: number;
     }[];

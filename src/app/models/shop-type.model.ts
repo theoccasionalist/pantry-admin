@@ -1,6 +1,6 @@
 import { Type } from './type.model';
 
-export class ShopType extends Type {
+export interface ShopType extends Type {
     // typeId: string;
     subTypes?: Type[];
 }
