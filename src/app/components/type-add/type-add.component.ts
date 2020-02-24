@@ -1,24 +1,21 @@
-import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormArray, FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { minMaxValidator } from '../product-add/product-add.component';
 import { Type } from '../../models/type.model';
 import { TypeService } from 'src/app/services/type.service';
-import { ProductService } from 'src/app/services/product.service';
 import { Product } from 'src/app/models/product.model';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { forkJoin, pipe } from 'rxjs';
-import { concatMap, switchMap, take, mergeMap, tap, map } from 'rxjs/operators';
-import { isArray } from 'util';
-import { RefreshService } from 'src/app/services/refresh.service';
+import { combineLatest, Subscription } from 'rxjs';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-type-add',
   templateUrl: './type-add.component.html',
   styleUrls: ['./type-add.component.css']
 })
-export class TypeAddComponent implements OnInit {
+export class TypeAddComponent implements OnInit, OnDestroy {
   availableProducts: Product[] = [];
   availableSubTypes: Type[] = [];
   currentTypeName: string;
@@ -28,6 +25,7 @@ export class TypeAddComponent implements OnInit {
   products: Product[];
   productsInType: Product[] = [];
   requiredError = 'This field is required.';
+  subscription = new Subscription();
   superTypeOptions: Type[] = [];
   type = new Type();
   typeForm = new FormGroup({
@@ -37,19 +35,25 @@ export class TypeAddComponent implements OnInit {
   types: Type[];
   typeSizeAmount: FormArray;
 
-  constructor(protected formBuilder: FormBuilder, protected productService: ProductService, protected refreshService: RefreshService,
-              protected typeService: TypeService, protected snackBar: MatSnackBar, protected router: Router) { }
+  constructor(protected dataService: DataService, protected formBuilder: FormBuilder, protected snackBar: MatSnackBar,
+              protected typeService: TypeService, protected router: Router) { }
 
   ngOnInit() {
-    forkJoin(
-      this.productService.getProducts(),
-      this.typeService.getTypes()
-    ).subscribe(response => {
-      this.products = response[0];
-      this.types = response[1];
-      this.initAvailableProducts();
-      this.loading = !this.loading;
-    });
+    this.subscription.add(
+      combineLatest([
+        this.dataService.getProducts(),
+        this.dataService.getTypes()
+      ]).subscribe(([products, types]) => {
+        this.products = products;
+        this.types = types;
+        this.initAvailableProducts();
+        this.loading = !this.loading;
+      })
+    );
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   addSizeAmount() {
@@ -125,25 +129,18 @@ export class TypeAddComponent implements OnInit {
   }
 
   showResponseStatus(status: any) {
-    let failure: boolean;
-    let responseComplete = false;
-    isArray(status) ?
-      failure = status.some((singleStatus: number) => singleStatus === 400) :
-      failure = status === 400;
-    if (!failure) {
+    if (status === 200) {
       this.snackBar.open(`${this.type.typeName} successfully updated.`, 'Dismiss', {
         panelClass: ['green-snackbar']
       });
-      responseComplete = true;
     } else {
       this.snackBar.open(`${this.type.typeName} failed to update.`, 'Dismiss', {
         panelClass: ['red-snackbar']
       });
-      responseComplete = true;
     }
-    if (responseComplete) {
-      this.refreshService.openPantryRefresh();
-    }
+    this.dataService.updateTypes();
+    this.dataService.updateProducts();
+    this.dataService.updateShop();
   }
 
   sortProductsByName(dragDropCard: Product[]) {

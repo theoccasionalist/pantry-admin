@@ -1,44 +1,49 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Type } from 'src/app/models/type.model';
 import { ShopService } from 'src/app/services/shop.service';
-import { TypeService } from 'src/app/services/type.service';
-import { forkJoin } from 'rxjs';
+import { Subscription, combineLatest } from 'rxjs';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { ShopType } from 'src/app/models/shop-type.model';
 import { Shop } from 'src/app/models/shop.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { DataService } from 'src/app/services/data.service';
+import { cloneDeep } from 'lodash';
 
 @Component({
   selector: 'app-shop-edit',
   templateUrl: './shop-edit.component.html',
   styleUrls: ['./shop-edit.component.css']
 })
-export class ShopEditComponent implements OnInit {
-  availableTypes: ShopType[] = [];
+export class ShopEditComponent implements OnInit, OnDestroy {
+  availableTypes: ShopType[];
   loading = true;
   shop: Shop;
-  types: Type[] = [];
+  private subscription = new Subscription();
+  types: Type[];
   typesInShop: ShopType[];
 
-  constructor(private snackBar: MatSnackBar, private router: Router, private shopService: ShopService, private typeService: TypeService) { }
+  constructor(private dataService: DataService, private snackBar: MatSnackBar, private router: Router, private shopService: ShopService) { }
 
   ngOnInit() {
-    forkJoin(
-      this.shopService.getShop(),
-      this.typeService.getTypes()
-    ).subscribe(response => {
-      this.shop = response[0];
-      this.typesInShop = this.shop.shop;
-      this.setInShopSubTypes();
-      this.types = response[1];
-      this.setAvailableSuperTypes();
-      this.setAvailableSubTypes();
-      this.removeProductLessType();
-      this.sortTypesByName(this.availableTypes);
-      this.sortTypesByName(this.typesInShop);
-      this.loading = false;
-    });
+    this.subscription.add(
+      combineLatest([
+        this.dataService.getShop(),
+        this.dataService.getTypes()
+      ]).subscribe(([shop, types]) => {
+    this.initShop(shop, types);
+    this.setInShopSubTypes();
+    this.setAvailableSuperTypes();
+    this.setAvailableSubTypes();
+    this.removeProductLessType();
+    this.sortTypesByName(this.availableTypes);
+    this.sortTypesByName(this.typesInShop);
+    this.loading = false;
+    }));
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   dropType(event: CdkDragDrop<Type[]>) {
@@ -49,6 +54,18 @@ export class ShopEditComponent implements OnInit {
     this.sortTypesByName(this.typesInShop);
   }
 
+  private initShop(shop: Shop, types: Type[]) {
+    this.availableTypes = [];
+    this.shop = null;
+    this.types = [];
+    this.typesInShop = [];
+    const shopClone = cloneDeep(shop);
+    const typesClone = cloneDeep(types);
+    this.shop = shopClone;
+    this.typesInShop = this.shop.shop;
+    this.types = typesClone;
+  }
+
   onCancelClick() {
     this.router.navigate(['/pantry']);
   }
@@ -57,19 +74,8 @@ export class ShopEditComponent implements OnInit {
     this.unwrapSubTypes();
     this.shop.shop = this.typesInShop;
     this.shopService.updateShop(this.shop._id, this.shop).subscribe((response: any) => {
-      if (response.status === 200) {
-        this.snackBar.open(`Shop successfully updated.`, 'Dismiss', {
-          duration: 2000,
-          panelClass: ['green-snackbar']
-        });
-        this.router.navigate([`/pantry`]);
-      } else {
-        this.snackBar.open(`Shop failed to update.`, 'Dismiss', {
-          duration: 2000,
-          panelClass: ['red-snackbar']
-        });
-        this.router.navigate([`/pantry`]);
-      }
+      this.showResponseStatus(response.status);
+      this.router.navigate([`/pantry`]);
     });
   }
 
@@ -85,7 +91,9 @@ export class ShopEditComponent implements OnInit {
     this.types.forEach((type: Type) => {
       this.availableTypes.forEach((availableType: ShopType) => {
         if (availableType._id === type.superTypeId) {
-          availableType.subTypes = [];
+          if (!availableType.subTypes) {
+            availableType.subTypes = [];
+          }
           availableType.subTypes.push(type);
         }
       });
@@ -101,17 +109,41 @@ export class ShopEditComponent implements OnInit {
   }
 
   private setInShopSubTypes() {
-    this.typesInShop.forEach((subType: ShopType) => {
-      if (subType.superTypeId) {
-        this.typesInShop.forEach((superType: ShopType) => {
-          if (subType.superTypeId === superType._id) {
-            superType.subTypes = [];
-            superType.subTypes.push(subType);
-            this.typesInShop = this.typesInShop.filter((typesInShop: ShopType) => typesInShop._id !== subType._id);
-          }
-        });
+    const subTypesInShop: ShopType[] = [];
+    this.typesInShop.forEach((typeInShop: ShopType) => {
+      if (typeInShop.superTypeId) {
+        subTypesInShop.push(typeInShop);
+        this.typesInShop = this.typesInShop.filter((type: ShopType) => type._id !== typeInShop._id);
       }
     });
+    this.setInShopSubTypesHelper(subTypesInShop);
+  }
+
+  private setInShopSubTypesHelper(subTypesInShop: ShopType[]) {
+    subTypesInShop.forEach((subType: ShopType) => {
+      const superType = this.typesInShop.find((typeInShop: Type) => typeInShop._id === subType.superTypeId);
+      if (!superType.subTypes) {
+        superType.subTypes = [];
+      }
+      superType.subTypes.push(subType);
+    });
+  }
+
+  private showResponseStatus(status: any) {
+    if (status === 200) {
+      this.snackBar.open(`Shop successfully updated.`, 'Dismiss', {
+        duration: 2000,
+        panelClass: ['green-snackbar']
+      });
+    } else {
+      this.snackBar.open(`Shop failed to update.`, 'Dismiss', {
+        duration: 2000,
+        panelClass: ['red-snackbar']
+      });
+    }
+    this.dataService.updateShop();
+    this.dataService.updateTypes();
+    this.dataService.updateProducts();
   }
 
   private sortTypesByName(shopTypes: ShopType[]) {

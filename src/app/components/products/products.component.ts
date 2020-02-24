@@ -1,21 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Product } from 'src/app/models/product.model';
-import { ProductService } from 'src/app/services/product.service';
 import { Router } from '@angular/router';
 import { ProductGridButtonsComponent } from '../product-grid-buttons/product-grid-buttons.component';
-import { TypeService } from 'src/app/services/type.service';
 import { Type } from 'src/app/models/type.model';
-import { ShopService } from 'src/app/services/shop.service';
 import { Shop } from 'src/app/models/shop.model';
-import { forkJoin } from 'rxjs';
-import { RefreshService } from 'src/app/services/refresh.service';
+import { DataService } from 'src/app/services/data.service';
+import { combineLatest, Subscription } from 'rxjs';
+
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit, OnDestroy {
   columnDefs = [
     {headerName: 'Name', field: 'productName'},
     {headerName: 'Points', field: 'points', comparator: (firstPoints, secondPoints) => this.pointsComparator(firstPoints, secondPoints)},
@@ -37,33 +35,34 @@ export class ProductsComponent implements OnInit {
     sortable: true,
     width: 100
   };
+  private gridApi;
   loading = true;
   products: Product[];
   rowData = [];
   shop: Shop;
+  subscription = new Subscription();
   types: Type[];
 
-  constructor(private productService: ProductService, private refreshService: RefreshService,  private shopService: ShopService,
-              private router: Router, private typeService: TypeService) { }
+  constructor(private dataService: DataService, private router: Router) { }
 
   ngOnInit() {
-    this.refreshService.closePantryRefresh();
-    forkJoin(
-      this.shopService.getShop(),
-      this.typeService.getTypes(),
-      this.productService.getProducts(),
-    ).subscribe((results: any[]) => {
-      this.shop = results[0];
-      this.types = results[1];
-      this.products = results[2];
-      this.rowData = this.getFormattedFields();
-      this.loading = false;
-    });
-    this.refreshService.getPantryRefresh().subscribe((refresh: boolean) => {
-      if (refresh) {
-        this.pageReload();
-      }
-    });
+    this.subscription.add(
+      combineLatest([
+        this.dataService.getShop(),
+        this.dataService.getTypes(),
+        this.dataService.getProducts()
+      ]).subscribe(([shop, types, products]) => {
+        this.shop = shop;
+        this.types = types;
+        this.products = products;
+        this.rowData = this.getFormattedFields();
+        this.loading = false;
+      })
+    );
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   private getInShopStatus(productToCheck: Product) {
@@ -76,6 +75,11 @@ export class ProductsComponent implements OnInit {
       });
     });
     return inShop;
+  }
+
+  onGridReady(params) {
+    this.gridApi = params.api;
+    this.gridApi.setRowData(this.rowData);
   }
 
   private getProductTypeName(productToCheck: Product) {
@@ -155,11 +159,6 @@ export class ProductsComponent implements OnInit {
 
   onCreateProductClick() {
     this.router.navigate(['/product']);
-  }
-
-  private pageReload() {
-    this.loading = true;
-    this.ngOnInit();
   }
 
   private pointsComparator(firstPoints: any, secondPoints: any) {

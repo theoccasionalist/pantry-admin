@@ -16,7 +16,9 @@
         [suppressCellSelection]="true"
         [pagination]="true"
         [paginationAutoPageSize]="true"
-        [rowData]="rowData">
+        [rowData]="rowData"
+        (gridReady)="onGridReady($event)"
+        >
         </ag-grid-angular>
     </mat-card>
 </div>

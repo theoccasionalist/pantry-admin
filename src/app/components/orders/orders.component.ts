@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Order } from 'src/app/models/order.model';
-import { OrderService } from 'src/app/services/order.service';
 import { OrderGridButtonsComponent } from '../order-grid-buttons/order-grid-buttons.component';
-import { RefreshService } from 'src/app/services/refresh.service';
+import { Subscription } from 'rxjs';
+import { DataService } from 'src/app/services/data.service';
+
 
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.css']
 })
-export class OrdersComponent implements OnInit {
+export class OrdersComponent implements OnInit, OnDestroy {
   columnDefs = [
     {headerName: 'First Name', field: 'firstName'},
     {headerName: 'Last Name', field: 'lastName'},
@@ -33,24 +34,26 @@ export class OrdersComponent implements OnInit {
     sortable: true,
     width: 100
   };
+  gridOptions: any;
   loading = true;
   orders: Order[];
+  subscription = new Subscription();
   rowData = [];
 
-  constructor(private orderService: OrderService, private refreshService: RefreshService) { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
-    this.refreshService.closeOrderRefresh();
-    this.orderService.getOrders().subscribe((orders: Order[]) => {
-      this.orders = orders;
-      this.rowData = this.getFormattedFields();
-      this.loading = false;
-    });
-    this.refreshService.getOrderRefresh().subscribe((refresh: boolean) => {
-      if (refresh) {
-        this.pageReload();
-      }
-    });
+    this.subscription.add(
+        this.dataService.getOrders().subscribe((orders: Order[]) => {
+        this.orders = orders;
+        this.rowData = this.getFormattedFields();
+        this.loading = false;
+      })
+    );
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   private getFormattedFields() {
@@ -59,7 +62,6 @@ export class OrdersComponent implements OnInit {
       const rowEntry = {};
       const family  = order.family;
       Object.defineProperty(rowEntry, '_id', {value: order._id});
-      console.log(order.cart);
       Object.defineProperty(rowEntry, 'firstName', {value: family.firstName});
       Object.defineProperty(rowEntry, 'lastName', {value: family.lastName});
       Object.defineProperty(rowEntry, 'familySize', {value: order.family.familySize});
@@ -73,7 +75,6 @@ export class OrdersComponent implements OnInit {
       family.emailAddress ?
         Object.defineProperty(rowEntry, 'emailAddress', {value: family.emailAddress}) :
         Object.defineProperty(rowEntry, 'emailAddress', {value: '-'});
-      console.log(order.family.referral);
       family.referral ?
         Object.defineProperty(rowEntry, 'location', {value: 'CELC'}) :
         Object.defineProperty(rowEntry, 'location', {value: 'Broad St.'});
@@ -96,8 +97,7 @@ export class OrdersComponent implements OnInit {
     return firstPoints > secondPoints ? 1 : -1;
   }
 
-  private pageReload() {
-    this.loading = true;
-    this.ngOnInit();
+  updateOrders() {
+    this.dataService.updateOrders();
   }
 }

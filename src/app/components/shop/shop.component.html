@@ -1,4 +1,5 @@
-<mat-card id="top-container">
+
+<mat-card id="top-container" >
     <span id="top-button" class="margin-bottom">
         <span id="shop-title">Current Shop</span>
         <button mat-raised-button (click)="onEditClick()">Edit Shop</button>
@@ -7,6 +8,9 @@
         <mat-expansion-panel class="type-card margin-bottom" *ngFor="let type of shopTypes">
             <mat-expansion-panel-header>
                 <mat-panel-title>{{type.typeName}}</mat-panel-title>
+                <mat-panel-description>
+                    Click Here
+                </mat-panel-description>
             </mat-expansion-panel-header>
             <mat-card class="product-card margin-bottom" *ngFor="let product of type.products">{{product.productName}}</mat-card>
             <mat-card class="sub-type-card margin-bottom" *ngFor="let subType of type.subTypes">

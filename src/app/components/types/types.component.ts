@@ -1,19 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Type } from 'src/app/models/type.model';
-import { TypeService } from 'src/app/services/type.service';
 import { TypeGridButtonsComponent } from '../type-grid-buttons/type-grid-buttons.component';
-import { ShopService } from 'src/app/services/shop.service';
-import { forkJoin } from 'rxjs';
-import { RefreshService } from 'src/app/services/refresh.service';
 import { Shop } from 'src/app/models/shop.model';
+import { combineLatest, Subscription } from 'rxjs';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-types',
   templateUrl: './types.component.html',
   styleUrls: ['./types.component.css']
 })
-export class TypesComponent implements OnInit {
+export class TypesComponent implements OnInit, OnDestroy {
   columnDefs = [
     {headerName: 'Type Name', field: 'typeName'},
     {headerName: 'Product Count', field: 'productCount'},
@@ -31,30 +29,36 @@ export class TypesComponent implements OnInit {
     sortable: true,
     width: 120
   };
+  private gridApi;
   loading = true;
   rowData = [];
   shop: Shop;
+  subscription = new Subscription();
   types: Type[];
 
-  constructor(private refreshService: RefreshService, private router: Router, private shopService: ShopService,
-              private typeService: TypeService) { }
+  constructor(private dataService: DataService, private router: Router) { }
 
   ngOnInit() {
-    this.refreshService.closePantryRefresh();
-    forkJoin(
-      this.shopService.getShop(),
-      this.typeService.getTypes()
-    ).subscribe((results: any[]) => {
-      this.shop = results[0];
-      this.types = results[1];
-      this.rowData = this.getFormattedFields();
-      this.loading = false;
-    });
-    this.refreshService.getPantryRefresh().subscribe((refresh: boolean) => {
-      if (refresh) {
-        this.pageReload();
-      }
-    });
+    this.subscription.add(
+      combineLatest([
+      this.dataService.getShop(),
+      this.dataService.getTypes()
+      ]).subscribe(([shop, types]) => {
+        this.shop = shop;
+        this.types = types;
+        this.rowData = this.getFormattedFields();
+        this.loading = false;
+      })
+    );
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
+  onGridReady(params) {
+    this.gridApi = params.api;
+    this.gridApi.setRowData(this.rowData);
   }
 
   private getInShopStatus(typeToCheck: Type) {
@@ -108,10 +112,5 @@ export class TypesComponent implements OnInit {
 
   onSubTypesClick() {
     this.router.navigate(['/sub-types']);
-  }
-
-  private pageReload() {
-    this.loading = true;
-    this.ngOnInit();
   }
 }

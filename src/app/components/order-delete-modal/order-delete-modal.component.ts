@@ -2,9 +2,9 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Order } from 'src/app/models/order.model';
-import { RefreshService } from 'src/app/services/refresh.service';
 import { OrderService } from 'src/app/services/order.service';
 import { Router } from '@angular/router';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-order-delete-modal',
@@ -14,8 +14,8 @@ import { Router } from '@angular/router';
 export class OrderDeleteModalComponent implements OnInit {
   sliceId: string;
 
-  constructor(public dialogRef: MatDialogRef<OrderDeleteModalComponent>, @Inject (MAT_DIALOG_DATA) public order: Order,
-              private orderService: OrderService, private refreshService: RefreshService, private router: Router,
+  constructor(private dataService: DataService, public dialogRef: MatDialogRef<OrderDeleteModalComponent>,
+              @Inject (MAT_DIALOG_DATA) public order: Order, private orderService: OrderService, private router: Router, 
               private snackBar: MatSnackBar) { }
 
   ngOnInit() {
@@ -24,23 +24,27 @@ export class OrderDeleteModalComponent implements OnInit {
 
   onProceedClick() {
     this.orderService.deleteOrder(this.order._id).subscribe((response: any) => {
-      if (response.status === 200) {
-        this.snackBar.open(`Order Id ${this.sliceId} successfully deleted.`, 'Dismiss', {
-          panelClass: ['green-snackbar']
-        });
-      } else {
-        this.snackBar.open(`Order Id ${this.sliceId} failed to delete.`, 'Dismiss', {
-          panelClass: ['red-snackbar']
-        });
-      }
-      this.refreshService.openOrderRefresh();
+      this.showResponseStatus(response.status);
+      this.dialogRef.close();
+      this.router.navigate(['/orders']);
     });
-    this.dialogRef.close();
-    this.router.navigate(['/orders']);
   }
 
   onCancelClick() {
     this.dialogRef.close();
     this.router.navigate([`/orders`]);
+  }
+
+  showResponseStatus(status: any) {
+    if (status === 200) {
+      this.snackBar.open(`Order Id ${this.sliceId} successfully deleted.`, 'Dismiss', {
+        panelClass: ['green-snackbar']
+      });
+    } else {
+      this.snackBar.open(`Order Id ${this.sliceId} failed to delete.`, 'Dismiss', {
+        panelClass: ['red-snackbar']
+      });
+    }
+    this.dataService.updateOrders();
   }
 }

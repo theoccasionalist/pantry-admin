@@ -70,12 +70,13 @@ button {
 #add-limit {
     display: grid;
     grid-template-columns: 80% 20%;
+    margin-bottom: 2%;
 }
 #add-limit span {
     font-size: x-large;
 }
 #limit-viewport {
-    height: 20vh;
+    height: 45vh;
     width: 100%;
 }
 .type-size-amount-card {
@@ -102,7 +103,7 @@ button {
     background-image: url(../../../assets/images/buried.png);
     border: solid black 1px;
     font-size: large;
-    height: 24vh;
+    height: 45vh;
     margin-top: 1%;
     display: grid;
     grid-template-columns: 50% 50%;
@@ -112,7 +113,8 @@ button {
     margin-right: 5%;
 }
 #available-products-viewport {
-    height: 15vh;
+    height: 30vh;
+    margin-top: 2%;
     width: 100%;
 }
 .available-card {
@@ -124,7 +126,8 @@ button {
     background-image: url(../../../assets/images/buried.png);
 }
 #in-type-products-viewport {
-    height: 15vh;
+    height: 30vh;
+    margin-top: 2%;
     width: 100%;
 }
 .in-type-card {

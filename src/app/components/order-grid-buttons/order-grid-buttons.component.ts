@@ -20,7 +20,6 @@ export class OrderGridButtonsComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.data);
   }
 
   onDeleteClick() {

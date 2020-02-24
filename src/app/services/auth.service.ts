@@ -64,9 +64,9 @@ export class AuthService {
         targetRoute = cbRes.appState && cbRes.appState.target ? cbRes.appState.target : '/';
       }),
       concatMap(() => {
-        return combineLatest(
+        return combineLatest([
           this.isAuthenticated
-        );
+        ]);
       })
     );
     authComplete.subscribe(([loggedIn]) => {

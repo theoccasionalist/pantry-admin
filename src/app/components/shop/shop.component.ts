@@ -1,29 +1,50 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ShopService } from 'src/app/services/shop.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Type } from 'src/app/models/type.model';
 import { Router } from '@angular/router';
 import { ShopType } from 'src/app/models/shop-type.model';
 import { Shop } from 'src/app/models/shop.model';
 import { Product } from 'src/app/models/product.model';
+import { DataService } from 'src/app/services/data.service';
+import { Subscription } from 'rxjs';
+import { cloneDeep } from 'lodash';
 
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
   styleUrls: ['./shop.component.css']
 })
-export class ShopComponent implements OnInit {
-  @Input() subType: Type;
+export class ShopComponent implements OnInit, OnDestroy {
   currentTypes: ShopType[];
-  shopTypes: ShopType[] = [];
+  loading = true;
+  shop: Shop;
+  shopTypes: ShopType[];
+  typesInShop: ShopType[];
+  private subscription = new Subscription();
 
-  constructor(private router: Router, private shopService: ShopService) { }
+  constructor(private dataService: DataService, private router: Router) { }
 
   ngOnInit() {
-    this.shopService.getShop().subscribe((shop: Shop) => {
-      this.currentTypes = shop.shop;
-      this.setSubTypes();
-      this.sortShop();
-    });
+    this.subscription.add(
+      this.dataService.getShop().subscribe((shop: Shop) => {
+        this.loading = true;
+        this.initShop(shop);
+        this.setSubTypes();
+        this.sortShop();
+        this.loading = false;
+      })
+    );
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
+  initShop(shop: Shop) {
+    this.currentTypes = [];
+    this.typesInShop = [];
+    this.shopTypes = [];
+    const shopClone = cloneDeep(shop);
+    this.currentTypes = shopClone.shop;
   }
 
   onEditClick() {
@@ -39,7 +60,9 @@ export class ShopComponent implements OnInit {
     this.shopTypes.forEach((shopType: ShopType) => {
       this.currentTypes.forEach((currentType: ShopType) => {
         if (currentType.superTypeId === shopType._id) {
-          shopType.subTypes = [];
+          if (!shopType.subTypes) {
+            shopType.subTypes = [];
+          }
           shopType.subTypes.push(currentType);
         }
       });

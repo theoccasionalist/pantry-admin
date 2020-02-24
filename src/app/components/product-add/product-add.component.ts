@@ -4,6 +4,7 @@ import { ProductService } from 'src/app/services/product.service';
 import { Product } from 'src/app/models/product.model';
 import { FormArray, FormGroup, FormControl, Validators, FormBuilder, ValidatorFn } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { DataService } from 'src/app/services/data.service';
 
 export const minMaxValidator: ValidatorFn = (formGroup: FormGroup) => {
   const minFamSize = formGroup.get('minFamSize').value;
@@ -31,7 +32,7 @@ export class ProductAddComponent implements OnInit {
   });
   requiredError = 'This field is required.';
 
-  constructor(protected formBuilder: FormBuilder, protected productService: ProductService,
+  constructor(protected dataService: DataService, protected formBuilder: FormBuilder, protected productService: ProductService,
               protected snackBar: MatSnackBar, protected router: Router) { }
 
   ngOnInit() {
@@ -65,19 +66,8 @@ export class ProductAddComponent implements OnInit {
     if (this.productForm.valid) {
       this.setProductValues();
       this.productService.addProduct(this.product).subscribe((response: any) => {
-        if (response.status === 200) {
-          this.snackBar.open(`${this.product.productName} added successfully.`, 'Dismiss', {
-            duration: 2000,
-            panelClass: ['green-snackbar']
-          });
-          this.router.navigate([`/pantry`]);
-        } else {
-          this.snackBar.open(`${this.product.productName} add failed.`, 'Dismiss', {
-            duration: 2000,
-            panelClass: ['red-snackbar']
-          });
-          this.router.navigate([`/pantry`]);
-        }
+        this.showResponseStatus(response.status);
+        this.router.navigate([`/pantry`]);
       });
     }
   }
@@ -100,5 +90,20 @@ export class ProductAddComponent implements OnInit {
     this.productForm.get('infant') && this.productForm.get('infant').value ?
       this.product.infant = this.productForm.get('infant').value :
       this.product.infant = undefined;
+  }
+
+  showResponseStatus(status: any) {
+    if (status === 200) {
+      this.snackBar.open(`${this.product.productName} successfully updated.`, 'Dismiss', {
+        panelClass: ['green-snackbar']
+      });
+    } else {
+      this.snackBar.open(`${this.product.productName} failed to update.`, 'Dismiss', {
+        panelClass: ['red-snackbar']
+      });
+    }
+    this.dataService.updateProducts();
+    this.dataService.updateShop();
+    this.dataService.updateTypes();
   }
 }

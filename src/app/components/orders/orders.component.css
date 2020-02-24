@@ -14,6 +14,14 @@
     justify-content: center;
     max-width: 1200px;
 }
+#button-grid-container {
+    display: grid;
+    grid-template-columns: 85% 15%;
+    margin-bottom: 3%;
+}
+#orders-title {
+    font-size: x-large;
+}
 #spinner {
     align-items: center;
     display: flex;
