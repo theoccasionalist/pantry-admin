@@ -9,13 +9,8 @@ import { DataService } from './services/data.service';
 export class AppComponent implements OnInit {
   title = 'front-end';
 
-  constructor(private dataService: DataService) {}
+  constructor() {}
 
-  ngOnInit() {
-    console.log('hello');
-    this.dataService.updateShop();
-    this.dataService.updateProducts();
-    this.dataService.updateTypes();
-  }
+  ngOnInit() {}
 
 }

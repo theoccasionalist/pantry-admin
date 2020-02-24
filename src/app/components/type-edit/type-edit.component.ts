@@ -6,12 +6,11 @@ import { TypeService } from 'src/app/services/type.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { switchMap, take } from 'rxjs/operators';
 import { minMaxValidator } from '../product-add/product-add.component';
-import { combineLatest, Subscription } from 'rxjs';
+import { combineLatest } from 'rxjs';
 import { Type } from 'src/app/models/type.model';
 import { Shop } from 'src/app/models/shop.model';
 import { DataService } from 'src/app/services/data.service';
 
-// NEED TO DOUBLE CHECK COMPONENT TO DELETE IN SHOP ITEMS WITHOUT BREAKING THINGS.
 @Component({
   selector: 'app-type-edit',
   templateUrl: '../type-edit/type-edit.component.html',
@@ -19,7 +18,6 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class TypeEditComponent extends TypeAddComponent implements OnInit, OnDestroy {
   inShop = false;
-  // private isSuperType = false;
   shop: Shop;
 
   constructor(private activatedRoute: ActivatedRoute, protected dataService: DataService, protected formBuilder: FormBuilder,
@@ -29,15 +27,16 @@ export class TypeEditComponent extends TypeAddComponent implements OnInit, OnDes
 
   ngOnInit() {
     this.subscription.add(
-      combineLatest(
+      combineLatest([
         this.dataService.getShop(),
         this.dataService.getTypes(),
         this.activatedRoute.params.pipe(
-          switchMap(params => this.typeService.getTypeById(params.id)),
+          switchMap(params => this.dataService.getTypeById(params.id)),
           take(1)
         ),
         this.dataService.getProducts(),
-        ).subscribe(([shop, types, type, products]) => {
+      ]).subscribe(([shop, types, type, products]) => {
+          this.rerouteOnEmptyType(type);
           this.shop = shop;
           this.types = types;
           this.type = type;
@@ -49,7 +48,6 @@ export class TypeEditComponent extends TypeAddComponent implements OnInit, OnDes
           this.initAvailableProducts();
           this.initProductsInType();
           this.setTypeSizeAmountForm();
-          // this.setIsSuperType();
           this.setInShop();
           this.loading = !this.loading;
       })
@@ -64,31 +62,26 @@ export class TypeEditComponent extends TypeAddComponent implements OnInit, OnDes
     this.productsInType = this.type.products;
   }
 
-  // NEED TO WRITE OUT UPDATE LOGIC AND REQUIREMENTS INVOLVING SUBTYPE AND SHOP UPDATES
   onUpdateClick() {
     if (this.typeForm.valid) {
       this.setTypeValues();
       this.typeService.updateType(this.type._id, this.type).subscribe((response: any) => {
         this.showResponseStatus(response.status);
+        this.dataService.updateTypes();
+        this.dataService.updateShop();
+        this.dataService.updateProducts();
       });
-      // if (!this.inShop || this.type.products.length || this.isSuperType) {
-      //   this.typeService.updateType(this.type._id, this.type).subscribe((response: any) => {
-      //     this.showResponseStatus(response.status);
-      //   });
-      // } else {
-      //   this.shop.shop = this.shop.shop.filter((type: Type) => this.type._id !== type._id);
-      //   forkJoin(
-      //     this.typeService.updateType(this.type._id, this.type),
-      //     this.shopService.updateShop(this.shop._id, this.shop)
-      //   ).subscribe((response: any[]) => {
-      //     const responses = [];
-      //     responses.push(response[0].status);
-      //     responses.push(response[1].status);
-      //     this.showResponseStatus(responses);
-      //   });
-      // }
     }
     this.router.navigate(['/pantry']);
+  }
+
+  rerouteOnEmptyType(type: any) {
+    if (type === undefined || Object.entries(type).length === 0 && type.constructor === Object) {
+      this.snackBar.open('Type not found. Please try again.', 'Dismiss', {
+        panelClass: ['red-snackbar']
+      });
+      this.router.navigate([`/pantry`]);
+    }
   }
 
   private setInShop() {
@@ -98,14 +91,6 @@ export class TypeEditComponent extends TypeAddComponent implements OnInit, OnDes
       }
     });
   }
-
-  // private setIsSuperType() {
-  //   this.types.forEach((type: Type ) => {
-  //     if (this.type._id === type.superTypeId) {
-  //       this.isSuperType = true;
-  //     }
-  //   });
-  // }
 
   private setTypeSizeAmountForm() {
     if (this.type.typeSizeAmount) {

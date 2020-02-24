@@ -1,9 +1,8 @@
-import { Component, OnInit, OnDestroy, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Order } from 'src/app/models/order.model';
-import { OrderService } from 'src/app/services/order.service';
 import { OrderGridButtonsComponent } from '../order-grid-buttons/order-grid-buttons.component';
-import { RefreshService } from 'src/app/services/refresh.service';
-import { Subscription, combineLatest } from 'rxjs';
+import { Subscription } from 'rxjs';
+import { DataService } from 'src/app/services/data.service';
 
 
 @Component({
@@ -41,19 +40,11 @@ export class OrdersComponent implements OnInit, OnDestroy {
   subscription = new Subscription();
   rowData = [];
 
-  constructor(private orderService: OrderService, private refreshService: RefreshService) { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
     this.subscription.add(
-      combineLatest(
-        this.refreshService.getOrderRefresh(),
-        this.orderService.getOrders(),
-      ).subscribe(([refresh, orders]) => {
-        if (refresh) {
-          this.refreshService.closeOrderRefresh();
-          this.loading = true;
-          this.ngOnInit();
-        }
+        this.dataService.getOrders().subscribe((orders: Order[]) => {
         this.orders = orders;
         this.rowData = this.getFormattedFields();
         this.loading = false;
@@ -71,7 +62,6 @@ export class OrdersComponent implements OnInit, OnDestroy {
       const rowEntry = {};
       const family  = order.family;
       Object.defineProperty(rowEntry, '_id', {value: order._id});
-      console.log(order.cart);
       Object.defineProperty(rowEntry, 'firstName', {value: family.firstName});
       Object.defineProperty(rowEntry, 'lastName', {value: family.lastName});
       Object.defineProperty(rowEntry, 'familySize', {value: order.family.familySize});
@@ -85,7 +75,6 @@ export class OrdersComponent implements OnInit, OnDestroy {
       family.emailAddress ?
         Object.defineProperty(rowEntry, 'emailAddress', {value: family.emailAddress}) :
         Object.defineProperty(rowEntry, 'emailAddress', {value: '-'});
-      console.log(order.family.referral);
       family.referral ?
         Object.defineProperty(rowEntry, 'location', {value: 'CELC'}) :
         Object.defineProperty(rowEntry, 'location', {value: 'Broad St.'});
@@ -106,5 +95,9 @@ export class OrdersComponent implements OnInit, OnDestroy {
       secondPoints = 0;
     }
     return firstPoints > secondPoints ? 1 : -1;
+  }
+
+  updateOrders() {
+    this.dataService.updateOrders();
   }
 }

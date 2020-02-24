@@ -1,11 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Product } from 'src/app/models/product.model';
 import { Router } from '@angular/router';
 import { ProductGridButtonsComponent } from '../product-grid-buttons/product-grid-buttons.component';
 import { Type } from 'src/app/models/type.model';
 import { Shop } from 'src/app/models/shop.model';
 import { DataService } from 'src/app/services/data.service';
-import { combineLatest } from 'rxjs';
+import { combineLatest, Subscription } from 'rxjs';
 
 
 @Component({
@@ -13,7 +13,7 @@ import { combineLatest } from 'rxjs';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit, OnDestroy {
   columnDefs = [
     {headerName: 'Name', field: 'productName'},
     {headerName: 'Points', field: 'points', comparator: (firstPoints, secondPoints) => this.pointsComparator(firstPoints, secondPoints)},
@@ -35,27 +35,34 @@ export class ProductsComponent implements OnInit {
     sortable: true,
     width: 100
   };
+  private gridApi;
   loading = true;
   products: Product[];
   rowData = [];
   shop: Shop;
+  subscription = new Subscription();
   types: Type[];
 
   constructor(private dataService: DataService, private router: Router) { }
 
   ngOnInit() {
-    combineLatest(
-      this.dataService.getShop(),
-      this.dataService.getTypes(),
-      this.dataService.getProducts()
-    ).subscribe(([shop, types, products]) => {
-      this.shop = shop;
-      this.types = types;
-      this.products = products;
-      this.rowData = this.getFormattedFields();
-      this.loading = false;
-    });
+    this.subscription.add(
+      combineLatest([
+        this.dataService.getShop(),
+        this.dataService.getTypes(),
+        this.dataService.getProducts()
+      ]).subscribe(([shop, types, products]) => {
+        this.shop = shop;
+        this.types = types;
+        this.products = products;
+        this.rowData = this.getFormattedFields();
+        this.loading = false;
+      })
+    );
+  }
 
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   private getInShopStatus(productToCheck: Product) {
@@ -68,6 +75,11 @@ export class ProductsComponent implements OnInit {
       });
     });
     return inShop;
+  }
+
+  onGridReady(params) {
+    this.gridApi = params.api;
+    this.gridApi.setRowData(this.rowData);
   }
 
   private getProductTypeName(productToCheck: Product) {

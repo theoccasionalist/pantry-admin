@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Family } from 'src/app/models/family.model';
 import { Order } from 'src/app/models/order.model';
 
 @Component({

@@ -6,7 +6,11 @@ import { ShopType } from 'src/app/models/shop-type.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
-import { Subscription } from 'rxjs';
+import { Subscription, forkJoin, from as ObservableFrom, combineLatest } from 'rxjs';
+import { concatMap } from 'rxjs/operators';
+import { Shop } from 'src/app/models/shop.model';
+import { cloneDeep } from 'lodash';
+
 
 @Component({
   selector: 'app-sub-type-edit',
@@ -15,9 +19,9 @@ import { Subscription } from 'rxjs';
 })
 export class SubTypeEditComponent implements OnInit, OnDestroy {
   loading = true;
-  possibleSubs: ShopType[] = [];
-  possibleSupers: ShopType[] = [];
-  private responses: number[] = [];
+  possibleSubs: ShopType[];
+  possibleSupers: ShopType[];
+  shop: Shop;
   private subscription = new Subscription();
   types: Type[];
 
@@ -26,18 +30,23 @@ export class SubTypeEditComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscription.add(
-      this.dataService.getTypes().subscribe((types: Type[]) => {
-        this.types = types;
-        this.initDragDropArrays();
-        this.initDragDropValues();
-        this.sortTypesByName(this.possibleSubs);
-        this.sortTypesByName(this.possibleSupers);
-        this.possibleSupers.forEach((superType: ShopType) => {
-          this.sortTypesByName(superType.subTypes);
-        });
-        this.loading = false;
-      })
-    );
+      combineLatest([
+        this.dataService.getShop(),
+        this.dataService.getTypes(),
+      ]).subscribe(([shop, types]) => {
+          this.shop = shop;
+          this.initComponentVariables(shop);
+          this.types = types;
+          this.initDragDropArrays();
+          this.initDragDropValues();
+          this.sortTypesByName(this.possibleSubs);
+          this.sortTypesByName(this.possibleSupers);
+          this.possibleSupers.forEach((superType: ShopType) => {
+            this.sortTypesByName(superType.subTypes);
+          });
+          this.loading = false;
+        })
+      );
   }
 
   ngOnDestroy() {
@@ -70,11 +79,18 @@ export class SubTypeEditComponent implements OnInit, OnDestroy {
     const typeToMove: ShopType = event.previousContainer.data[event.previousIndex];
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else if (typeToMove._id !== newSuperType._id) {
+    } else if (typeToMove._id !== newSuperType._id  &&
+      (this.getInShopStatus(typeToMove) && this.getInShopStatus(newSuperType) ||
+      (!this.getInShopStatus(typeToMove) && !this.getInShopStatus(newSuperType)))) {
         transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
         this.dropIntoSupersSetArrayValues(typeToMove);
+    } else if (typeToMove._id === newSuperType._id) {
+        this.snackBar.open('Cannot put a type within itself.', `Dismiss`, {
+        panelClass: ['red-snackbar']
+      });
     } else {
-        this.snackBar.open('Cannot put a type inside itself.', `Dismiss`, {
+      this.snackBar.open('Both the super-type and sub-type must currently be in the shop.', `Dismiss`, {
+        duration: 4000,
         panelClass: ['red-snackbar']
       });
     }
@@ -95,6 +111,23 @@ export class SubTypeEditComponent implements OnInit, OnDestroy {
         this.possibleSubs.push(superType);
       }
     });
+  }
+
+  getInShopStatus(typeToCheck: Type) {
+    let inShop = false;
+    this.shop.shop.forEach((type: Type) => {
+      if (type._id === typeToCheck._id) {
+        inShop = true;
+      }
+    });
+    return inShop;
+  }
+
+  initComponentVariables(shop: Shop) {
+    this.possibleSubs = [];
+    this.possibleSupers = [];
+    const shopClone = cloneDeep(shop);
+    this.shop = shopClone;
   }
 
   private initDragDropArrays() {
@@ -124,24 +157,21 @@ export class SubTypeEditComponent implements OnInit, OnDestroy {
     });
   }
 
-  private showResponseStatus() {
-    let responseComplete = false;
-    if (this.responses.some(response => response !== 200)) {
-      this.snackBar.open('Types update failed.', 'Dismiss', {
-        duration: 2000,
-        panelClass: ['red-snackbar']
-      });
-      responseComplete = true;
-    } else {
+  private showResponseStatus(status: number) {
+    if (status === 200) {
       this.snackBar.open('Types updated successfully', 'Dismiss', {
         duration: 2000,
         panelClass: ['green-snackbar']
       });
-      responseComplete = true;
+    } else {
+      this.snackBar.open('Types update failed.', 'Dismiss', {
+        duration: 2000,
+        panelClass: ['red-snackbar']
+      });
     }
-    if (responseComplete) {
-      this.dataService.updateTypes();
-    }
+    this.dataService.updateTypes();
+    this.dataService.updateShop();
+    this.dataService.updateProducts();
   }
 
   sortTypesByName(dragDropArray: ShopType[]) {
@@ -153,30 +183,54 @@ export class SubTypeEditComponent implements OnInit, OnDestroy {
   }
 
   onSaveClick() {
-    this.onSaveClickRemoveSuperTypes();
-    this.onSaveClickUpdateSuperTypes();
-    this.showResponseStatus();
-    this.router.navigate([`/pantry`]);
+    this.loading = true;
+    if (this.getTypeIdsToUpdate().length) {
+      forkJoin([
+        this.typeService.removeSuperTypeIdMany(this.getTypeIdsToRemove()),
+        ObservableFrom(this.getTypeIdsToUpdate()).pipe(
+          concatMap((update: {
+            superTypeId: string,
+            updateIds: string[]
+          }) => this.typeService.updateSuperTypeIdMany(update.superTypeId, update.updateIds)))
+        ]).subscribe(([remove, update]) => {
+          let response: number;
+          const typedRemove: any = remove;
+          const typedUpdate: any = update;
+          typedRemove.status === 200 && typedUpdate.status === 200 ? response = 200 : response = 400;
+          this.showResponseStatus(response);
+          this.router.navigate([`/pantry`]);
+
+        });
+    } else {
+      this.typeService.removeSuperTypeIdMany(this.getTypeIdsToRemove()).subscribe((response: any) => {
+        this.showResponseStatus(response.status);
+        this.router.navigate([`/pantry`]);
+      });
+    }
   }
 
-  private onSaveClickRemoveSuperTypes() {
+  private getTypeIdsToRemove(): string[] {
     const typeIdsToRemove: string[] = [];
     this.possibleSupers.forEach((superType: ShopType) => {
       typeIdsToRemove.push(superType._id);
     });
-    this.typeService.removeSuperTypeIdMany(typeIdsToRemove).subscribe((response: any) => this.responses.push(response.status));
+    return typeIdsToRemove;
   }
 
-  private onSaveClickUpdateSuperTypes() {
+  private getTypeIdsToUpdate(): any[] {
+    const updateObjects: {
+      superTypeId: string,
+      updateIds: string[]
+    }[] = [];
     this.possibleSupers.forEach((superType: ShopType) => {
-      const typeIdsToUpdate: string[] = [];
       if (superType.subTypes.length) {
+        const idsToUpdate: string[] = [];
         superType.subTypes.forEach((subType: ShopType) => {
-          typeIdsToUpdate.push(subType._id);
+          idsToUpdate.push(subType._id);
         });
-        this.typeService.updateSuperTypeIdMany(superType._id, typeIdsToUpdate)
-          .subscribe((response: any) => this.responses.push(response.status));
+        updateObjects.push({superTypeId: superType._id, updateIds: idsToUpdate});
       }
     });
+    return updateObjects;
   }
 }

@@ -1,15 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Type } from 'src/app/models/type.model';
 import { ShopService } from 'src/app/services/shop.service';
-import { TypeService } from 'src/app/services/type.service';
-import { forkJoin, Subscription, combineLatest, Subject, zip, concat } from 'rxjs';
+import { Subscription, combineLatest } from 'rxjs';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { ShopType } from 'src/app/models/shop-type.model';
 import { Shop } from 'src/app/models/shop.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
-import { take, tap, withLatestFrom, debounceTime, mergeMap, switchMap, first, takeUntil, map } from 'rxjs/operators';
+import { cloneDeep } from 'lodash';
 
 @Component({
   selector: 'app-shop-edit',
@@ -17,31 +16,22 @@ import { take, tap, withLatestFrom, debounceTime, mergeMap, switchMap, first, ta
   styleUrls: ['./shop-edit.component.css']
 })
 export class ShopEditComponent implements OnInit, OnDestroy {
-  availableTypes: ShopType[] = [];
+  availableTypes: ShopType[];
   loading = true;
-  shop: Shop = undefined;
+  shop: Shop;
   private subscription = new Subscription();
-  types: Type[] = [];
-  typesInShop: ShopType[] = [];
+  types: Type[];
+  typesInShop: ShopType[];
 
-  shopListener = new Subject();
-  typesListener = new Subject();
-
-  constructor(private dataService: DataService, private snackBar: MatSnackBar, private router: Router, private shopService: ShopService,
-              private typeService: TypeService) { }
+  constructor(private dataService: DataService, private snackBar: MatSnackBar, private router: Router, private shopService: ShopService) { }
 
   ngOnInit() {
-    let n = 0;
     this.subscription.add(
-      combineLatest(
+      combineLatest([
         this.dataService.getShop(),
         this.dataService.getTypes()
-      ).subscribe(([shop, types]) => {
-    this.typesInShop.forEach((typeInShop: ShopType) => console.log(typeInShop.subTypes));
-    console.log(shop);
-    this.shop = shop;
-    this.typesInShop = this.shop.shop;
-    this.types = types;
+      ]).subscribe(([shop, types]) => {
+    this.initShop(shop, types);
     this.setInShopSubTypes();
     this.setAvailableSuperTypes();
     this.setAvailableSubTypes();
@@ -53,7 +43,6 @@ export class ShopEditComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    console.log('edit destroyed');
     this.subscription.unsubscribe();
   }
 
@@ -65,6 +54,18 @@ export class ShopEditComponent implements OnInit, OnDestroy {
     this.sortTypesByName(this.typesInShop);
   }
 
+  private initShop(shop: Shop, types: Type[]) {
+    this.availableTypes = [];
+    this.shop = null;
+    this.types = [];
+    this.typesInShop = [];
+    const shopClone = cloneDeep(shop);
+    const typesClone = cloneDeep(types);
+    this.shop = shopClone;
+    this.typesInShop = this.shop.shop;
+    this.types = typesClone;
+  }
+
   onCancelClick() {
     this.router.navigate(['/pantry']);
   }
@@ -73,19 +74,8 @@ export class ShopEditComponent implements OnInit, OnDestroy {
     this.unwrapSubTypes();
     this.shop.shop = this.typesInShop;
     this.shopService.updateShop(this.shop._id, this.shop).subscribe((response: any) => {
-      if (response.status === 200) {
-        this.snackBar.open(`Shop successfully updated.`, 'Dismiss', {
-          duration: 2000,
-          panelClass: ['green-snackbar']
-        });
-      } else {
-        this.snackBar.open(`Shop failed to update.`, 'Dismiss', {
-          duration: 2000,
-          panelClass: ['red-snackbar']
-        });
-      }
+      this.showResponseStatus(response.status);
       this.router.navigate([`/pantry`]);
-      this.dataService.updateShop();
     });
   }
 
@@ -104,9 +94,7 @@ export class ShopEditComponent implements OnInit, OnDestroy {
           if (!availableType.subTypes) {
             availableType.subTypes = [];
           }
-          if (!availableType.subTypes.some((subType: Type) => subType._id === type._id)) {
-            availableType.subTypes.push(type);
-          }
+          availableType.subTypes.push(type);
         }
       });
     });
@@ -132,20 +120,30 @@ export class ShopEditComponent implements OnInit, OnDestroy {
   }
 
   private setInShopSubTypesHelper(subTypesInShop: ShopType[]) {
-    console.log('I am called');
-    console.log(subTypesInShop);
-    // this.typesInShop.forEach((superType: ShopType) => {
     subTypesInShop.forEach((subType: ShopType) => {
       const superType = this.typesInShop.find((typeInShop: Type) => typeInShop._id === subType.superTypeId);
-      console.log(superType.subTypes);
       if (!superType.subTypes) {
         superType.subTypes = [];
-        superType.subTypes.push(subType);
-      } else if (!superType.subTypes.some((subTypeAdd: Type) => subTypeAdd._id === subType._id)) {
-        superType.subTypes.push(subType);
-    }
+      }
+      superType.subTypes.push(subType);
     });
-    // });
+  }
+
+  private showResponseStatus(status: any) {
+    if (status === 200) {
+      this.snackBar.open(`Shop successfully updated.`, 'Dismiss', {
+        duration: 2000,
+        panelClass: ['green-snackbar']
+      });
+    } else {
+      this.snackBar.open(`Shop failed to update.`, 'Dismiss', {
+        duration: 2000,
+        panelClass: ['red-snackbar']
+      });
+    }
+    this.dataService.updateShop();
+    this.dataService.updateTypes();
+    this.dataService.updateProducts();
   }
 
   private sortTypesByName(shopTypes: ShopType[]) {

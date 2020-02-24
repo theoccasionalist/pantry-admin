@@ -59,3 +59,10 @@ button {
     padding-bottom: 1%;
     padding-top: 1%;
 }
+#spinner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}

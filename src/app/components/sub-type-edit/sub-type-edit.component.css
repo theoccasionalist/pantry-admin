@@ -63,11 +63,22 @@
 .super-type-card {
     margin-top: 2%;
 }
+.type-name {
+    display: flex;
+    justify-content: space-between;
+}
+.in-shop {
+    background-color: rgb(194, 27, 27);
+    border: 1px black solid;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 22rem;
+    padding: 5px;
+}
 #super-type-viewport {
     height: 54vh;
-}
-.no {
-    background-color: red
 }
 #spinner {
     display: flex;

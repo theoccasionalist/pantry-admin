@@ -12,15 +12,15 @@
         <mat-card class="drag-drop-header">Available Super-Types</mat-card> 
         <cdk-virtual-scroll-viewport id="sub-type-viewport" itemSize="">
             <mat-card id="sub-type-container" [cdkDropListData]="possibleSubs" (cdkDropListDropped)="dropIntoSubs($event)" cdkDropList>
-                <mat-card class="sub-type-card" *ngFor="let subType of possibleSubs" cdkDrag>{{subType.typeName}}</mat-card>
+                <mat-card class="sub-type-card type-name" *ngFor="let subType of possibleSubs" cdkDrag>{{subType.typeName}}<div class="in-shop" *ngIf="getInShopStatus(subType)">In Shop</div></mat-card>
             </mat-card>
         </cdk-virtual-scroll-viewport>
         <cdk-virtual-scroll-viewport id="super-type-viewport" itemSize="">  
             <mat-card id="super-type-container">
                 <ng-container *ngFor="let superType of possibleSupers">
                     <mat-card class="super-type-card-container" [cdkDropListData]="superType.subTypes" (cdkDropListDropped)="dropIntoSupers($event, superType)" cdkDropList>
-                        <span>{{superType.typeName}}</span>
-                        <mat-card class="super-type-card" *ngFor="let subType of superType.subTypes" cdkDrag>
+                        <span class="type-name">{{superType.typeName}}<div class="in-shop" *ngIf="getInShopStatus(superType)">In Shop</div></span>
+                        <mat-card class="super-type-card type-name" *ngFor="let subType of superType.subTypes" cdkDrag>
                             {{subType.typeName}}
                         </mat-card>
                     </mat-card>

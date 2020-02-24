@@ -8,7 +8,6 @@ import { TypeService } from 'src/app/services/type.service';
 import { Product } from 'src/app/models/product.model';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { combineLatest, Subscription } from 'rxjs';
-import { isArray } from 'util';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -41,10 +40,10 @@ export class TypeAddComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscription.add(
-      combineLatest(
+      combineLatest([
         this.dataService.getProducts(),
         this.dataService.getTypes()
-      ).subscribe(([products, types]) => {
+      ]).subscribe(([products, types]) => {
         this.products = products;
         this.types = types;
         this.initAvailableProducts();
@@ -130,25 +129,18 @@ export class TypeAddComponent implements OnInit, OnDestroy {
   }
 
   showResponseStatus(status: any) {
-    let failure: boolean;
-    let responseComplete = false;
-    isArray(status) ?
-      failure = status.some((singleStatus: number) => singleStatus === 400) :
-      failure = status === 400;
-    if (!failure) {
+    if (status === 200) {
       this.snackBar.open(`${this.type.typeName} successfully updated.`, 'Dismiss', {
         panelClass: ['green-snackbar']
       });
-      responseComplete = true;
     } else {
       this.snackBar.open(`${this.type.typeName} failed to update.`, 'Dismiss', {
         panelClass: ['red-snackbar']
       });
-      responseComplete = true;
     }
-    if (responseComplete) {
-      this.dataService.updateTypes();
-    }
+    this.dataService.updateTypes();
+    this.dataService.updateProducts();
+    this.dataService.updateShop();
   }
 
   sortProductsByName(dragDropCard: Product[]) {

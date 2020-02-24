@@ -40,11 +40,10 @@ export class TypesComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscription.add(
-      combineLatest(
+      combineLatest([
       this.dataService.getShop(),
       this.dataService.getTypes()
-      ).subscribe(([shop, types]) => {
-        console.log('types component', shop);
+      ]).subscribe(([shop, types]) => {
         this.shop = shop;
         this.types = types;
         this.rowData = this.getFormattedFields();

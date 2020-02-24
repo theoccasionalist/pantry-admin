@@ -1,5 +1,4 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { ShopService } from 'src/app/services/shop.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Type } from 'src/app/models/type.model';
 import { Router } from '@angular/router';
 import { ShopType } from 'src/app/models/shop-type.model';
@@ -7,7 +6,6 @@ import { Shop } from 'src/app/models/shop.model';
 import { Product } from 'src/app/models/product.model';
 import { DataService } from 'src/app/services/data.service';
 import { Subscription } from 'rxjs';
-import { take, tap } from 'rxjs/operators';
 import { cloneDeep } from 'lodash';
 
 @Component({
@@ -16,21 +14,23 @@ import { cloneDeep } from 'lodash';
   styleUrls: ['./shop.component.css']
 })
 export class ShopComponent implements OnInit, OnDestroy {
-  currentTypes: ShopType[] = [];
+  currentTypes: ShopType[];
+  loading = true;
   shop: Shop;
-  shopTypes: ShopType[] = [];
-  typesInShop: ShopType[] = [];
+  shopTypes: ShopType[];
+  typesInShop: ShopType[];
   private subscription = new Subscription();
 
-  constructor(private dataService: DataService, private router: Router, private shopService: ShopService) { }
+  constructor(private dataService: DataService, private router: Router) { }
 
   ngOnInit() {
     this.subscription.add(
-      this.dataService.getShop().pipe(tap(res => console.log('shop', res))).subscribe((shop: Shop) => {
-        const copy: ShopType[]  = cloneDeep(shop.shop);
-        this.currentTypes = copy;
+      this.dataService.getShop().subscribe((shop: Shop) => {
+        this.loading = true;
+        this.initShop(shop);
         this.setSubTypes();
         this.sortShop();
+        this.loading = false;
       })
     );
   }
@@ -39,12 +39,19 @@ export class ShopComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
+  initShop(shop: Shop) {
+    this.currentTypes = [];
+    this.typesInShop = [];
+    this.shopTypes = [];
+    const shopClone = cloneDeep(shop);
+    this.currentTypes = shopClone.shop;
+  }
+
   onEditClick() {
     this.router.navigate(['/shop']);
   }
 
   private setSubTypes() {
-    console.log('I am set subtypes');
     this.currentTypes.forEach((currentType: ShopType) => {
       if (!currentType.superTypeId) {
         this.shopTypes.push(currentType);
@@ -56,9 +63,7 @@ export class ShopComponent implements OnInit, OnDestroy {
           if (!shopType.subTypes) {
             shopType.subTypes = [];
           }
-          if (!shopType.subTypes.some((subType: Type) => subType._id === currentType._id)) {
-            shopType.subTypes.push(currentType);
-          }
+          shopType.subTypes.push(currentType);
         }
       });
     });

@@ -24,17 +24,14 @@ export class TypeService {
   }
 
   getTypes() {
-    console.log('get types called');
     return this.httpClient.get<Type[]>(`${this.uri}/types`);
   }
 
   removeSuperTypeIdMany(removeIds: string[]) {
-    console.log(removeIds);
     return this.httpClient.post(`${this.uri}/types/remove-super-type-many`, removeIds);
   }
 
   updateSuperTypeIdMany(superTypeId: string, updateIds: string[]) {
-    console.log(updateIds, superTypeId);
     return this.httpClient.post(`${this.uri}/types/update-super-type-many/${superTypeId}`, updateIds);
   }
 

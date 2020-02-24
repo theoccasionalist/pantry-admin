@@ -6,10 +6,10 @@ import { Product } from 'src/app/models/product.model';
 import { FormArray, FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { minMaxValidator, ProductAddComponent } from '../product-add/product-add.component';
-import { forkJoin } from 'rxjs';
-import { ShopService } from 'src/app/services/shop.service';
+import { combineLatest } from 'rxjs';
 import { Shop } from 'src/app/models/shop.model';
 import { Type } from 'src/app/models/type.model';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-product-edit',
@@ -25,19 +25,21 @@ export class ProductEditComponent extends ProductAddComponent implements OnInit 
   requiredError = 'This field is required';
   shop: Shop;
 
-  constructor(private activatedRoute: ActivatedRoute, protected formBuilder: FormBuilder, protected productService: ProductService,
-              private shopService: ShopService, protected snackBar: MatSnackBar, protected router: Router) {
-                super(formBuilder, productService, snackBar, router);
+  constructor(private activatedRoute: ActivatedRoute, protected dataService: DataService, protected formBuilder: FormBuilder,
+              protected productService: ProductService, protected snackBar: MatSnackBar,
+              protected router: Router) {
+                super(dataService, formBuilder, productService, snackBar, router);
               }
 
   ngOnInit() {
-    forkJoin(
+    combineLatest([
       this.activatedRoute.params.pipe(
-        switchMap(params => this.productService.getProductById(params.id)),
+        switchMap(params => this.dataService.getProductById(params.id)),
         take(1)),
-      this.shopService.getShop()
-    ).subscribe((result: any[]) => {
-      this.product = result[0];
+      this.dataService.getShop()
+      ]).subscribe(([product, shop]) => {
+      this.rerouteOnEmptyProduct(product);
+      this.product = product;
       this.productForm = new FormGroup({
         productName: new FormControl(this.product.productName, Validators.required),
         points: new FormControl(this.product.points ? this.product.points : false, Validators.required),
@@ -45,7 +47,7 @@ export class ProductEditComponent extends ProductAddComponent implements OnInit 
         infant: new FormControl(this.product.infant ? this.product.infant : false, Validators.required),
       });
       this.setProdSizeAmountForm();
-      this.shop = result[1];
+      this.shop = shop;
       this.setInShop();
       this.loading = !this.loading;
     });
@@ -66,7 +68,19 @@ export class ProductEditComponent extends ProductAddComponent implements OnInit 
           });
           this.router.navigate([`/pantry`]);
         }
+        this.dataService.updateProducts();
+        this.dataService.updateShop();
+        this.dataService.updateTypes();
       });
+    }
+  }
+
+  rerouteOnEmptyProduct(product: any) {
+    if (product === undefined || Object.entries(product).length === 0 && product.constructor === Object) {
+      this.snackBar.open('Product not found. Please try again.', 'Dismiss', {
+        panelClass: ['red-snackbar']
+      });
+      this.router.navigate([`/pantry`]);
     }
   }
 
