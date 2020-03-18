@@ -27,4 +27,4 @@ let orderSchema = new Schema ({
     received: {type: Boolean , required: true}   
 })
 
-export const Order = mongoose.model('orders', orderSchema);
+module.exports = mongoose.model('orders', orderSchema);

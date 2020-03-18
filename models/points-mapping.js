@@ -10,4 +10,4 @@ let pointsMappingSchema = new Schema ({
     }]
 })
 
-export const pointsMapping = mongoose.model('points_mappings', pointsMappingSchema);
+module.exports = mongoose.model('points_mappings', pointsMappingSchema);

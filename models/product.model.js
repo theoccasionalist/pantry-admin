@@ -17,5 +17,5 @@ let productSchema = new Schema ({
     infant: Boolean
 })
 
-export const Product = mongoose.model('products', productSchema);
+module.exports = mongoose.model('products', productSchema);
 

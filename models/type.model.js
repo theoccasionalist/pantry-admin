@@ -24,4 +24,4 @@ let typeSchema = new Schema ({
     } 
 })
 
-export const Type = mongoose.model('types', typeSchema);
+module.exports = mongoose.model('types', typeSchema);
