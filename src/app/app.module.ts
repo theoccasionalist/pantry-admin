@@ -48,6 +48,7 @@ import { CartPrintComponent } from './components/cart-print/cart-print.component
 import { OrderDeleteModalComponent } from './components/order-delete-modal/order-delete-modal.component';
 import { LogInComponent } from './components/log-in/log-in.component';
 import { CallbackComponent } from './components/callback/callback.component';
+import {APP_BASE_HREF} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -112,7 +113,10 @@ import { CallbackComponent } from './components/callback/callback.component';
     TypeDeleteModalComponent,
     TypeGridButtonsComponent
   ],
-  providers: [{provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2000}}],
+  providers: [
+    {provide: APP_BASE_HREF, useValue: 'https://damp-brook-50473.herokuapp.com'},
+    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2000}}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
