@@ -35,10 +35,6 @@ const connection = mongoose.connection;
 
 connection.once('open', () => console.log('MongoDB connection establised.'));
 
-app.get('/*', function(req, res) {
-    res.sendFile(path.join(__dirname + '/dist/index.html'));
-});
-
 router.route('/orders').get(checkJwt,(req, res) => {
     Order.find((err, orders) => {
         err ? res.json({error: err, status: 400}) : res.json(orders); 
