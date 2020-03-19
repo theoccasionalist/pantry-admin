@@ -170,6 +170,10 @@ router.route('/types/delete/:id').delete(checkJwt, (req, res) => {
     });
 });
 
+app.get('/*', function(req, res) {
+    res.sendFile(path.join(__dirname + '/dist/index.html'));
+});
+
 app.use('/', router);
 
 app.listen(process.env.PORT || 4001, () => console.log('Express server running on port 4001.'));
