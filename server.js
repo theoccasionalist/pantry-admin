@@ -25,7 +25,6 @@ var checkJwt = jwt({
   algorithms: ['RS256']
 });
 
-var distDir = __dirname + "/dist/";
 app.use(express.static(distDir));
 app.use(cors());
 app.use(bodyParser.json());
@@ -34,6 +33,13 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/pantry');
 const connection = mongoose.connection;
 
 connection.once('open', () => console.log('MongoDB connection establised.'));
+
+if (process.env.NODE_ENV !== 'dev') {
+    app.use('/', express.static(path.join(__dirname, './dist')));
+}
+
+const port = process.env.PORT || '4001';
+app.set('port', port);
 
 router.route('/orders').get(checkJwt,(req, res) => {
     Order.find((err, orders) => {
@@ -170,10 +176,6 @@ router.route('/types/delete/:id').delete(checkJwt, (req, res) => {
     });
 });
 
-router.route('/*', function(req, res) {
-    res.sendFile(path.join(__dirname + '/dist/index.html'));
-});
-
 app.use('/', router);
 
-app.listen(process.env.PORT || 4001, () => console.log('Express server running on port 4001.'));
+app.listen(port, () => console.log('Express server running on port 4001.'));
