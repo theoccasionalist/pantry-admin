@@ -77,25 +77,25 @@ router.route('/points-mappings').get(checkJwt, (req,res) => {
     });
 });
 
-router.route('/products').get(checkJwt, (req, res) => {
+router.route('/products').get((req, res) => {
     Product.find((err, products) => {
         err ? res.json({error: err, status: 400}) : res.json(products);
     });
 });
 
-router.route('/products/:id').get(checkJwt, (req, res) => {
+router.route('/products/:id').get((req, res) => {
     Product.findById({_id: req.params.id}, (err, product) => {
         err ? res.json({error: err, status: 400}) : res.json(product);
     });
 });
 
-router.route('/products/add').post(checkJwt, (req, res) => {
+router.route('/products/add').post((req, res) => {
     let product = new Product(req.body);
     product.save().then(() => 
     res.json({status: 200})).catch((err) => res.json({error: err, status: 400}));
 });
 
-router.route('/products/update/:id').put(checkJwt, (req, res) => {
+router.route('/products/update/:id').put((req, res) => {
     Product.findById({_id: req.params.id}, (err, product) => {
         if (!product) {
             res.json({status: 500});
@@ -124,31 +124,31 @@ router.route('/shop').get(checkJwt,(req, res) => {
     });
 });
 
-router.route('/shop/update/:id').put(checkJwt, (req, res) => {
+router.route('/shop/update/:id').put((req, res) => {
     Shop.findByIdAndUpdate({_id: req.params.id}, {'$set': {shop: req.body.shop}}).populate('types').exec((err, shop) => {
         err ? res.json({error: err, status: 400}) : res.json({status: 200});
     });
 });
 
-router.route('/types').get(checkJwt, (req, res) => {
+router.route('/types').get((req, res) => {
     Type.find().populate('products').exec((err, type) => {
         err ? res.json({error: err, status: 400}) : res.json(type);
     });
 });
 
-router.route('/types/:id').get(checkJwt, (req, res) => {
+router.route('/types/:id').get((req, res) => {
     Type.findById({_id: req.params.id}).populate('products').exec((err, type) => {
         err ? res.json({error: err, status: 400}) : res.json(type);
     });
 });
 
-router.route('/types/add').post(checkJwt, (req, res) => {
+router.route('/types/add').post((req, res) => {
     let type = new Type(req.body);
     type.save().then(() => 
     res.json({status: 200, type: type})).catch((err) => res.json({error: err, status: 400}));
 });
 
-router.route('/types/update/:id').put(checkJwt, (req, res) => {
+router.route('/types/update/:id').put((req, res) => {
     Type.findById({_id: req.params.id}, (err, type) => {
         if (!type) {
             res.json({status: 500});
@@ -164,19 +164,19 @@ router.route('/types/update/:id').put(checkJwt, (req, res) => {
     });
 });
 
-router.route('/types/update-super-type-many/:superTypeId').post(checkJwt, (req, res) => {
+router.route('/types/update-super-type-many/:superTypeId').post((req, res) => {
     Type.updateMany({_id: {'$in': req.body}}, {'$set': {superTypeId: req.params.superTypeId}}, (err, type) => {
         err ? res.json({error: err, status: 400}) : res.json({type: type, status: 200});
     });
 });
 
-router.route('/types/remove-super-type-many').post(checkJwt, (req, res) => {
+router.route('/types/remove-super-type-many').post((req, res) => {
     Type.updateMany({_id: {'$in': req.body}}, {'$unset': {superTypeId: undefined}}, (err, type) => {
         err ? res.json({error: err, status: 400}) : res.json({type: type, status: 200});
     });
 });
 
-router.route('/types/delete/:id').delete(checkJwt, (req, res) => {
+router.route('/types/delete/:id').delete((req, res) => {
     Type.findByIdAndDelete({_id: req.params.id}, (err, type) => {
         err ? res.json({error: err, status: 400}) : res.json({status: 200});
     });
