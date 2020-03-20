@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const path = require('path');
 const Order = require('./models/order.model');
 const Type = require('./models/type.model');
 const Product = require('./models/product.model');
@@ -39,6 +40,12 @@ if (process.env.NODE_ENV !== 'dev') {
 
 const port = process.env.PORT || '4001';
 app.set('port', port);
+
+if (process.env.NODE_ENV !== 'dev') {
+    app.get('*', function(req, res) {
+      res.sendFile(path.join(__dirname, '/dist/index.html'));
+    });
+  }
 
 router.route('/orders').get(checkJwt,(req, res) => {
     Order.find((err, orders) => {
