@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class TypeService {
-  uri = 'http://localhost:4001';
+  uri = 'https://damp-brook-50473.herokuapp.com';
   types: Type[] = [];
 
   constructor(private httpClient: HttpClient) { }

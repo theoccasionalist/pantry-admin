@@ -7,7 +7,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class OrderService {
-  uri = 'http://localhost:4001';
+  uri = 'https://damp-brook-50473.herokuapp.com';
 
   constructor(private httpClient: HttpClient) { }
 

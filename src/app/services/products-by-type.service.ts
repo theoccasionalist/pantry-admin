@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ProductsByTypeService {
 
-  uri = 'http://localhost:4001';
+  uri = 'https://damp-brook-50473.herokuapp.com';
 
   constructor(private httpClient: HttpClient) {}
 

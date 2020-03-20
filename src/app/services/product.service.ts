@@ -6,7 +6,7 @@ import { Product } from '../models/product.model';
   providedIn: 'root'
 })
 export class ProductService {
-  uri = 'http://localhost:4001';
+  uri = 'https://damp-brook-50473.herokuapp.com';
   products: Product[] = [];
 
   constructor(private httpClient: HttpClient) { }
