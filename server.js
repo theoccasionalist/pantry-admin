@@ -25,7 +25,6 @@ var checkJwt = jwt({
   algorithms: ['RS256']
 });
 
-app.use(express.static(distDir));
 app.use(cors());
 app.use(bodyParser.json());
 
