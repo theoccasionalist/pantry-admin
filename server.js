@@ -78,10 +78,29 @@ router.route('/points-mappings').get(checkJwt, (req,res) => {
 });
 
 router.route('/products').get((req, res) => {
-    Product.find({}).exec(function(err, products) {
-        console.log(products);
-        err ? res.json({error: err, status: 400}) : res.json(products);
+    res.json({
+        "_id": {
+            "$oid": "5e7656013521900017f0f0bd"
+        },
+        "productName": "123",
+        "points": 1,
+        "school": true,
+        "infant": true,
+        "__v": 0
     });
+    // Product.find((err, products) => {
+    //     console.log(products);
+    //     err ? res.json({error: err, status: 400}) : res.json({
+    //         "_id": {
+    //             "$oid": "5e7656013521900017f0f0bd"
+    //         },
+    //         "productName": "123",
+    //         "points": 1,
+    //         "school": true,
+    //         "infant": true,
+    //         "__v": 0
+    //     });
+    // });
 });
 
 router.route('/products/:id').get((req, res) => {
