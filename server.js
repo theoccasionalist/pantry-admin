@@ -78,7 +78,7 @@ router.route('/points-mappings').get(checkJwt, (req,res) => {
 });
 
 router.route('/products').get((req, res) => {
-    Product.find((err, products) => {
+    Product.find({}).exec(function(err, products) {
         console.log(products);
         err ? res.json({error: err, status: 400}) : res.json(products);
     });
