@@ -89,7 +89,7 @@ router.route('/products/:id').get(checkJwt, (req, res) => {
     });
 });
 
-router.route('/products/add').post(checkJwt, (req, res) => {
+router.route('/products/add').post((req, res) => {
     let product = new Product(req.body);
     product.save().then(() => 
     res.json({status: 200})).catch((err) => res.json({error: err, status: 400}));
