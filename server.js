@@ -77,13 +77,13 @@ router.route('/points-mappings').get(checkJwt, (req,res) => {
     });
 });
 
-router.route('/products').get(checkJwt, (req, res) => {
+router.route('/products').get((req, res) => {
     Product.find((err, products) => {
         err ? res.json({error: err, status: 400}) : res.json(products);
     });
 });
 
-router.route('/products/:id').get(checkJwt, (req, res) => {
+router.route('/products/:id').get((req, res) => {
     Product.findById({_id: req.params.id}, (err, product) => {
         err ? res.json({error: err, status: 400}) : res.json(product);
     });
@@ -95,7 +95,7 @@ router.route('/products/add').post((req, res) => {
     res.json({status: 200})).catch((err) => res.json({error: err, status: 400}));
 });
 
-router.route('/products/update/:id').put(checkJwt, (req, res) => {
+router.route('/products/update/:id').put((req, res) => {
     Product.findById({_id: req.params.id}, (err, product) => {
         if (!product) {
             res.json({status: 500});
