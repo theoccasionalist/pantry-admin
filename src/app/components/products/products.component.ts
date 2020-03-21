@@ -55,6 +55,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
         this.shop = shop;
         this.types = types;
         this.products = products;
+        console.log(this.products);
         this.rowData = this.getFormattedFields();
         this.loading = false;
       })
