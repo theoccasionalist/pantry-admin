@@ -29,6 +29,8 @@ var checkJwt = jwt({
 app.use(cors());
 app.use(bodyParser.json());
 
+console.log(checkJwt, process.env.AUTH0_AUDIENCE);
+
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/pantry');
 const connection = mongoose.connection;
 
