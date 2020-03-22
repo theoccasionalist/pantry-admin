@@ -37,25 +37,25 @@ connection.once('open', () => console.log('MongoDB connection establised.'));
 const port = process.env.PORT || '4001';
 app.set('port', port);
 
-router.route('/orders').get(checkJwt,(req, res) => {
+router.route('/orders').get((req, res) => {
     Order.find((err, orders) => {
         err ? res.json({error: err, status: 400}) : res.json(orders); 
     });
 });
 
-router.route('/orders/:id').get(checkJwt,(req, res) => {
+router.route('/orders/:id').get((req, res) => {
     Order.findById({_id: req.params.id}, (err, order) => {
         err ? res.json({error: err, status: 400}) : res.json(order);
     });
 });
 
-router.route('/orders/update-received/:id').put(checkJwt,(req, res) => {
+router.route('/orders/update-received/:id').put((req, res) => {
     Order.findByIdAndUpdate({_id: req.params.id}, {'$set': {received: req.body.received}}, (err, shop) => {
         err ? res.json({error: err, status: 400}) : res.json({status: 200});
     });
 });
 
-router.route('/orders/delete/:id').delete(checkJwt,(req, res) => {
+router.route('/orders/delete/:id').delete((req, res) => {
     Order.findByIdAndDelete({_id: req.params.id}, (err, order) => {
         err ? res.json({error: err, status: 400}) : res.json({status: 200});
     });
@@ -68,29 +68,10 @@ router.route('/points-mappings').get(checkJwt, (req,res) => {
 });
 
 router.route('/products').get((req, res) => {
-    res.json({
-        "_id": {
-            "$oid": "5e7656013521900017f0f0bd"
-        },
-        "productName": "123",
-        "points": 1,
-        "school": true,
-        "infant": true,
-        "__v": 0
+    Product.find((err, products) => {
+        console.log(products);
+        err ? res.json({error: err, status: 400}) : res.json(products);
     });
-    // Product.find((err, products) => {
-    //     console.log(products);
-    //     err ? res.json({error: err, status: 400}) : res.json({
-    //         "_id": {
-    //             "$oid": "5e7656013521900017f0f0bd"
-    //         },
-    //         "productName": "123",
-    //         "points": 1,
-    //         "school": true,
-    //         "infant": true,
-    //         "__v": 0
-    //     });
-    // });
 });
 
 router.route('/products/:id').get((req, res) => {
