@@ -55,7 +55,7 @@ router.route('/orders/update-received/:id').put((req, res) => {
     });
 });
 
-router.route('/orders/delete/:id').delete((req, res) => {
+router.route('/orders/delete/:id').delete(checkJwt, (req, res) => {
     Order.findByIdAndDelete({_id: req.params.id}, (err, order) => {
         err ? res.json({error: err, status: 400}) : res.json({status: 200});
     });
