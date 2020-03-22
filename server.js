@@ -103,7 +103,7 @@ router.route('/products/update/:id').put((req, res) => {
     });
 });
 
-router.route('/products/delete/:id').delete((req, res) => {
+router.route('/products/delete/:id').delete(checkJwt, (req, res) => {
     Product.findByIdAndDelete({_id: req.params.id}, (err, product) => {
         err ? res.json({error: err, status: 400}) : res.json({status: 200});
     });
