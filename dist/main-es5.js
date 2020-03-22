@@ -12919,7 +12919,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _classCallCheck(this, OrderService);
 
         this.httpClient = httpClient;
-        this.uri = 'https://damp-brook-50473.herokuapp.com';
+        this.uri = 'https://damp-brook-50473.herokuapp.com/api';
       }
 
       _createClass(OrderService, [{
@@ -13097,7 +13097,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _classCallCheck(this, ProductService);
 
         this.httpClient = httpClient;
-        this.uri = 'https://damp-brook-50473.herokuapp.com';
+        this.uri = 'https://damp-brook-50473.herokuapp.com/api';
         this.products = [];
       }
 
@@ -13203,7 +13203,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _classCallCheck(this, ShopService);
 
         this.httpClient = httpClient;
-        this.uri = 'https://damp-brook-50473.herokuapp.com';
+        this.uri = 'https://damp-brook-50473.herokuapp.com/api';
       }
 
       _createClass(ShopService, [{
@@ -13289,7 +13289,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _classCallCheck(this, TypeService);
 
         this.httpClient = httpClient;
-        this.uri = 'https://damp-brook-50473.herokuapp.com';
+        this.uri = 'https://damp-brook-50473.herokuapp.com/api';
         this.types = [];
       }
 

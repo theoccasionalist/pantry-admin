@@ -6260,7 +6260,7 @@ __webpack_require__.r(__webpack_exports__);
 class OrderService {
     constructor(httpClient) {
         this.httpClient = httpClient;
-        this.uri = 'https://damp-brook-50473.herokuapp.com';
+        this.uri = 'https://damp-brook-50473.herokuapp.com/api';
     }
     getOrderById(orderId) {
         return this.httpClient.get(`${this.uri}/orders/${orderId}`);
@@ -6350,7 +6350,7 @@ __webpack_require__.r(__webpack_exports__);
 class ProductService {
     constructor(httpClient) {
         this.httpClient = httpClient;
-        this.uri = 'https://damp-brook-50473.herokuapp.com';
+        this.uri = 'https://damp-brook-50473.herokuapp.com/api';
         this.products = [];
     }
     getProductById(productId) {
@@ -6401,7 +6401,7 @@ __webpack_require__.r(__webpack_exports__);
 class ShopService {
     constructor(httpClient) {
         this.httpClient = httpClient;
-        this.uri = 'https://damp-brook-50473.herokuapp.com';
+        this.uri = 'https://damp-brook-50473.herokuapp.com/api';
     }
     getShop() {
         return this.httpClient.get(`${this.uri}/shop`).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(result => result[0]));
@@ -6440,7 +6440,7 @@ __webpack_require__.r(__webpack_exports__);
 class TypeService {
     constructor(httpClient) {
         this.httpClient = httpClient;
-        this.uri = 'https://damp-brook-50473.herokuapp.com';
+        this.uri = 'https://damp-brook-50473.herokuapp.com/api';
         this.types = [];
     }
     addType(type) {
