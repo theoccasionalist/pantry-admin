@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ShopService {
-  uri = 'https://damp-brook-50473.herokuapp.com';
+  uri = 'https://damp-brook-50473.herokuapp.com/api';
 
   constructor(private httpClient: HttpClient) { }
 

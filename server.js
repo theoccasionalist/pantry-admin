@@ -39,56 +39,56 @@ connection.once('open', () => console.log('MongoDB connection establised.'));
 const port = process.env.PORT || '4001';
 app.set('port', port);
 
-router.route('/orders').get((req, res) => {
+router.route('/api/orders').get((req, res) => {
     Order.find((err, orders) => {
         err ? res.json({error: err, status: 400}) : res.json(orders); 
     });
 });
 
-router.route('/orders/:id').get((req, res) => {
+router.route('/api/orders/:id').get((req, res) => {
     Order.findById({_id: req.params.id}, (err, order) => {
         err ? res.json({error: err, status: 400}) : res.json(order);
     });
 });
 
-router.route('/orders/update-received/:id').put((req, res) => {
+router.route('/api/orders/update-received/:id').put((req, res) => {
     Order.findByIdAndUpdate({_id: req.params.id}, {'$set': {received: req.body.received}}, (err, shop) => {
         err ? res.json({error: err, status: 400}) : res.json({status: 200});
     });
 });
 
-router.route('/orders/delete/:id').delete(checkJwt, (req, res) => {
+router.route('/api/orders/delete/:id').delete(checkJwt, (req, res) => {
     Order.findByIdAndDelete({_id: req.params.id}, (err, order) => {
         err ? res.json({error: err, status: 400}) : res.json({status: 200});
     });
 });
 
-router.route('/points-mappings').get((req,res) => {
+router.route('/api/points-mappings').get((req,res) => {
     pointsMapping.find((err, mapping) => {
         err ? res.json({error: err, status: 400}) : res.json(mapping); 
     });
 });
 
-router.route('/products').get((req, res) => {
+router.route('/api/products').get((req, res) => {
     Product.find((err, products) => {
         console.log(products);
         err ? res.json({error: err, status: 400}) : res.json(products);
     });
 });
 
-router.route('/products/:id').get((req, res) => {
+router.route('/api/products/:id').get((req, res) => {
     Product.findById({_id: req.params.id}, (err, product) => {
         err ? res.json({error: err, status: 400}) : res.json(product);
     });
 });
 
-router.route('/products/add').post((req, res) => {
+router.route('/api/products/add').post((req, res) => {
     let product = new Product(req.body);
     product.save().then(() => 
     res.json({status: 200})).catch((err) => res.json({error: err, status: 400}));
 });
 
-router.route('/products/update/:id').put((req, res) => {
+router.route('/api/products/update/:id').put((req, res) => {
     Product.findById({_id: req.params.id}, (err, product) => {
         if (!product) {
             res.json({status: 500});
@@ -105,43 +105,43 @@ router.route('/products/update/:id').put((req, res) => {
     });
 });
 
-router.route('/products/delete/:id').delete(checkJwt, (req, res) => {
+router.route('/api/products/delete/:id').delete(checkJwt, (req, res) => {
     Product.findByIdAndDelete({_id: req.params.id}, (err, product) => {
         err ? res.json({error: err, status: 400}) : res.json({status: 200});
     });
 });
 
-router.route('/shop').get((req, res) => {
+router.route('/api/shop').get((req, res) => {
     Shop.find().populate({path:'shop', populate: {path: 'products'}}).exec((err, shop) => {
         err ? res.json({error: err, status: 400}) : res.json(shop);
     });
 });
 
-router.route('/shop/update/:id').put((req, res) => {
+router.route('/api/shop/update/:id').put((req, res) => {
     Shop.findByIdAndUpdate({_id: req.params.id}, {'$set': {shop: req.body.shop}}).populate('types').exec((err, shop) => {
         err ? res.json({error: err, status: 400}) : res.json({status: 200});
     });
 });
 
-router.route('/types').get((req, res) => {
+router.route('/api/types').get((req, res) => {
     Type.find().populate('products').exec((err, type) => {
         err ? res.json({error: err, status: 400}) : res.json(type);
     });
 });
 
-router.route('/types/:id').get((req, res) => {
+router.route('/api/types/:id').get((req, res) => {
     Type.findById({_id: req.params.id}).populate('products').exec((err, type) => {
         err ? res.json({error: err, status: 400}) : res.json(type);
     });
 });
 
-router.route('/types/add').post((req, res) => {
+router.route('api/types/add').post((req, res) => {
     let type = new Type(req.body);
     type.save().then(() => 
     res.json({status: 200, type: type})).catch((err) => res.json({error: err, status: 400}));
 });
 
-router.route('/types/update/:id').put((req, res) => {
+router.route('/api/types/update/:id').put((req, res) => {
     Type.findById({_id: req.params.id}, (err, type) => {
         if (!type) {
             res.json({status: 500});
@@ -157,19 +157,19 @@ router.route('/types/update/:id').put((req, res) => {
     });
 });
 
-router.route('/types/update-super-type-many/:superTypeId').post((req, res) => {
+router.route('/api/types/update-super-type-many/:superTypeId').post((req, res) => {
     Type.updateMany({_id: {'$in': req.body}}, {'$set': {superTypeId: req.params.superTypeId}}, (err, type) => {
         err ? res.json({error: err, status: 400}) : res.json({type: type, status: 200});
     });
 });
 
-router.route('/types/remove-super-type-many').post((req, res) => {
+router.route('/api/types/remove-super-type-many').post((req, res) => {
     Type.updateMany({_id: {'$in': req.body}}, {'$unset': {superTypeId: undefined}}, (err, type) => {
         err ? res.json({error: err, status: 400}) : res.json({type: type, status: 200});
     });
 });
 
-router.route('/types/delete/:id').delete((req, res) => {
+router.route('/api/types/delete/:id').delete((req, res) => {
     Type.findByIdAndDelete({_id: req.params.id}, (err, type) => {
         err ? res.json({error: err, status: 400}) : res.json({status: 200});
     });
