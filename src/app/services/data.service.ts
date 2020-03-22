@@ -83,7 +83,6 @@ export class DataService {
 
   updateProducts() {
     this.productService.getProducts().subscribe((products: Product[]) => {
-      console.log(products);
       this.productsSource.next(products);
     });
   }
