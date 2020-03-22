@@ -34,18 +34,8 @@ const connection = mongoose.connection;
 
 connection.once('open', () => console.log('MongoDB connection establised.'));
 
-if (process.env.NODE_ENV !== 'dev') {
-    app.use('/', express.static(path.join(__dirname, './dist')));
-}
-
 const port = process.env.PORT || '4001';
 app.set('port', port);
-
-if (process.env.NODE_ENV !== 'dev') {
-    app.get('*', function(req, res) {
-      res.sendFile(path.join(__dirname, '/dist/index.html'));
-    });
-  }
 
 router.route('/orders').get(checkJwt,(req, res) => {
     Order.find((err, orders) => {
@@ -203,5 +193,15 @@ router.route('/types/delete/:id').delete(checkJwt, (req, res) => {
 });
 
 app.use('/', router);
+
+if (process.env.NODE_ENV !== 'dev') {
+    app.use('/', express.static(path.join(__dirname, './dist')));
+}
+
+if (process.env.NODE_ENV !== 'dev') {
+    app.get('*', function(req, res) {
+      res.sendFile(path.join(__dirname, '/dist/index.html'));
+    });
+}
 
 app.listen(port, () => console.log('Express server running on port 4001.'));
