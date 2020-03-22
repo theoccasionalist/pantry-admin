@@ -132,7 +132,7 @@ router.route('/api/types/:id').get(checkJwt, (req, res) => {
     });
 });
 
-router.route('api/types/add').post(checkJwt, (req, res) => {
+router.route('/api/types/add').post(checkJwt, (req, res) => {
     let type = new Type(req.body);
     type.save().then(() => 
     res.json({status: 200, type: type})).catch((err) => res.json({error: err, status: 400}));
