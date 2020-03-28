@@ -287,7 +287,7 @@ class AppModule {
 }
 AppModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineNgModule"]({ type: AppModule, bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_21__["AppComponent"]] });
 AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjector"]({ factory: function AppModule_Factory(t) { return new (t || AppModule)(); }, providers: [
-        { provide: _angular_common__WEBPACK_IMPORTED_MODULE_50__["APP_BASE_HREF"], useValue: 'https://damp-brook-50473.herokuapp.com' },
+        { provide: _angular_common__WEBPACK_IMPORTED_MODULE_50__["APP_BASE_HREF"], useValue: 'https://modern-volunteer-test.herokuapp.com' },
         { provide: _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_17__["MAT_SNACK_BAR_DEFAULT_OPTIONS"], useValue: { duration: 2000 } }
     ], imports: [[
             ag_grid_angular__WEBPACK_IMPORTED_MODULE_4__["AgGridModule"],
@@ -429,7 +429,7 @@ AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjector
                     _components_type_grid_buttons_type_grid_buttons_component__WEBPACK_IMPORTED_MODULE_37__["TypeGridButtonsComponent"]
                 ],
                 providers: [
-                    { provide: _angular_common__WEBPACK_IMPORTED_MODULE_50__["APP_BASE_HREF"], useValue: 'https://damp-brook-50473.herokuapp.com' },
+                    { provide: _angular_common__WEBPACK_IMPORTED_MODULE_50__["APP_BASE_HREF"], useValue: 'https://modern-volunteer-test.herokuapp.com' },
                     { provide: _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_17__["MAT_SNACK_BAR_DEFAULT_OPTIONS"], useValue: { duration: 2000 } }
                 ],
                 bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_21__["AppComponent"]]
@@ -3464,7 +3464,6 @@ class ProductsComponent {
             this.shop = shop;
             this.types = types;
             this.products = products;
-            console.log(this.products);
             this.rowData = this.getFormattedFields();
             this.loading = false;
         }));
@@ -6155,7 +6154,6 @@ class DataService {
     }
     updateProducts() {
         this.productService.getProducts().subscribe((products) => {
-            console.log(products);
             this.productsSource.next(products);
         });
     }
@@ -6350,7 +6348,7 @@ __webpack_require__.r(__webpack_exports__);
 class ProductService {
     constructor(httpClient) {
         this.httpClient = httpClient;
-        this.uri = 'https://damp-brook-50473.herokuapp.com/api';
+        this.uri = 'https://modern-volunteer-test.herokuapp.com/api';
         this.products = [];
     }
     getProductById(productId) {
@@ -6401,7 +6399,7 @@ __webpack_require__.r(__webpack_exports__);
 class ShopService {
     constructor(httpClient) {
         this.httpClient = httpClient;
-        this.uri = 'https://damp-brook-50473.herokuapp.com/api';
+        this.uri = 'https://modern-volunteer-test.herokuapp.com/api';
     }
     getShop() {
         return this.httpClient.get(`${this.uri}/shop`).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(result => result[0]));
@@ -6440,7 +6438,7 @@ __webpack_require__.r(__webpack_exports__);
 class TypeService {
     constructor(httpClient) {
         this.httpClient = httpClient;
-        this.uri = 'https://damp-brook-50473.herokuapp.com/api';
+        this.uri = 'https://modern-volunteer-test.herokuapp.com/api';
         this.types = [];
     }
     addType(type) {
@@ -6477,6 +6475,34 @@ TypeService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjec
 
 /***/ }),
 
+/***/ "./src/environments/environment.ts":
+/*!*****************************************!*\
+  !*** ./src/environments/environment.ts ***!
+  \*****************************************/
+/*! exports provided: environment */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "environment", function() { return environment; });
+// This file can be replaced during build by using the `fileReplacements` array.
+// `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
+// The list of file replacements can be found in `angular.json`.
+const environment = {
+    production: false
+};
+/*
+ * For easier debugging in development mode, you can import the following file
+ * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
+ *
+ * This import should be commented out in production mode because it will have a negative impact
+ * on performance if an error is thrown.
+ */
+// import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+
+
+/***/ }),
+
 /***/ "./src/main.ts":
 /*!*********************!*\
   !*** ./src/main.ts ***!
@@ -6487,13 +6513,18 @@ TypeService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjec
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-/* harmony import */ var _app_app_module__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app/app.module */ "./src/app/app.module.ts");
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/__ivy_ngcc__/fesm2015/platform-browser.js");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var _app_app_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app/app.module */ "./src/app/app.module.ts");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/__ivy_ngcc__/fesm2015/platform-browser.js");
 
 
 
-Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["enableProdMode"])();
-_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["platformBrowser"]().bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_1__["AppModule"])
+
+_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].production = true;
+if (_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].production) {
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["enableProdMode"])();
+}
+_angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__["platformBrowser"]().bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_2__["AppModule"])
     .catch(err => console.error(err));
 
 

@@ -725,7 +725,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       },
       providers: [{
         provide: _angular_common__WEBPACK_IMPORTED_MODULE_50__["APP_BASE_HREF"],
-        useValue: 'https://damp-brook-50473.herokuapp.com'
+        useValue: 'https://modern-volunteer-test.herokuapp.com'
       }, {
         provide: _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_17__["MAT_SNACK_BAR_DEFAULT_OPTIONS"],
         useValue: {
@@ -753,7 +753,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           entryComponents: [_components_order_delete_modal_order_delete_modal_component__WEBPACK_IMPORTED_MODULE_47__["OrderDeleteModalComponent"], _components_order_grid_buttons_order_grid_buttons_component__WEBPACK_IMPORTED_MODULE_41__["OrderGridButtonsComponent"], _components_product_delete_modal_product_delete_modal_component__WEBPACK_IMPORTED_MODULE_38__["ProductDeleteModalComponent"], _components_product_grid_buttons_product_grid_buttons_component__WEBPACK_IMPORTED_MODULE_36__["ProductGridButtonsComponent"], _components_type_delete_modal_type_delete_modal_component__WEBPACK_IMPORTED_MODULE_39__["TypeDeleteModalComponent"], _components_type_grid_buttons_type_grid_buttons_component__WEBPACK_IMPORTED_MODULE_37__["TypeGridButtonsComponent"]],
           providers: [{
             provide: _angular_common__WEBPACK_IMPORTED_MODULE_50__["APP_BASE_HREF"],
-            useValue: 'https://damp-brook-50473.herokuapp.com'
+            useValue: 'https://modern-volunteer-test.herokuapp.com'
           }, {
             provide: _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_17__["MAT_SNACK_BAR_DEFAULT_OPTIONS"],
             useValue: {
@@ -7238,7 +7238,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             _this15.shop = shop;
             _this15.types = types;
             _this15.products = products;
-            console.log(_this15.products);
             _this15.rowData = _this15.getFormattedFields();
             _this15.loading = false;
           }));
@@ -12700,8 +12699,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var _this51 = this;
 
           this.productService.getProducts().subscribe(function (products) {
-            console.log(products);
-
             _this51.productsSource.next(products);
           });
         }
@@ -13097,7 +13094,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _classCallCheck(this, ProductService);
 
         this.httpClient = httpClient;
-        this.uri = 'https://damp-brook-50473.herokuapp.com/api';
+        this.uri = 'https://modern-volunteer-test.herokuapp.com/api';
         this.products = [];
       }
 
@@ -13203,7 +13200,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _classCallCheck(this, ShopService);
 
         this.httpClient = httpClient;
-        this.uri = 'https://damp-brook-50473.herokuapp.com/api';
+        this.uri = 'https://modern-volunteer-test.herokuapp.com/api';
       }
 
       _createClass(ShopService, [{
@@ -13289,7 +13286,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _classCallCheck(this, TypeService);
 
         this.httpClient = httpClient;
-        this.uri = 'https://damp-brook-50473.herokuapp.com/api';
+        this.uri = 'https://modern-volunteer-test.herokuapp.com/api';
         this.types = [];
       }
 
@@ -13361,6 +13358,44 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   },
 
   /***/
+  "./src/environments/environment.ts":
+  /*!*****************************************!*\
+    !*** ./src/environments/environment.ts ***!
+    \*****************************************/
+
+  /*! exports provided: environment */
+
+  /***/
+  function srcEnvironmentsEnvironmentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "environment", function () {
+      return environment;
+    }); // This file can be replaced during build by using the `fileReplacements` array.
+    // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
+    // The list of file replacements can be found in `angular.json`.
+
+
+    var environment = {
+      production: false
+    };
+    /*
+     * For easier debugging in development mode, you can import the following file
+     * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
+     *
+     * This import should be commented out in production mode because it will have a negative impact
+     * on performance if an error is thrown.
+     */
+    // import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+
+    /***/
+  },
+
+  /***/
   "./src/main.ts":
   /*!*********************!*\
     !*** ./src/main.ts ***!
@@ -13382,19 +13417,29 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony import */
 
 
-    var _app_app_module__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    var _environments_environment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! ./environments/environment */
+    "./src/environments/environment.ts");
+    /* harmony import */
+
+
+    var _app_app_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
     /*! ./app/app.module */
     "./src/app/app.module.ts");
     /* harmony import */
 
 
-    var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
     /*! @angular/platform-browser */
     "./node_modules/@angular/platform-browser/__ivy_ngcc__/fesm2015/platform-browser.js");
 
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["enableProdMode"])();
+    _environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].production = true;
 
-    _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["platformBrowser"]().bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_1__["AppModule"]).catch(function (err) {
+    if (_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].production) {
+      Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["enableProdMode"])();
+    }
+
+    _angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__["platformBrowser"]().bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_2__["AppModule"]).catch(function (err) {
       return console.error(err);
     });
     /***/

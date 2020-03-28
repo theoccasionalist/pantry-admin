@@ -114,7 +114,7 @@ import {APP_BASE_HREF} from '@angular/common';
     TypeGridButtonsComponent
   ],
   providers: [
-    {provide: APP_BASE_HREF, useValue: 'https://damp-brook-50473.herokuapp.com'},
+    {provide: APP_BASE_HREF, useValue: 'https://modern-volunteer-test.herokuapp.com'},
     {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2000}}
   ],
   bootstrap: [AppComponent]
