@@ -12916,7 +12916,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _classCallCheck(this, OrderService);
 
         this.httpClient = httpClient;
-        this.uri = 'https://damp-brook-50473.herokuapp.com/api';
+        this.uri = 'https://modern-volunteer-test.herokuapp.com/api';
       }
 
       _createClass(OrderService, [{
@@ -13432,8 +13432,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
     /*! @angular/platform-browser */
     "./node_modules/@angular/platform-browser/__ivy_ngcc__/fesm2015/platform-browser.js");
-
-    _environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].production = true;
 
     if (_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].production) {
       Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["enableProdMode"])();

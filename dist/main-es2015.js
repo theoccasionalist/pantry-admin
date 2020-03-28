@@ -6258,7 +6258,7 @@ __webpack_require__.r(__webpack_exports__);
 class OrderService {
     constructor(httpClient) {
         this.httpClient = httpClient;
-        this.uri = 'https://damp-brook-50473.herokuapp.com/api';
+        this.uri = 'https://modern-volunteer-test.herokuapp.com/api';
     }
     getOrderById(orderId) {
         return this.httpClient.get(`${this.uri}/orders/${orderId}`);
@@ -6520,7 +6520,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].production = true;
 if (_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].production) {
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["enableProdMode"])();
 }
