@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from './services/data.service';
+import { environment } from './../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +9,9 @@ import { DataService } from './services/data.service';
 export class AppComponent implements OnInit {
   title = 'front-end';
 
-  constructor() {}
+  constructor() {
+    console.log(environment.production);
+  }
 
   ngOnInit() {}
 
