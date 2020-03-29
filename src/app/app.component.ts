@@ -9,10 +9,10 @@ import { environment } from './../environments/environment';
 export class AppComponent implements OnInit {
   title = 'front-end';
 
-  constructor() {
+  constructor() {}
+
+  ngOnInit() {
     console.log(environment.production);
   }
-
-  ngOnInit() {}
 
 }
