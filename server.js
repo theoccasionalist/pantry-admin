@@ -175,12 +175,12 @@ router.route('/api/types/delete/:id').delete(checkJwt, (req, res) => {
 app.use('/', router);
 
 if (process.env.NODE_ENV !== 'dev') {
-    app.use('/', express.static(path.join(__dirname, './dist')));
+    app.use('/', express.static(path.join(__dirname, './dist/front-end')));
 }
 
 if (process.env.NODE_ENV !== 'dev') {
     app.get('*', function(req, res) {
-      res.sendFile(path.join(__dirname, '/dist/index.html'));
+      res.sendFile(path.join(__dirname, '/dist/front-end/index.html'));
     });
 }
 
