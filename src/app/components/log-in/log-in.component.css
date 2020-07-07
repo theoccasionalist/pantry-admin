@@ -1,0 +1,27 @@
+#grid-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+.border {
+    border: black solid .5px;
+    border-radius: 5px; 
+}
+#outer-card {
+    display: grid;
+    background-color: #603A17;
+    background-image: url("../../../assets/images/wavecut.png");
+    gap: 1rem;
+}
+#message-button-container {
+    display: flex;
+    justify-content: center;
+}
+#inner-card {
+    display: grid;
+    gap: 1rem;
+    background-color: #065777;
+    justify-content: center;
+    width: 10rem;
+}

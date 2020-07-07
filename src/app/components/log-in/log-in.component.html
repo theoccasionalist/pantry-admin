@@ -1,13 +1,12 @@
 <div id="grid-container"> 
-    <mat-card>   
-    <img id="logo" src="../../../assets/images/bsfp-logo-login.png" alt="bsfp-logo-login">
+    <mat-card id="outer-card" class="border">   
+    <img class="border" src="../../../assets/images/bsfp-logo-login.png" alt="bsfp-logo-login">
     <div id="message-button-container">
-        <mat-toolbar>Welcome!</mat-toolbar>  
-        <mat-card>
-            Pantry Manager! 
-            <button mat-raised-button (click)="authService.login()" *ngIf="!authService.loggedIn">Log In</button>
-            <button mat-raised-button (click)="toOrders()" *ngIf="authService.loggedIn">To Family</button>
-        </mat-card>
+        <mat-card id="inner-card" class="border">
+            <div>Online Manager</div>
+            <button class="border" mat-raised-button (click)="authService.login()" *ngIf="!authService.loggedIn">Log In</button>
+            <button class="border" mat-raised-button (click)="toOrders()" *ngIf="authService.loggedIn">To Family</button>
+        </mat-card> 
     </div>   
     </mat-card>
 </div>    

@@ -13,7 +13,7 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class TypesComponent implements OnInit, OnDestroy {
   columnDefs = [
-    {headerName: 'Type Name', field: 'typeName'},
+    {headerName: 'Type Name', field: 'typeName', sort: 'asc'},
     {headerName: 'Product Count', field: 'productCount'},
     {headerName: 'Type Limit', field: 'typeLimit'},
     {headerName: 'Super Type', field: 'superType'},
