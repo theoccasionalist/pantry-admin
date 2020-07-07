@@ -135,4 +135,7 @@ button {
     margin-top: 1%;
     width: 90%;
 }
+.mat-error{
+    color: #f5cdb6;
+}
 

@@ -18,6 +18,25 @@ body {
 .mat-content > mat-panel-title, .mat-content > mat-panel-description {
     flex: 1;
 }
+.mat-focused .mat-form-field-label {
+    color: #f5cdb6 !important;
+}
+.mat-form-field-ripple {
+    background-color: #f5cdb6 !important;
+}
+.mat-form-field.ng-touched.ng-invalid .mat-form-field-label {
+    color: #f5cdb6 !important;
+}
+.mat-form-field .mat-select.mat-select-invalid .mat-select-arrow {
+    color: #f5cdb6;
+}
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+    color: white;
+}
+.mat-select-panel {
+    background: #065777;
+    border: solid black .5px;
+}
 .mat-raised-button {
     background-color: #F6D936;
     border: solid black 1px;

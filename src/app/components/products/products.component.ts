@@ -15,7 +15,7 @@ import { combineLatest, Subscription } from 'rxjs';
 })
 export class ProductsComponent implements OnInit, OnDestroy {
   columnDefs = [
-    {headerName: 'Name', field: 'productName'},
+    {headerName: 'Name', field: 'productName', sort: 'asc'},
     {headerName: 'Points', field: 'points', comparator: (firstPoints, secondPoints) => this.pointsComparator(firstPoints, secondPoints)},
     {headerName: 'After School', field: 'school', width: 120},
     {headerName: 'Infant', field: 'infant'},

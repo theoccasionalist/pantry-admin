@@ -91,3 +91,6 @@ button {
     align-items: center;
     min-height: 80vh;
 }
+.mat-error {
+    color: #f5cdb6;
+}

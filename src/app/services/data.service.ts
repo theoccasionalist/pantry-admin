@@ -87,22 +87,57 @@ export class DataService {
     });
   }
 
+  /** Removes any empty types from the shop and updates shop in db if empty types are removed.
+   *  Updates shopSource behavior subject.
+   *  @param shop the current shop observable.
+   */
   updateShop() {
     this.shopService.getShop().subscribe((shop: Shop) => {
-      if (shop.shop.some((currentType: Type) => !currentType.products.length)) {
-        shop.shop.forEach((type: Type) => {
-          if (!type.products.length) {
-            shop.shop = shop.shop.filter((emptyType: Type) => emptyType._id !== type._id);
-          }
-        });
-        this.shopService.updateShop(shop._id, shop).subscribe((response: any) => {
-          response.status === 200 ?
-            this.shopSource.next(shop) :
-            this.snackBar.open('Database error. Failed to update.', 'Dismiss', {
-              panelClass: ['red-snackbar']});
-        });
+      shop = this.updateShopRemoveEmptyTypes(shop);
+      this.shopSource.next(shop);
+    });
+  }
+
+  /** Collects all type ids that have subtypes and then removes all types
+   *  from the passed in shop object if both (a) a type does not contain products
+   *  and (b) a type does not contain subTypes. Updates db if types are removed.
+   *  Called in updateShop().
+   *  @param shop the current shop observable.
+   *  @returns the shop with epmty types removed.
+   */
+  private updateShopRemoveEmptyTypes(shop: Shop): Shop {
+    const preFilterShopLength: number = shop.shop.length;
+    const superTypeIds: string[] = [];
+    shop.shop.forEach((subType: Type) => {
+      if (subType.superTypeId) {
+        superTypeIds.push(subType.superTypeId);
+      }
+    });
+    shop.shop.forEach((currentType: Type) => {
+      if (!currentType.products.length && !superTypeIds.includes(currentType._id)) {
+        shop.shop = shop.shop.filter((type: Type) => type._id !== currentType._id);
+      }
+    });
+    if (preFilterShopLength > shop.shop.length) {
+      this.updateShopService(shop);
+    }
+    return shop;
+  }
+
+  /** Updates the shop in the db.  Called in updateShopRemoveEmptTypes() when empty types
+   *  are removed from the passed in shop object.  If the db update fails, the shop view will
+   *  be misaligned with the db.  A refresh will align the view with the db, however.  May
+   *  improve this in the future.
+   *  @param shop the current shop observable.
+   */
+  private updateShopService(shop: Shop) {
+    this.shopService.updateShop(shop._id, shop).subscribe((response: any) => {
+      if (response.status === 200) {
+        this.snackBar.open('Empty type removed.', 'Dismiss', {
+          panelClass: ['green-snackbar']});
       } else {
-        this.shopSource.next(shop);
+        this.snackBar.open('Empty type failed to be removed. Please refresh screen.', 'Dismiss', {
+          panelClass: ['red-snackbar']});
       }
     });
   }
