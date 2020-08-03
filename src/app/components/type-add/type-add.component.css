@@ -1,23 +1,90 @@
+#add-product-container {
+    font-size: large;
+    height: 60vh;
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+.add-remove-products-viewport {
+    height: 50vh;
+}
+#available-container {
+    margin-right: 5%;
+}
+.blue {
+    background-color: #065777;
+}
 button {
     border: solid black 1px;
+}
+.center-grid {
+    display: grid;
+    align-content: center;
+    justify-content: center;
+}
+.dark-blue {
+    background-color: #0a2f4d;
+}
+.flex-align-items {
+    display: flex;
+    align-items: center;
+}
+.flex-space-between {
+    display: flex;
+    justify-content: space-between;
+}
+.flex-space-evenly {
+    display: flex;
+    justify-content: space-evenly;
+}
+.full-width {
+    width: 100%;
+}
+.margin-bottom-1 {
+    margin-bottom: 1%;
+}
+.margin-top-1 {
+    margin-top: 1%;
+}
+.margin-top-2 { 
+    margin-top: 2%;
+}
+.margin-top-1-not-first:not(:first-child) {
+    margin-top: 1%;
+}
+.margin-top-2-not-first:not(:first-child) {
+    margin-top: 2%;
 }
 .mat-card {
     border: solid black 1px;
 }
-#grid-container {
+.mat-error{
+    color: #f5cdb6;
+}
+.mat-expansion-panel {
+    border: solid black 1px;
+}
+.mat-radio-button {
+    margin-left: 16px;
+}
+#name-container-grid {
     display: grid;
-    grid-template-columns: 30% 70%;
+    grid-template-columns: 20% 1% auto;
 }
-.type-title {
-    font-size: xx-large;
-    font-weight: normal;
+.product-card {
+    cursor: grab;
+    width: 90%;
 }
-#top-container {
-    background: #603A17;
+.product-card:active {
+    cursor: grabbing;
+}
+.red {
+    background-color: rgb(194, 27, 27);
+}
+#spinner {
+    min-height: 100vh;
+}
+.texture {
     background-image: url(../../../assets/images/buried.png);
-    margin: 3%;
-    margin-top: 2%;
-    min-width: 1200px;
 }
 #top-buttons {
     display: grid;
@@ -26,116 +93,22 @@ button {
 #top-buttons button {
     margin-left: 10%
 }
-#grid-container {
-    margin-top: 2%;
-    display: grid;
-    grid-template-columns: 20% 80%;
-}
-#grid-container .mat-card {
-    background-color: #065777;
-}
-.left-form {
-    height: 15vh;
-    display: grid;
-    align-content: center;
-    justify-content: center;
-}
-.in-shop-left-form {
-    height: 18vh;
-    display: grid;
-    grid-template-rows: 70% 30%;
-    vertical-align: center;
-    justify-content: center;
-}
-#shop {
-    background-color: rgb(161, 103, 103);
-    border: solid black 1px;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center; 
-}
-#right-form {
+#top-container {
+    background: #603A17;
     background-image: url(../../../assets/images/buried.png);
-    margin-left: 1%;
+    margin: 3%;
+    min-width: 1200px;
 }
-#init-size-amount {
+#type-size-amount-form {
     display: grid;
-    grid-template-columns: 80% 20%;
-}
-#init-size-amount span {
-    font-size: large;
-    padding-top: 1%;
-}
-#add-limit {
-    display: grid;
-    grid-template-columns: 80% 20%;
-    margin-bottom: 2%;
-}
-#add-limit span {
-    font-size: x-large;
-}
-#limit-viewport {
-    height: 45vh;
-    width: 100%;
-}
-.type-size-amount-card {
-    margin-top: 2%;
-}
-.type-size-amount-form {
-    display: grid;
-    grid-template-columns: 24% 24% 24% 10%;
+    grid-template-columns: 10% 24% 24% 24%;
     grid-gap: 5%;
     vertical-align: center;
 }
-.type-size-amount-form button {
-    margin-top: 13%;
+.type-title {
+    font-size: xx-large;
+    font-weight: normal;
 }
-#spinner {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 80vh;
+.x-l-font {
+    font-size: x-large;
 }
-#add-product-container {
-    background-color: #065777;
-    background-image: url(../../../assets/images/buried.png);
-    border: solid black 1px;
-    font-size: large;
-    height: 45vh;
-    margin-top: 1%;
-    display: grid;
-    grid-template-columns: 50% 50%;
-}
-#available-container {
-    background-image: url(../../../assets/images/buried.png);
-    margin-right: 5%;
-}
-#available-products-viewport {
-    height: 30vh;
-    margin-top: 2%;
-    width: 100%;
-}
-.available-card {
-    background-color: #0a2f4d;
-    margin-top: 1%;
-    width: 90%;
-}
-#in-type-container {
-    background-image: url(../../../assets/images/buried.png);
-}
-#in-type-products-viewport {
-    height: 30vh;
-    margin-top: 2%;
-    width: 100%;
-}
-.in-type-card {
-    background-color: #0a2f4d;
-    margin-top: 1%;
-    width: 90%;
-}
-.mat-error{
-    color: #f5cdb6;
-}
-

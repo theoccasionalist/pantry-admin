@@ -3,7 +3,10 @@
     <mat-spinner></mat-spinner>
 </div>
 <mat-card id="top-container" *ngIf="!loading">
-    <cdk-virtual-scroll-viewport  itemSize="">
+    <cdk-virtual-scroll-viewport itemSize="" [ngClass]="{
+        'open-view-height' : productPanelOpenState || shopPanelOpenState || typePanelOpenState, 
+        'closed-view-height': !productPanelOpenState && !shopPanelOpenState && !typePanelOpenState
+        }">
         <mat-expansion-panel 
         (opened) ="pantryPanelService.setPanelOpenStates('shop',true)" 
         (closed)="pantryPanelService.setPanelOpenStates('shop',false)" 
@@ -46,7 +49,7 @@
             </mat-expansion-panel-header>
             <app-products></app-products>
         </mat-expansion-panel>
-    </cdk-virtual-scroll-viewport> 
+    </cdk-virtual-scroll-viewport>
 </mat-card>
 
 

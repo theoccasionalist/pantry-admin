@@ -1,42 +1,43 @@
 import { Injectable } from '@angular/core';
 import { Type } from '../models/type.model';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TypeService {
-  uri = 'https://modern-volunteer-test.herokuapp.com/api';
+  url = environment.apiUrl;
   types: Type[] = [];
 
   constructor(private httpClient: HttpClient) { }
 
   addType(type: object) {
-    return this.httpClient.post(`${this.uri}/types/add`, type);
+    return this.httpClient.post(`${this.url}/types/add`, type);
   }
 
   deleteType(typeId: string) {
-    return this.httpClient.delete(`${this.uri}/types/delete/${typeId}`);
+    return this.httpClient.delete(`${this.url}/types/delete/${typeId}`);
   }
 
   getTypeById(typeId: string) {
-    return this.httpClient.get<Type>(`${this.uri}/types/${typeId}`);
+    return this.httpClient.get<Type>(`${this.url}/types/${typeId}`);
   }
 
   getTypes() {
-    return this.httpClient.get<Type[]>(`${this.uri}/types`);
+    return this.httpClient.get<Type[]>(`${this.url}/types`);
   }
 
   removeSuperTypeIdMany(removeIds: string[]) {
-    return this.httpClient.post(`${this.uri}/types/remove-super-type-many`, removeIds);
+    return this.httpClient.post(`${this.url}/types/remove-super-type-many`, removeIds);
   }
 
   updateSuperTypeIdMany(superTypeId: string, updateIds: string[]) {
-    return this.httpClient.post(`${this.uri}/types/update-super-type-many/${superTypeId}`, updateIds);
+    return this.httpClient.post(`${this.url}/types/update-super-type-many/${superTypeId}`, updateIds);
   }
 
   updateType(typeId: string, type: object) {
-    return this.httpClient.put(`${this.uri}/types/update/${typeId}`, type);
+    return this.httpClient.put(`${this.url}/types/update/${typeId}`, type);
   }
 
 }

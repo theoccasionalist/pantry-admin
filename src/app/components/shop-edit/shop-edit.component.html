@@ -12,7 +12,7 @@
         <mat-card class="drag-drop-header">Types in Shop</mat-card> 
         <cdk-virtual-scroll-viewport class="viewport" itemSize="">
             <mat-card class="type-container" #availableTypesList="cdkDropList" [cdkDropListData]="availableTypes" [cdkDropListConnectedTo]="[typesInShopList]" (cdkDropListDropped)="dropType($event)" cdkDropList>
-                <mat-card class="margin-top" *ngFor="let availableType of availableTypes" cdkDrag>{{availableType.typeName}}
+                <mat-card class="margin-top grabbable" *ngFor="let availableType of availableTypes" cdkDrag>{{availableType.typeName}}
                     <ng-container *ngIf="availableType.subTypes">
                         <span></span>
                         <mat-card class="margin-top" id="available-sub-type-card" *ngFor="let subType of availableType.subTypes">{{subType.typeName}}</mat-card>
@@ -22,10 +22,10 @@
         </cdk-virtual-scroll-viewport>    
         <cdk-virtual-scroll-viewport class="viewport" itemSize=""> 
             <mat-card class="type-container" #typesInShopList="cdkDropList" [cdkDropListData]="typesInShop" [cdkDropListConnectedTo]="[availableTypesList]" (cdkDropListDropped)="dropType($event)" cdkDropList>
-                <mat-card class="margin-top" *ngFor="let typeInShop of typesInShop" cdkDrag>{{typeInShop.typeName}}
+                <mat-card class="margin-top grabbable" *ngFor="let typeInShop of typesInShop" cdkDrag>{{typeInShop.typeName}}
                     <ng-container *ngIf="typeInShop.subTypes">
                         <span></span>
-                        <mat-card class="margin-top"  *ngFor="let subType of typeInShop.subTypes">{{subType.typeName}}</mat-card>
+                        <mat-card class="margin-top" *ngFor="let subType of typeInShop.subTypes">{{subType.typeName}}</mat-card>
                     </ng-container>
                 </mat-card>
             </mat-card>

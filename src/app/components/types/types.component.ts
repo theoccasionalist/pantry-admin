@@ -90,7 +90,7 @@ export class TypesComponent implements OnInit, OnDestroy {
       type.products ?
         Object.defineProperty(rowEntry, 'productCount', {value: type.products.length}) :
         Object.defineProperty(rowEntry, 'productCount', {value: 0});
-      type.typeSizeAmount ?
+      type.typeLimits ?
         Object.defineProperty(rowEntry, 'typeLimit', {value: 'Yes'}) :
         Object.defineProperty(rowEntry, 'typeLimit', {value: 'No'});
       Object.defineProperty(rowEntry, 'superType', {value: this.getSuperTypeName(type)});

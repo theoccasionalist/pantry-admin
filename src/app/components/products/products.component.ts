@@ -117,7 +117,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.types.forEach((type: Type) => {
       type.products.forEach((product: Product) => {
         if (product._id === productToCheck._id) {
-          if (type.typeSizeAmount) {
+          if (type.typeLimits) {
             hasTypeLimit = true;
           }
         }

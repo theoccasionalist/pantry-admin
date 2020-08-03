@@ -3,11 +3,11 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const path = require('path');
-const Order = require('./models/order.model');
-const Type = require('./models/type.model');
-const Product = require('./models/product.model');
-const pointsMapping = require('./models/points-mapping');
-const Shop = require('./models/shop.model');
+const Order = require('./schema-models/order.model');
+const Type = require('./schema-models/type.model');
+const Product = require('./schema-models/product.model');
+const pointsMapping = require('./schema-models/points-mapping');
+const Shop = require('./schema-models/shop.model');
 
 const app = express();
 const router = express.Router();
@@ -29,12 +29,12 @@ var checkJwt = jwt({
 app.use(cors());
 app.use(bodyParser.json());
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/pantry');
+mongoose.connect(process.env.MONGODB_URI);
 const connection = mongoose.connection;
 
 connection.once('open', () => console.log('MongoDB connection establised.'));
 
-const port = process.env.PORT || '4000';
+const port = process.env.PORT;
 app.set('port', port);
 
 router.route('/api/orders').get(checkJwt, (req, res) => {
@@ -145,9 +145,16 @@ router.route('/api/types/update/:id').put(checkJwt, (req, res) => {
             return next(new Error('Could not load type.'))
         } else {
             type.typeName = req.body.typeName;
-            type.typeSizeAmount = req.body.typeSizeAmount;
+            if (req.body.typeLimits) {
+                type.typeLimits.enableTypeTracking = req.body.typeLimits.enableTypeTracking;
+                type.typeLimits.typeSizeAmount = req.body.typeLimits.typeSizeAmount;
+                type.typeSizeAmount = req.body.typeSizeAmount;
+            } else {
+                type.typeLimits = req.body.typeLimits;
+            }
             type.products = req.body.products;
             type.superTypeId = req.body.superTypeId;
+            type.typeComment = req.body.typeComment;
             type.save().then(() => 
             res.json({error: err, status: 200})).catch(() => res.json({status: 400}));
         }
