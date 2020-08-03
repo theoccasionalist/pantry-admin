@@ -13,11 +13,10 @@ import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-type-edit',
-  templateUrl: '../type-edit/type-edit.component.html',
+  templateUrl: '../type-add/type-add.component.html',
   styleUrls: ['../type-add/type-add.component.css']
 })
 export class TypeEditComponent extends TypeAddComponent implements OnInit, OnDestroy {
-  inShop = false;
   shop: Shop;
 
   constructor(private activatedRoute: ActivatedRoute, protected dataService: DataService, protected formBuilder: FormBuilder,
@@ -26,6 +25,7 @@ export class TypeEditComponent extends TypeAddComponent implements OnInit, OnDes
     }
 
   ngOnInit() {
+    this.typeEdit = true;
     this.subscription.add(
       combineLatest([
         this.dataService.getShop(),
@@ -43,12 +43,13 @@ export class TypeEditComponent extends TypeAddComponent implements OnInit, OnDes
           this.products = products;
           this.typeForm = new FormGroup({
             typeName: new FormControl(this.type.typeName, Validators.required),
-            superType: new FormControl(this.type.superTypeId)
+            typeComment: new FormControl(this.initEditTypeCommentForm()),
           });
           this.initAvailableProducts();
           this.initProductsInType();
-          this.setTypeSizeAmountForm();
+          this.initEditTypeLimitsForm();
           this.setInShop();
+          this.setSuperTypeName();
           this.loading = !this.loading;
       })
     );
@@ -62,25 +63,32 @@ export class TypeEditComponent extends TypeAddComponent implements OnInit, OnDes
     this.productsInType = this.type.products;
   }
 
-  onUpdateClick() {
-    if (this.typeForm.valid) {
-      this.setTypeValues();
-      this.typeService.updateType(this.type._id, this.type).subscribe((response: any) => {
-        this.showResponseStatus(response.status);
-        this.dataService.updateTypes();
-        this.dataService.updateShop();
-        this.dataService.updateProducts();
-      });
+  private initEditTypeCommentForm(): string {
+    if (this.type.typeComment) {
+      return this.type.typeComment;
+    } else {
+      return '';
     }
-    this.router.navigate(['/pantry']);
   }
 
-  rerouteOnEmptyType(type: any) {
-    if (type === undefined || Object.entries(type).length === 0 && type.constructor === Object) {
-      this.snackBar.open('Type not found. Please try again.', 'Dismiss', {
-        panelClass: ['red-snackbar']
+  private initEditTypeLimitsForm() {
+    if (this.type.typeLimits) {
+      this.typeLimitsFormOpen = true;
+      this.typeLimitsForm = new FormGroup({});
+      this.enableTypeTracking = new FormControl(this.type.typeLimits.enableTypeTracking);
+      this.typeLimitsForm.addControl('enableTypeTracking', this.enableTypeTracking);
+      this.typeSizeAmount = new FormArray([]);
+      this.type.typeLimits.typeSizeAmount.forEach(element => {
+        this.typeSizeAmount.push(this.formBuilder.group({
+          minFamSize: [element.minFamSize, Validators.required],
+          maxFamSize: [element.maxFamSize, Validators.required],
+          maxAmount: [element.maxAmount, Validators.required]
+        },
+        { validator: minMaxValidator }
+        ));
+        this.typeLimitsForm.addControl('typeSizeAmount', this.typeSizeAmount);
       });
-      this.router.navigate([`/pantry`]);
+      this.typeForm.addControl('typeLimitsForm', this.typeLimitsForm);
     }
   }
 
@@ -92,19 +100,18 @@ export class TypeEditComponent extends TypeAddComponent implements OnInit, OnDes
     });
   }
 
-  private setTypeSizeAmountForm() {
-    if (this.type.typeSizeAmount) {
-      this.typeSizeAmount = new FormArray([]);
-      this.type.typeSizeAmount.forEach(element => {
-        this.typeSizeAmount.push(this.formBuilder.group({
-          minFamSize: [element.minFamSize, Validators.required],
-          maxFamSize: [element.maxFamSize, Validators.required],
-          maxAmount: [element.maxAmount, Validators.required]
-        },
-        { validator: minMaxValidator }
-        ));
-        this.typeForm.addControl('typeSizeAmount', this.typeSizeAmount);
+  private setSuperTypeName() {
+    if (this.type.superTypeId) {
+      this.superTypeName = this.types.find((superType) => superType._id === this.type.superTypeId).typeName;
+    }
+  }
+
+  private rerouteOnEmptyType(type: any) {
+    if (type === undefined || Object.entries(type).length === 0 && type.constructor === Object) {
+      this.snackBar.open('Type not found. Please try again.', 'Dismiss', {
+        panelClass: ['red-snackbar']
       });
+      this.router.navigate([`/pantry`]);
     }
   }
 }

@@ -14,6 +14,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
@@ -48,7 +49,6 @@ import { CartPrintComponent } from './components/cart-print/cart-print.component
 import { OrderDeleteModalComponent } from './components/order-delete-modal/order-delete-modal.component';
 import { LogInComponent } from './components/log-in/log-in.component';
 import { CallbackComponent } from './components/callback/callback.component';
-import {APP_BASE_HREF} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -96,6 +96,7 @@ import {APP_BASE_HREF} from '@angular/common';
     MatInputModule,
     MatExpansionModule,
     MatOptionModule,
+    MatRadioModule,
     MatSelectModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,

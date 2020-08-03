@@ -5,12 +5,16 @@
                 <mat-toolbar class="items-toolbar top-table">{{type.typeName}}</mat-toolbar>
                 <table mat-table [dataSource]="type.products">
                     <ng-container matColumnDef="column1">
-                    <th class="half" mat-header-cell *matHeaderCellDef>Product</th>
-                    <td class="half" mat-cell *matCellDef="let product"><div>{{product.productName}}</div></td>
+                        <th class="half" mat-header-cell *matHeaderCellDef>Product</th>
+                        <td class="half" mat-cell *matCellDef="let product"><div>{{product.productName}}</div></td>
                     </ng-container>
-                    <ng-container matColumnDef="column2">
-                    <th mat-header-cell *matHeaderCellDef><span class="margin-left">Amount</span></th>
-                    <td mat-cell *matCellDef="let product"><span class="margin-left">{{product.amount}}</span></td>
+                    <ng-container *ngIf="!type.typeAmountReceived" matColumnDef="column2">
+                        <th mat-header-cell *matHeaderCellDef><span class="margin-left">Amount</span></th>
+                        <td mat-cell *matCellDef="let product"><span class="margin-left">{{product.amount}}</span></td>
+                    </ng-container>
+                    <ng-container *ngIf="type.typeAmountReceived" matColumnDef="column2">
+                        <th mat-header-cell *matHeaderCellDef><span class="margin-left">{{'Amount Received: ' + type.typeAmountReceived}}</span></th>
+                        <td mat-cell *matCellDef="let product"><span class="margin-left">Requested</span></td>
                     </ng-container>
                     <tr mat-header-row *matHeaderRowDef="columns"></tr>
                     <tr mat-row *matRowDef="let row; columns: columns"></tr>

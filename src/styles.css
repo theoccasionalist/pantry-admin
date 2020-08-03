@@ -30,6 +30,9 @@ body {
 .mat-form-field .mat-select.mat-select-invalid .mat-select-arrow {
     color: #f5cdb6;
 }
+.mat-form-field.mat-focused.mat-primary .mat-select-arrow {
+    color: #f5cdb6;
+}
 .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
     color: white;
 }
@@ -49,6 +52,12 @@ body {
 }
 .mat-raised-button[disabled][disabled]:hover {
     cursor: not-allowed;
+}
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: #f5cdb6;
+}
+.mat-radio-button.mat-accent .mat-radio-inner-circle {
+    background-color: #f5cdb6;
 }
 .red-snackbar {
     background: red;

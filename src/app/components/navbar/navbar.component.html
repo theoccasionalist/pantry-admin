@@ -1,7 +1,8 @@
 <mat-toolbar>
-    <button class="order-button-margin" mat-raised-button (click)="onOrderClick()">Order Manager</button>
-    <span></span>
-    <button mat-raised-button (click)="onPantryClick()">Pantry Manager</button>
-    <span id="title">Online Manager</span> 
-    <button mat-raised-button (click)="authService.logout()">Log Out</button>
+    <span>Broad Street Food Pantry Online Manager</span>
+    <div id="button-container">
+        <button mat-raised-button (click)="onOrderClick()">Order Manager</button>
+        <button mat-raised-button (click)="onPantryClick()">Pantry Manager</button>
+        <button mat-raised-button (click)="authService.logout()">Log Out</button>
+    </div>
 </mat-toolbar>

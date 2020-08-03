@@ -6,6 +6,7 @@ let productSchema = new Schema ({
     productName: {type: String, required: true},
     prodSizeAmount: {
         type: [{
+            _id: false,
             minFamSize: Number,
             maxFamSize: Number,
             maxAmount: Number,

@@ -5,8 +5,13 @@
     background: #603A17;
     background-image: url(../../../assets/images/buried.png);
     margin: 3%;
-    margin-top: 2%;
     min-width: 1200px;
+}
+.margin-top-2 {
+    margin-top: 2%;
+}
+.dark-blue {
+    background-color: #03354b;
 }
 #top-buttons {
     display: grid;
@@ -17,7 +22,6 @@
     margin-left: 10%
 }
 #grid-container {
-    margin-top: 2%;
     display: grid;
     grid-template-columns: 50% 50%;
     grid-template-rows: 10% 90%;
@@ -25,7 +29,6 @@
 .drag-drop-header {
     display: flex;
     align-items: center;
-    background-color: #03354b;
     background-image: url(../../../assets/images/buried.png);
     justify-content: center;
     font-size: large;
@@ -39,7 +42,11 @@
     height: 53vh;
 }
 .sub-type-card {
+    cursor: grab;
     margin-bottom: 2%;
+}
+.sub-type-card:active {
+    cursor: grabbing;
 }
 #sub-type-container {
     background-color: #065777;
@@ -61,7 +68,10 @@
     margin-bottom: 2%;
 }
 .super-type-card {
-    margin-top: 2%;
+    cursor: grab;
+}
+.super-type-card:active {
+    cursor: grabbing;
 }
 .type-name {
     display: flex;

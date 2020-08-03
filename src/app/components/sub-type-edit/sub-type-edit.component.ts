@@ -140,7 +140,7 @@ export class SubTypeEditComponent implements OnInit, OnDestroy {
 
   private initDragDropValues() {
     this.types.forEach((type: Type) => {
-      if (!type.products.length) {
+      if (!type.products.length || !type.typeLimits || (type.typeLimits && !type.typeLimits.enableTypeTracking)) {
         this.possibleSubs = this.possibleSubs.filter((emptyType: ShopType) => type._id !== emptyType._id);
       }
     });

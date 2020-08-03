@@ -4,9 +4,6 @@
     border: solid black 1px;
     margin: 3%;
     margin-top: 2%;
-    margin-bottom: 0;
-    display: flex;
-    justify-content: space-between;
 }
 .cdk-virtual-scroll-viewport {
     display: flex;
@@ -27,4 +24,10 @@
     justify-content: center;
     align-items: center;
     min-height: 80vh;
+}
+.open-view-height {
+    height: 75vh;
+}
+.closed-view-height {
+    height: 36vh;
 }

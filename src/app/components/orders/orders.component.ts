@@ -22,7 +22,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
     {headerName: 'Email', field: 'emailAddress'},
     {headerName: 'Location', field: 'location'},
     {headerName: 'Pick Up', field: 'pickUpDate', width: 90},
-    {headerName: 'Received', field: 'received', width: 90},
+    {headerName: 'Received', field: 'received', width: 90, sort: 'asc'},
     {headerName: '', field: 'action', filter: false, sortable: false, width: 150, cellRendererFramework: OrderGridButtonsComponent}
   ];
   defaultColDef = {

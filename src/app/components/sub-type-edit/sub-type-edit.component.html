@@ -1,15 +1,22 @@
 <div id="spinner" *ngIf="loading">
     <mat-spinner></mat-spinner>
 </div>
-<mat-card id="top-container" *ngIf="!loading">
+<mat-card id="top-container" class="margin-top-2" *ngIf="!loading">
     <span id="top-buttons">
         <span>Set Sub-Types</span>
         <button mat-raised-button (click)="onCancelClick()">Cancel</button>
         <button mat-raised-button (click)="onSaveClick()">Save and Exit</button>
     </span>
-    <div id="grid-container" cdkDropListGroup>
-        <mat-card class="drag-drop-header" id="left-header">Available Sub-Types</mat-card>
-        <mat-card class="drag-drop-header">Available Super-Types</mat-card> 
+    <mat-card class="margin-top-2 dark-blue">
+        <ul>
+            <li>In order to assign a sub-type, the sub-type and super-type must both be in the shop or both not in the shop.</li>
+            <li>Only types with products and that have type limits with type tracking enabled appear under the Available Sub-types column.</li>
+            <li>Only types that are not sub-types appear under the Available Super-Types column.</li>
+        </ul>
+    </mat-card>
+    <div id="grid-container" class="margin-top-2" cdkDropListGroup>
+        <mat-card class="drag-drop-header dark-blue" id="left-header">Available Sub-Types</mat-card>
+        <mat-card class="drag-drop-header dark-blue">Available Super-Types</mat-card> 
         <cdk-virtual-scroll-viewport id="sub-type-viewport" itemSize="">
             <mat-card id="sub-type-container" [cdkDropListData]="possibleSubs" (cdkDropListDropped)="dropIntoSubs($event)" cdkDropList>
                 <mat-card class="sub-type-card type-name" *ngFor="let subType of possibleSubs" cdkDrag>{{subType.typeName}}<div class="in-shop" *ngIf="getInShopStatus(subType)">In Shop</div></mat-card>
@@ -20,7 +27,7 @@
                 <ng-container *ngFor="let superType of possibleSupers">
                     <mat-card class="super-type-card-container" [cdkDropListData]="superType.subTypes" (cdkDropListDropped)="dropIntoSupers($event, superType)" cdkDropList>
                         <span class="type-name">{{superType.typeName}}<div class="in-shop" *ngIf="getInShopStatus(superType)">In Shop</div></span>
-                        <mat-card class="super-type-card type-name" *ngFor="let subType of superType.subTypes" cdkDrag>
+                        <mat-card class="super-type-card type-name margin-top-2" *ngFor="let subType of superType.subTypes" cdkDrag>
                             {{subType.typeName}}
                         </mat-card>
                     </mat-card>

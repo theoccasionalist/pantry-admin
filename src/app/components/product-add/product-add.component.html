@@ -53,11 +53,11 @@
         </mat-card>
         <mat-card id="right-form" [formGroup]="productForm">
             <mat-card id="init-size-amount" *ngIf="!productForm.get('prodSizeAmount')">
-                <span>This product does not currently have family size limits.</span>
+                <span>This product does not currently have limits.</span>
                 <button mat-raised-button (click)="initSizeAmount()">Create Limits</button> 
             </mat-card>
             <span id="add-limit" *ngIf="productForm.get('prodSizeAmount')">
-                <span>Product Limits per Range of Family Size:</span>
+                <span>Product Limits</span>
                 <button mat-raised-button (click)="addSizeAmount()">Add Another Limit</button>  
             </span>
             <cdk-virtual-scroll-viewport  itemSize="" *ngIf="productForm.get('prodSizeAmount')">
@@ -106,6 +106,12 @@
                                 <mat-option [value]=7>7</mat-option>
                                 <mat-option [value]=8>8</mat-option>
                                 <mat-option [value]=9>9</mat-option>
+                                <mat-option [value]=10>10</mat-option>
+                                <mat-option [value]=11>11</mat-option>
+                                <mat-option [value]=12>12</mat-option>
+                                <mat-option [value]=13>13</mat-option>
+                                <mat-option [value]=14>14</mat-option>
+                                <mat-option [value]=15>15</mat-option>
                             </mat-select>    
                             <mat-error *ngIf="productForm.get('prodSizeAmount')['controls'][i].get('maxAmount').hasError('required')">{{requiredError}}</mat-error>
                             </mat-form-field>
