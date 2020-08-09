@@ -11,6 +11,7 @@ import { concatMap } from 'rxjs/operators';
 import { Shop } from 'src/app/models/shop.model';
 import { cloneDeep } from 'lodash';
 
+// REFACTOR ME PLEASE (08/09/2020)
 
 @Component({
   selector: 'app-sub-type-edit',
@@ -73,6 +74,7 @@ export class SubTypeEditComponent implements OnInit, OnDestroy {
         this.possibleSubs.push(superType);
       }
     });
+    this.filterIneligibleSubTypes(this.possibleSubs);
   }
 
   dropIntoSupers(event: CdkDragDrop<ShopType[]>, newSuperType: ShopType) {
@@ -111,6 +113,15 @@ export class SubTypeEditComponent implements OnInit, OnDestroy {
         this.possibleSubs.push(superType);
       }
     });
+    this.filterIneligibleSubTypes(this.possibleSubs);
+  }
+
+  private filterIneligibleSubTypes(types: Type[]) {
+    types.forEach((type: Type) => {
+      if (!type.products.length || !type.typeLimits || (type.typeLimits && !type.typeLimits.enableTypeTracking)) {
+        this.possibleSubs = this.possibleSubs.filter((ineligibleType: ShopType) => type._id !== ineligibleType._id);
+      }
+    });
   }
 
   getInShopStatus(typeToCheck: Type) {
@@ -130,27 +141,36 @@ export class SubTypeEditComponent implements OnInit, OnDestroy {
     this.shop = shopClone;
   }
 
+  /* Adds all types to possible sub-types and possible super-types arrays.
+  // All types are inserted into both arrays so that sub-types can be put in super-types.
+  */
   private initDragDropArrays() {
-    this.types.forEach(type => {
+    this.types.forEach((type: Type) => {
       const emptyArray: ShopType[] = [];
-      this.possibleSubs.push({_id: type._id, typeName: type.typeName, subTypes: emptyArray, products: type.products});
-      this.possibleSupers.push({_id: type._id, typeName: type.typeName, subTypes: emptyArray, products: type.products});
+      this.possibleSubs.push(
+        {_id: type._id, typeName: type.typeName, typeLimits: type.typeLimits, subTypes: emptyArray, products: type.products}
+      );
+      this.possibleSupers.push(
+        {_id: type._id, typeName: type.typeName, typeLimits: type.typeLimits, subTypes: emptyArray, products: type.products}
+      );
     });
   }
 
   private initDragDropValues() {
-    this.types.forEach((type: Type) => {
-      if (!type.products.length || !type.typeLimits || (type.typeLimits && !type.typeLimits.enableTypeTracking)) {
-        this.possibleSubs = this.possibleSubs.filter((emptyType: ShopType) => type._id !== emptyType._id);
-      }
-    });
+    // sets possible sub-types
+    this.filterIneligibleSubTypes(this.types);
     this.possibleSupers.forEach((superType: ShopType) => {
       this.types.forEach((type: Type) => {
         if (type.superTypeId === superType._id) {
+          // find sub-types of super-types
           const newSubType = this.possibleSubs.find((subType: ShopType) => subType._id === type._id);
+          // add sub-type to super-type
           superType.subTypes.push(newSubType);
+          // remove sub-type from possible sub-types
           this.possibleSubs = this.possibleSubs.filter((subType: ShopType) => subType._id !== newSubType._id);
+          // remove super-type from possible sub-types
           this.possibleSubs = this.possibleSubs.filter((subType: ShopType) => subType._id !== superType._id);
+          // remove sub-type from possible super-types
           this.possibleSupers = this.possibleSupers.filter((superTypeRemove: ShopType) => superTypeRemove._id !== newSubType._id);
         }
       });
