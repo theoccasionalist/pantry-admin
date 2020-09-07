@@ -4270,15 +4270,15 @@ function SubTypeEditComponent_div_0_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](1, "mat-spinner");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } }
-function SubTypeEditComponent_mat_card_1_mat_card_23_div_2_Template(rf, ctx) { if (rf & 1) {
+function SubTypeEditComponent_mat_card_1_mat_card_25_div_2_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 18);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1, "In Shop");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } }
-function SubTypeEditComponent_mat_card_1_mat_card_23_Template(rf, ctx) { if (rf & 1) {
+function SubTypeEditComponent_mat_card_1_mat_card_25_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "mat-card", 16);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](2, SubTypeEditComponent_mat_card_1_mat_card_23_div_2_Template, 2, 0, "div", 17);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](2, SubTypeEditComponent_mat_card_1_mat_card_25_div_2_Template, 2, 0, "div", 17);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
     const subType_r157 = ctx.$implicit;
@@ -4288,12 +4288,12 @@ function SubTypeEditComponent_mat_card_1_mat_card_23_Template(rf, ctx) { if (rf 
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx_r155.getInShopStatus(subType_r157));
 } }
-function SubTypeEditComponent_mat_card_1_ng_container_26_div_4_Template(rf, ctx) { if (rf & 1) {
+function SubTypeEditComponent_mat_card_1_ng_container_28_div_4_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 18);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1, "In Shop");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } }
-function SubTypeEditComponent_mat_card_1_ng_container_26_mat_card_5_Template(rf, ctx) { if (rf & 1) {
+function SubTypeEditComponent_mat_card_1_ng_container_28_mat_card_5_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "mat-card", 22);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -4302,16 +4302,16 @@ function SubTypeEditComponent_mat_card_1_ng_container_26_mat_card_5_Template(rf,
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", subType_r162.typeName, " ");
 } }
-function SubTypeEditComponent_mat_card_1_ng_container_26_Template(rf, ctx) { if (rf & 1) {
+function SubTypeEditComponent_mat_card_1_ng_container_28_Template(rf, ctx) { if (rf & 1) {
     const _r164 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementContainerStart"](0);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "mat-card", 19);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("cdkDropListDropped", function SubTypeEditComponent_mat_card_1_ng_container_26_Template_mat_card_cdkDropListDropped_1_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r164); const superType_r159 = ctx.$implicit; const ctx_r163 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2); return ctx_r163.dropIntoSupers($event, superType_r159); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("cdkDropListDropped", function SubTypeEditComponent_mat_card_1_ng_container_28_Template_mat_card_cdkDropListDropped_1_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r164); const superType_r159 = ctx.$implicit; const ctx_r163 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2); return ctx_r163.dropIntoSupers($event, superType_r159); });
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "span", 20);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](4, SubTypeEditComponent_mat_card_1_ng_container_26_div_4_Template, 2, 0, "div", 17);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](4, SubTypeEditComponent_mat_card_1_ng_container_28_div_4_Template, 2, 0, "div", 17);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](5, SubTypeEditComponent_mat_card_1_ng_container_26_mat_card_5_Template, 2, 1, "mat-card", 21);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](5, SubTypeEditComponent_mat_card_1_ng_container_28_mat_card_5_Template, 2, 1, "mat-card", 21);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementContainerEnd"]();
 } if (rf & 2) {
@@ -4348,42 +4348,46 @@ function SubTypeEditComponent_mat_card_1_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](11, "In order to assign a sub-type, the sub-type and super-type must both be in the shop or both not in the shop.");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](12, "li");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](13, "Only types with products and that have type limits with type tracking enabled appear under the Available Sub-types column.");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](13, "Only types with products and that have type limits with type tracking enabled appear under the Available Sub-Types column.");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](14, "li");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](15, "Only types that are not sub-types appear under the Available Super-Types column.");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](16, "li");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](17, "Types cannot be both super-types and sub-types.");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](16, "div", 7);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](17, "mat-card", 8);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](18, "Available Sub-Types");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](19, "mat-card", 9);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](20, "Available Super-Types");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](18, "div", 7);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](19, "mat-card", 8);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](20, "Available Sub-Types");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](21, "cdk-virtual-scroll-viewport", 10);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](22, "mat-card", 11);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("cdkDropListDropped", function SubTypeEditComponent_mat_card_1_Template_mat_card_cdkDropListDropped_22_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r166); const ctx_r168 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); return ctx_r168.dropIntoSubs($event); });
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](23, SubTypeEditComponent_mat_card_1_mat_card_23_Template, 3, 2, "mat-card", 12);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](21, "mat-card", 9);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](22, "Available Super-Types");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](23, "cdk-virtual-scroll-viewport", 10);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](24, "mat-card", 11);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("cdkDropListDropped", function SubTypeEditComponent_mat_card_1_Template_mat_card_cdkDropListDropped_24_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r166); const ctx_r168 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); return ctx_r168.dropIntoSubs($event); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](25, SubTypeEditComponent_mat_card_1_mat_card_25_Template, 3, 2, "mat-card", 12);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](24, "cdk-virtual-scroll-viewport", 13);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](25, "mat-card", 14);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](26, SubTypeEditComponent_mat_card_1_ng_container_26_Template, 6, 4, "ng-container", 15);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](26, "cdk-virtual-scroll-viewport", 13);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](27, "mat-card", 14);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](28, SubTypeEditComponent_mat_card_1_ng_container_28_Template, 6, 4, "ng-container", 15);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
     const ctx_r154 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](22);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](24);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("cdkDropListData", ctx_r154.possibleSubs);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", ctx_r154.possibleSubs);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", ctx_r154.possibleSupers);
 } }
+// REFACTOR ME PLEASE (08/09/2020)
 class SubTypeEditComponent {
     constructor(dataService, router, snackBar, typeService) {
         this.dataService = dataService;
@@ -4434,6 +4438,7 @@ class SubTypeEditComponent {
                 this.possibleSubs.push(superType);
             }
         });
+        this.filterIneligibleSubTypes(this.possibleSubs);
     }
     dropIntoSupers(event, newSuperType) {
         const typeToMove = event.previousContainer.data[event.previousIndex];
@@ -4473,6 +4478,14 @@ class SubTypeEditComponent {
                 this.possibleSubs.push(superType);
             }
         });
+        this.filterIneligibleSubTypes(this.possibleSubs);
+    }
+    filterIneligibleSubTypes(types) {
+        types.forEach((type) => {
+            if (!type.products.length || !type.typeLimits || (type.typeLimits && !type.typeLimits.enableTypeTracking)) {
+                this.possibleSubs = this.possibleSubs.filter((ineligibleType) => type._id !== ineligibleType._id);
+            }
+        });
     }
     getInShopStatus(typeToCheck) {
         let inShop = false;
@@ -4489,26 +4502,31 @@ class SubTypeEditComponent {
         const shopClone = Object(lodash__WEBPACK_IMPORTED_MODULE_4__["cloneDeep"])(shop);
         this.shop = shopClone;
     }
+    /* Adds all types to possible sub-types and possible super-types arrays.
+    // All types are inserted into both arrays so that sub-types can be put in super-types.
+    */
     initDragDropArrays() {
-        this.types.forEach(type => {
+        this.types.forEach((type) => {
             const emptyArray = [];
-            this.possibleSubs.push({ _id: type._id, typeName: type.typeName, subTypes: emptyArray, products: type.products });
-            this.possibleSupers.push({ _id: type._id, typeName: type.typeName, subTypes: emptyArray, products: type.products });
+            this.possibleSubs.push({ _id: type._id, typeName: type.typeName, typeLimits: type.typeLimits, subTypes: emptyArray, products: type.products });
+            this.possibleSupers.push({ _id: type._id, typeName: type.typeName, typeLimits: type.typeLimits, subTypes: emptyArray, products: type.products });
         });
     }
     initDragDropValues() {
-        this.types.forEach((type) => {
-            if (!type.products.length || !type.typeLimits || (type.typeLimits && !type.typeLimits.enableTypeTracking)) {
-                this.possibleSubs = this.possibleSubs.filter((emptyType) => type._id !== emptyType._id);
-            }
-        });
+        // sets possible sub-types
+        this.filterIneligibleSubTypes(this.types);
         this.possibleSupers.forEach((superType) => {
             this.types.forEach((type) => {
                 if (type.superTypeId === superType._id) {
+                    // find sub-types of super-types
                     const newSubType = this.possibleSubs.find((subType) => subType._id === type._id);
+                    // add sub-type to super-type
                     superType.subTypes.push(newSubType);
+                    // remove sub-type from possible sub-types
                     this.possibleSubs = this.possibleSubs.filter((subType) => subType._id !== newSubType._id);
+                    // remove super-type from possible sub-types
                     this.possibleSubs = this.possibleSubs.filter((subType) => subType._id !== superType._id);
+                    // remove sub-type from possible super-types
                     this.possibleSupers = this.possibleSupers.filter((superTypeRemove) => superTypeRemove._id !== newSubType._id);
                 }
             });
@@ -4583,7 +4601,7 @@ class SubTypeEditComponent {
 SubTypeEditComponent.ɵfac = function SubTypeEditComponent_Factory(t) { return new (t || SubTypeEditComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_services_data_service__WEBPACK_IMPORTED_MODULE_5__["DataService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_7__["MatSnackBar"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_services_type_service__WEBPACK_IMPORTED_MODULE_8__["TypeService"])); };
 SubTypeEditComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: SubTypeEditComponent, selectors: [["app-sub-type-edit"]], decls: 2, vars: 2, consts: [["id", "spinner", 4, "ngIf"], ["id", "top-container", "class", "margin-top-2", 4, "ngIf"], ["id", "spinner"], ["id", "top-container", 1, "margin-top-2"], ["id", "top-buttons"], ["mat-raised-button", "", 3, "click"], [1, "margin-top-2", "dark-blue"], ["id", "grid-container", "cdkDropListGroup", "", 1, "margin-top-2"], ["id", "left-header", 1, "drag-drop-header", "dark-blue"], [1, "drag-drop-header", "dark-blue"], ["id", "sub-type-viewport", "itemSize", ""], ["id", "sub-type-container", "cdkDropList", "", 3, "cdkDropListData", "cdkDropListDropped"], ["class", "sub-type-card type-name", "cdkDrag", "", 4, "ngFor", "ngForOf"], ["id", "super-type-viewport", "itemSize", ""], ["id", "super-type-container"], [4, "ngFor", "ngForOf"], ["cdkDrag", "", 1, "sub-type-card", "type-name"], ["class", "in-shop", 4, "ngIf"], [1, "in-shop"], ["cdkDropList", "", 1, "super-type-card-container", 3, "cdkDropListData", "cdkDropListDropped"], [1, "type-name"], ["class", "super-type-card type-name margin-top-2", "cdkDrag", "", 4, "ngFor", "ngForOf"], ["cdkDrag", "", 1, "super-type-card", "type-name", "margin-top-2"]], template: function SubTypeEditComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](0, SubTypeEditComponent_div_0_Template, 2, 0, "div", 0);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](1, SubTypeEditComponent_mat_card_1_Template, 27, 3, "mat-card", 1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](1, SubTypeEditComponent_mat_card_1_Template, 29, 3, "mat-card", 1);
     } if (rf & 2) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.loading);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
