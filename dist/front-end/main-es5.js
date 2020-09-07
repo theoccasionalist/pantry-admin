@@ -8850,7 +8850,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
     }
 
-    function SubTypeEditComponent_mat_card_1_mat_card_23_div_2_Template(rf, ctx) {
+    function SubTypeEditComponent_mat_card_1_mat_card_25_div_2_Template(rf, ctx) {
       if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 18);
 
@@ -8860,13 +8860,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
     }
 
-    function SubTypeEditComponent_mat_card_1_mat_card_23_Template(rf, ctx) {
+    function SubTypeEditComponent_mat_card_1_mat_card_25_Template(rf, ctx) {
       if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "mat-card", 16);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](2, SubTypeEditComponent_mat_card_1_mat_card_23_div_2_Template, 2, 0, "div", 17);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](2, SubTypeEditComponent_mat_card_1_mat_card_25_div_2_Template, 2, 0, "div", 17);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
       }
@@ -8886,7 +8886,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
     }
 
-    function SubTypeEditComponent_mat_card_1_ng_container_26_div_4_Template(rf, ctx) {
+    function SubTypeEditComponent_mat_card_1_ng_container_28_div_4_Template(rf, ctx) {
       if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 18);
 
@@ -8896,7 +8896,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
     }
 
-    function SubTypeEditComponent_mat_card_1_ng_container_26_mat_card_5_Template(rf, ctx) {
+    function SubTypeEditComponent_mat_card_1_ng_container_28_mat_card_5_Template(rf, ctx) {
       if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "mat-card", 22);
 
@@ -8914,7 +8914,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
     }
 
-    function SubTypeEditComponent_mat_card_1_ng_container_26_Template(rf, ctx) {
+    function SubTypeEditComponent_mat_card_1_ng_container_28_Template(rf, ctx) {
       if (rf & 1) {
         var _r164 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
 
@@ -8922,7 +8922,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "mat-card", 19);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("cdkDropListDropped", function SubTypeEditComponent_mat_card_1_ng_container_26_Template_mat_card_cdkDropListDropped_1_listener($event) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("cdkDropListDropped", function SubTypeEditComponent_mat_card_1_ng_container_28_Template_mat_card_cdkDropListDropped_1_listener($event) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r164);
 
           var superType_r159 = ctx.$implicit;
@@ -8936,11 +8936,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](3);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](4, SubTypeEditComponent_mat_card_1_ng_container_26_div_4_Template, 2, 0, "div", 17);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](4, SubTypeEditComponent_mat_card_1_ng_container_28_div_4_Template, 2, 0, "div", 17);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](5, SubTypeEditComponent_mat_card_1_ng_container_26_mat_card_5_Template, 2, 1, "mat-card", 21);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](5, SubTypeEditComponent_mat_card_1_ng_container_28_mat_card_5_Template, 2, 1, "mat-card", 21);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
@@ -9026,7 +9026,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](12, "li");
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](13, "Only types with products and that have type limits with type tracking enabled appear under the Available Sub-types column.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](13, "Only types with products and that have type limits with type tracking enabled appear under the Available Sub-Types column.");
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
@@ -9036,29 +9036,35 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](16, "li");
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](17, "Types cannot be both super-types and sub-types.");
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](16, "div", 7);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](18, "div", 7);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](17, "mat-card", 8);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](19, "mat-card", 8);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](18, "Available Sub-Types");
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](19, "mat-card", 9);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](20, "Available Super-Types");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](20, "Available Sub-Types");
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](21, "cdk-virtual-scroll-viewport", 10);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](21, "mat-card", 9);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](22, "mat-card", 11);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](22, "Available Super-Types");
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("cdkDropListDropped", function SubTypeEditComponent_mat_card_1_Template_mat_card_cdkDropListDropped_22_listener($event) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](23, "cdk-virtual-scroll-viewport", 10);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](24, "mat-card", 11);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("cdkDropListDropped", function SubTypeEditComponent_mat_card_1_Template_mat_card_cdkDropListDropped_24_listener($event) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r166);
 
           var ctx_r168 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
@@ -9066,17 +9072,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           return ctx_r168.dropIntoSubs($event);
         });
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](23, SubTypeEditComponent_mat_card_1_mat_card_23_Template, 3, 2, "mat-card", 12);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](25, SubTypeEditComponent_mat_card_1_mat_card_25_Template, 3, 2, "mat-card", 12);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](24, "cdk-virtual-scroll-viewport", 13);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](26, "cdk-virtual-scroll-viewport", 13);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](25, "mat-card", 14);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](27, "mat-card", 14);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](26, SubTypeEditComponent_mat_card_1_ng_container_26_Template, 6, 4, "ng-container", 15);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](28, SubTypeEditComponent_mat_card_1_ng_container_28_Template, 6, 4, "ng-container", 15);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
@@ -9090,7 +9096,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       if (rf & 2) {
         var ctx_r154 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](22);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](24);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("cdkDropListData", ctx_r154.possibleSubs);
 
@@ -9102,7 +9108,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", ctx_r154.possibleSupers);
       }
-    }
+    } // REFACTOR ME PLEASE (08/09/2020)
+
 
     var SubTypeEditComponent =
     /*#__PURE__*/
@@ -9182,6 +9189,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               _this29.possibleSubs.push(superType);
             }
           });
+          this.filterIneligibleSubTypes(this.possibleSubs);
         }
       }, {
         key: "dropIntoSupers",
@@ -9232,6 +9240,20 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               _this31.possibleSubs.push(superType);
             }
           });
+          this.filterIneligibleSubTypes(this.possibleSubs);
+        }
+      }, {
+        key: "filterIneligibleSubTypes",
+        value: function filterIneligibleSubTypes(types) {
+          var _this32 = this;
+
+          types.forEach(function (type) {
+            if (!type.products.length || !type.typeLimits || type.typeLimits && !type.typeLimits.enableTypeTracking) {
+              _this32.possibleSubs = _this32.possibleSubs.filter(function (ineligibleType) {
+                return type._id !== ineligibleType._id;
+              });
+            }
+          });
         }
       }, {
         key: "getInShopStatus",
@@ -9252,24 +9274,30 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var shopClone = Object(lodash__WEBPACK_IMPORTED_MODULE_4__["cloneDeep"])(shop);
           this.shop = shopClone;
         }
+        /* Adds all types to possible sub-types and possible super-types arrays.
+        // All types are inserted into both arrays so that sub-types can be put in super-types.
+        */
+
       }, {
         key: "initDragDropArrays",
         value: function initDragDropArrays() {
-          var _this32 = this;
+          var _this33 = this;
 
           this.types.forEach(function (type) {
             var emptyArray = [];
 
-            _this32.possibleSubs.push({
+            _this33.possibleSubs.push({
               _id: type._id,
               typeName: type.typeName,
+              typeLimits: type.typeLimits,
               subTypes: emptyArray,
               products: type.products
             });
 
-            _this32.possibleSupers.push({
+            _this33.possibleSupers.push({
               _id: type._id,
               typeName: type.typeName,
+              typeLimits: type.typeLimits,
               subTypes: emptyArray,
               products: type.products
             });
@@ -9278,30 +9306,30 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "initDragDropValues",
         value: function initDragDropValues() {
-          var _this33 = this;
+          var _this34 = this;
 
-          this.types.forEach(function (type) {
-            if (!type.products.length || !type.typeLimits || type.typeLimits && !type.typeLimits.enableTypeTracking) {
-              _this33.possibleSubs = _this33.possibleSubs.filter(function (emptyType) {
-                return type._id !== emptyType._id;
-              });
-            }
-          });
+          // sets possible sub-types
+          this.filterIneligibleSubTypes(this.types);
           this.possibleSupers.forEach(function (superType) {
-            _this33.types.forEach(function (type) {
+            _this34.types.forEach(function (type) {
               if (type.superTypeId === superType._id) {
-                var newSubType = _this33.possibleSubs.find(function (subType) {
+                // find sub-types of super-types
+                var newSubType = _this34.possibleSubs.find(function (subType) {
                   return subType._id === type._id;
-                });
+                }); // add sub-type to super-type
 
-                superType.subTypes.push(newSubType);
-                _this33.possibleSubs = _this33.possibleSubs.filter(function (subType) {
+
+                superType.subTypes.push(newSubType); // remove sub-type from possible sub-types
+
+                _this34.possibleSubs = _this34.possibleSubs.filter(function (subType) {
                   return subType._id !== newSubType._id;
-                });
-                _this33.possibleSubs = _this33.possibleSubs.filter(function (subType) {
+                }); // remove super-type from possible sub-types
+
+                _this34.possibleSubs = _this34.possibleSubs.filter(function (subType) {
                   return subType._id !== superType._id;
-                });
-                _this33.possibleSupers = _this33.possibleSupers.filter(function (superTypeRemove) {
+                }); // remove sub-type from possible super-types
+
+                _this34.possibleSupers = _this34.possibleSupers.filter(function (superTypeRemove) {
                   return superTypeRemove._id !== newSubType._id;
                 });
               }
@@ -9342,13 +9370,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "onSaveClick",
         value: function onSaveClick() {
-          var _this34 = this;
+          var _this35 = this;
 
           this.loading = true;
 
           if (this.getTypeIdsToUpdate().length) {
             Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["forkJoin"])([this.typeService.removeSuperTypeIdMany(this.getTypeIdsToRemove()), Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["from"])(this.getTypeIdsToUpdate()).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["concatMap"])(function (update) {
-              return _this34.typeService.updateSuperTypeIdMany(update.superTypeId, update.updateIds);
+              return _this35.typeService.updateSuperTypeIdMany(update.superTypeId, update.updateIds);
             }))]).subscribe(function (_ref9) {
               var _ref10 = _slicedToArray(_ref9, 2),
                   remove = _ref10[0],
@@ -9359,15 +9387,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               var typedUpdate = update;
               typedRemove.status === 200 && typedUpdate.status === 200 ? response = 200 : response = 400;
 
-              _this34.showResponseStatus(response);
+              _this35.showResponseStatus(response);
 
-              _this34.router.navigate(["/pantry"]);
+              _this35.router.navigate(["/pantry"]);
             });
           } else {
             this.typeService.removeSuperTypeIdMany(this.getTypeIdsToRemove()).subscribe(function (response) {
-              _this34.showResponseStatus(response.status);
+              _this35.showResponseStatus(response.status);
 
-              _this34.router.navigate(["/pantry"]);
+              _this35.router.navigate(["/pantry"]);
             });
           }
         }
@@ -9417,7 +9445,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](0, SubTypeEditComponent_div_0_Template, 2, 0, "div", 0);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](1, SubTypeEditComponent_mat_card_1_Template, 27, 3, "mat-card", 1);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](1, SubTypeEditComponent_mat_card_1_Template, 29, 3, "mat-card", 1);
         }
 
         if (rf & 2) {
@@ -10809,19 +10837,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(TypeAddComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this35 = this;
+          var _this36 = this;
 
           this.subscription.add(Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["combineLatest"])([this.dataService.getProducts(), this.dataService.getTypes()]).subscribe(function (_ref11) {
             var _ref12 = _slicedToArray(_ref11, 2),
                 products = _ref12[0],
                 types = _ref12[1];
 
-            _this35.products = products;
-            _this35.types = types;
+            _this36.products = products;
+            _this36.types = types;
 
-            _this35.initAvailableProducts();
+            _this36.initAvailableProducts();
 
-            _this35.loading = !_this35.loading;
+            _this36.loading = !_this36.loading;
           }));
         }
       }, {
@@ -10862,7 +10890,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "initAvailableProducts",
         value: function initAvailableProducts() {
-          var _this36 = this;
+          var _this37 = this;
 
           var unavailableProducts = [];
           this.types.forEach(function (type) {
@@ -10874,7 +10902,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             if (!unavailableProducts.some(function (unavailable) {
               return unavailable._id === product._id;
             })) {
-              _this36.availableProducts.push(product);
+              _this37.availableProducts.push(product);
             }
           });
           this.sortProductsByName(this.availableProducts);
@@ -10899,26 +10927,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "onSaveClick",
         value: function onSaveClick() {
-          var _this37 = this;
+          var _this38 = this;
 
           if (this.typeForm.valid) {
             this.setTypeValues();
 
             if (!this.typeEdit) {
               this.typeService.addType(this.type).subscribe(function (response) {
-                return _this37.showResponseStatus(response.status);
+                return _this38.showResponseStatus(response.status);
               });
             } else {
               this.migrateTypeSizeAmount();
               this.removeFromSuperType();
               this.typeService.updateType(this.type._id, this.type).subscribe(function (response) {
-                _this37.showResponseStatus(response.status);
+                _this38.showResponseStatus(response.status);
 
-                _this37.dataService.updateTypes();
+                _this38.dataService.updateTypes();
 
-                _this37.dataService.updateShop();
+                _this38.dataService.updateShop();
 
-                _this37.dataService.updateProducts();
+                _this38.dataService.updateProducts();
               });
             }
           }
@@ -11146,10 +11174,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "deleteType",
         value: function deleteType() {
-          var _this38 = this;
+          var _this39 = this;
 
           this.typeService.deleteType(this.type._id).subscribe(function (response) {
-            return _this38.showResponseStatus(response.status);
+            return _this39.showResponseStatus(response.status);
           });
         }
       }, {
@@ -12615,28 +12643,28 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       var _super2 = _createSuper(TypeEditComponent);
 
       function TypeEditComponent(activatedRoute, dataService, formBuilder, typeService, snackBar, router) {
-        var _this39;
+        var _this40;
 
         _classCallCheck(this, TypeEditComponent);
 
-        _this39 = _super2.call(this, dataService, formBuilder, snackBar, typeService, router);
-        _this39.activatedRoute = activatedRoute;
-        _this39.dataService = dataService;
-        _this39.formBuilder = formBuilder;
-        _this39.typeService = typeService;
-        _this39.snackBar = snackBar;
-        _this39.router = router;
-        return _this39;
+        _this40 = _super2.call(this, dataService, formBuilder, snackBar, typeService, router);
+        _this40.activatedRoute = activatedRoute;
+        _this40.dataService = dataService;
+        _this40.formBuilder = formBuilder;
+        _this40.typeService = typeService;
+        _this40.snackBar = snackBar;
+        _this40.router = router;
+        return _this40;
       }
 
       _createClass(TypeEditComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this40 = this;
+          var _this41 = this;
 
           this.typeEdit = true;
           this.subscription.add(Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["combineLatest"])([this.dataService.getShop(), this.dataService.getTypes(), this.activatedRoute.params.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["switchMap"])(function (params) {
-            return _this40.dataService.getTypeById(params.id);
+            return _this41.dataService.getTypeById(params.id);
           }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["take"])(1)), this.dataService.getProducts()]).subscribe(function (_ref13) {
             var _ref14 = _slicedToArray(_ref13, 4),
                 shop = _ref14[0],
@@ -12644,28 +12672,28 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 type = _ref14[2],
                 products = _ref14[3];
 
-            _this40.rerouteOnEmptyType(type);
+            _this41.rerouteOnEmptyType(type);
 
-            _this40.shop = shop;
-            _this40.types = types;
-            _this40.type = type;
-            _this40.products = products;
-            _this40.typeForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
-              typeName: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](_this40.type.typeName, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
-              typeComment: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](_this40.initEditTypeCommentForm())
+            _this41.shop = shop;
+            _this41.types = types;
+            _this41.type = type;
+            _this41.products = products;
+            _this41.typeForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
+              typeName: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](_this41.type.typeName, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required),
+              typeComment: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](_this41.initEditTypeCommentForm())
             });
 
-            _this40.initAvailableProducts();
+            _this41.initAvailableProducts();
 
-            _this40.initProductsInType();
+            _this41.initProductsInType();
 
-            _this40.initEditTypeLimitsForm();
+            _this41.initEditTypeLimitsForm();
 
-            _this40.setInShop();
+            _this41.setInShop();
 
-            _this40.setSuperTypeName();
+            _this41.setSuperTypeName();
 
-            _this40.loading = !_this40.loading;
+            _this41.loading = !_this41.loading;
           }));
         }
       }, {
@@ -12690,7 +12718,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "initEditTypeLimitsForm",
         value: function initEditTypeLimitsForm() {
-          var _this41 = this;
+          var _this42 = this;
 
           if (this.type.typeLimits) {
             this.typeLimitsFormOpen = true;
@@ -12699,7 +12727,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             this.typeLimitsForm.addControl('enableTypeTracking', this.enableTypeTracking);
             this.typeSizeAmount = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormArray"]([]);
             this.type.typeLimits.typeSizeAmount.forEach(function (element) {
-              _this41.typeSizeAmount.push(_this41.formBuilder.group({
+              _this42.typeSizeAmount.push(_this42.formBuilder.group({
                 minFamSize: [element.minFamSize, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
                 maxFamSize: [element.maxFamSize, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
                 maxAmount: [element.maxAmount, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]
@@ -12707,7 +12735,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 validator: _product_add_product_add_component__WEBPACK_IMPORTED_MODULE_4__["minMaxValidator"]
               }));
 
-              _this41.typeLimitsForm.addControl('typeSizeAmount', _this41.typeSizeAmount);
+              _this42.typeLimitsForm.addControl('typeSizeAmount', _this42.typeSizeAmount);
             });
             this.typeForm.addControl('typeLimitsForm', this.typeLimitsForm);
           }
@@ -12715,22 +12743,22 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "setInShop",
         value: function setInShop() {
-          var _this42 = this;
+          var _this43 = this;
 
           this.shop.shop.forEach(function (type) {
-            if (type._id === _this42.type._id) {
-              _this42.inShop = true;
+            if (type._id === _this43.type._id) {
+              _this43.inShop = true;
             }
           });
         }
       }, {
         key: "setSuperTypeName",
         value: function setSuperTypeName() {
-          var _this43 = this;
+          var _this44 = this;
 
           if (this.type.superTypeId) {
             this.superTypeName = this.types.find(function (superType) {
-              return superType._id === _this43.type.superTypeId;
+              return superType._id === _this44.type.superTypeId;
             }).typeName;
           }
         }
@@ -13160,17 +13188,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(TypesComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this44 = this;
+          var _this45 = this;
 
           this.subscription.add(Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["combineLatest"])([this.dataService.getShop(), this.dataService.getTypes()]).subscribe(function (_ref15) {
             var _ref16 = _slicedToArray(_ref15, 2),
                 shop = _ref16[0],
                 types = _ref16[1];
 
-            _this44.shop = shop;
-            _this44.types = types;
-            _this44.rowData = _this44.getFormattedFields();
-            _this44.loading = false;
+            _this45.shop = shop;
+            _this45.types = types;
+            _this45.rowData = _this45.getFormattedFields();
+            _this45.loading = false;
           }));
         }
       }, {
@@ -13209,7 +13237,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getFormattedFields",
         value: function getFormattedFields() {
-          var _this45 = this;
+          var _this46 = this;
 
           var rowData = [];
           this.types.forEach(function (type) {
@@ -13231,9 +13259,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               value: 'No'
             });
             Object.defineProperty(rowEntry, 'superType', {
-              value: _this45.getSuperTypeName(type)
+              value: _this46.getSuperTypeName(type)
             });
-            _this45.getInShopStatus(type) ? Object.defineProperty(rowEntry, 'inShop', {
+            _this46.getInShopStatus(type) ? Object.defineProperty(rowEntry, 'inShop', {
               value: 'Yes'
             }) : Object.defineProperty(rowEntry, 'inShop', {
               value: 'No'
@@ -13366,11 +13394,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(AuthGuard, [{
         key: "canActivate",
         value: function canActivate(next, state) {
-          var _this46 = this;
+          var _this47 = this;
 
           return this.authService.isAuthenticated.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["tap"])(function (loggedIn) {
             if (!loggedIn) {
-              _this46.authService.login(state.url);
+              _this47.authService.login(state.url);
             }
           }));
         }
@@ -13553,7 +13581,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /*#__PURE__*/
     function () {
       function AuthService(router) {
-        var _this47 = this;
+        var _this48 = this;
 
         _classCallCheck(this, AuthService);
 
@@ -13568,7 +13596,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.isAuthenticated = this.auth0Client.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["concatMap"])(function (client) {
           return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["from"])(client.isAuthenticated());
         }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(function (res) {
-          return _this47.loggedIn = res;
+          return _this48.loggedIn = res;
         }));
         this.handleRedirectCallback = this.auth0Client.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["concatMap"])(function (client) {
           return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["from"])(client.handleRedirectCallback());
@@ -13585,13 +13613,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "localAuthSetup",
         value: function localAuthSetup() {
-          var _this48 = this;
+          var _this49 = this;
 
           var checkAuth = this.isAuthenticated.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["concatMap"])(function (loggedIn) {
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(loggedIn);
           }));
           checkAuth.subscribe(function (response) {
-            _this48.loggedIn = !!response;
+            _this49.loggedIn = !!response;
           });
         }
       }, {
@@ -13610,19 +13638,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "handleAuthCallback",
         value: function handleAuthCallback() {
-          var _this49 = this;
+          var _this50 = this;
 
           var targetRoute;
           var authComplete = this.handleRedirectCallback.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(function (cbRes) {
             targetRoute = cbRes.appState && cbRes.appState.target ? cbRes.appState.target : '/';
           }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["concatMap"])(function () {
-            return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["combineLatest"])([_this49.isAuthenticated]);
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["combineLatest"])([_this50.isAuthenticated]);
           }));
           authComplete.subscribe(function (_ref17) {
             var _ref18 = _slicedToArray(_ref17, 1),
                 loggedIn = _ref18[0];
 
-            _this49.router.navigate([targetRoute]);
+            _this50.router.navigate([targetRoute]);
           });
         }
       }, {
@@ -13833,19 +13861,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "updateOrders",
         value: function updateOrders() {
-          var _this50 = this;
+          var _this51 = this;
 
           this.orderService.getOrders().subscribe(function (orders) {
-            _this50.ordersSource.next(orders);
+            _this51.ordersSource.next(orders);
           });
         }
       }, {
         key: "updateProducts",
         value: function updateProducts() {
-          var _this51 = this;
+          var _this52 = this;
 
           this.productService.getProducts().subscribe(function (products) {
-            _this51.productsSource.next(products);
+            _this52.productsSource.next(products);
           });
         }
         /** Removes any empty types from the shop and updates shop in db if empty types are removed.
@@ -13856,12 +13884,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "updateShop",
         value: function updateShop() {
-          var _this52 = this;
+          var _this53 = this;
 
           this.shopService.getShop().subscribe(function (shop) {
-            shop = _this52.updateShopRemoveEmptyTypes(shop);
+            shop = _this53.updateShopRemoveEmptyTypes(shop);
 
-            _this52.shopSource.next(shop);
+            _this53.shopSource.next(shop);
           });
         }
         /** Collects all type ids that have subtypes and then removes all types
@@ -13906,15 +13934,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "updateShopService",
         value: function updateShopService(shop) {
-          var _this53 = this;
+          var _this54 = this;
 
           this.shopService.updateShop(shop._id, shop).subscribe(function (response) {
             if (response.status === 200) {
-              _this53.snackBar.open('Empty type removed.', 'Dismiss', {
+              _this54.snackBar.open('Empty type removed.', 'Dismiss', {
                 panelClass: ['green-snackbar']
               });
             } else {
-              _this53.snackBar.open('Empty type failed to be removed. Please refresh screen.', 'Dismiss', {
+              _this54.snackBar.open('Empty type failed to be removed. Please refresh screen.', 'Dismiss', {
                 panelClass: ['red-snackbar']
               });
             }
@@ -13923,10 +13951,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "updateTypes",
         value: function updateTypes() {
-          var _this54 = this;
+          var _this55 = this;
 
           this.typeService.getTypes().subscribe(function (types) {
-            _this54.typesSource.next(types);
+            _this55.typesSource.next(types);
           });
         }
       }]);
