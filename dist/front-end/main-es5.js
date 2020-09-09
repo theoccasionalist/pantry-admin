@@ -1906,7 +1906,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx.order.family.infants ? "Yes" : "No");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx.order.family.infants ? ctx.order.family.infants : "None");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](15);
 
@@ -2301,7 +2301,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx.family.infants ? "Yes" : "No");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx.family.infants ? ctx.family.infants : "None");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](15);
 
@@ -3831,12 +3831,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }, {
           headerName: 'Children',
           field: 'schoolChildren',
-          comparator: function comparator(firstSchool, secondSchool) {
-            return _this4.schoolComparator(firstSchool, secondSchool);
+          comparator: function comparator(firstChildren, secondChildren) {
+            return _this4.noneComparator(firstChildren, secondChildren);
           }
         }, {
           headerName: 'Infants',
-          field: 'infants'
+          field: 'infants',
+          comparator: function comparator(firstInfants, secondInfants) {
+            return _this4.noneComparator(firstInfants, secondInfants);
+          }
         }, {
           headerName: 'Phone',
           field: 'phoneNumber'
@@ -3918,9 +3921,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               value: 'None'
             });
             family.infants ? Object.defineProperty(rowEntry, 'infants', {
-              value: 'Yes'
+              value: family.infants
             }) : Object.defineProperty(rowEntry, 'infants', {
-              value: 'No'
+              value: 'None'
             });
             Object.defineProperty(rowEntry, 'phoneNumber', {
               value: family.phoneNumber
@@ -3948,17 +3951,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           return rowData;
         }
       }, {
-        key: "schoolComparator",
-        value: function schoolComparator(firstPoints, secondPoints) {
-          if (isNaN(firstPoints)) {
-            firstPoints = 0;
+        key: "noneComparator",
+        value: function noneComparator(first, second) {
+          if (isNaN(first)) {
+            first = 0;
           }
 
-          if (isNaN(secondPoints)) {
-            secondPoints = 0;
+          if (isNaN(second)) {
+            second = 0;
           }
 
-          return firstPoints > secondPoints ? 1 : -1;
+          return first > second ? 1 : -1;
         }
       }, {
         key: "updateOrders",
