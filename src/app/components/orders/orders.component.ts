@@ -16,8 +16,9 @@ export class OrdersComponent implements OnInit, OnDestroy {
     {headerName: 'Last Name', field: 'lastName'},
     {headerName: 'Family Size', field: 'familySize'},
     {headerName: 'Children', field: 'schoolChildren',
-      comparator: (firstSchool, secondSchool) => this.schoolComparator(firstSchool, secondSchool)},
-    {headerName: 'Infants', field: 'infants'},
+      comparator: (firstChildren, secondChildren) => this.noneComparator(firstChildren, secondChildren)},
+    {headerName: 'Infants', field: 'infants',
+      comparator: (firstInfants, secondInfants) => this.noneComparator(firstInfants, secondInfants)},
     {headerName: 'Phone', field: 'phoneNumber'},
     {headerName: 'Email', field: 'emailAddress'},
     {headerName: 'Location', field: 'location'},
@@ -69,8 +70,8 @@ export class OrdersComponent implements OnInit, OnDestroy {
         Object.defineProperty(rowEntry, 'schoolChildren', {value: family.schoolChildren}) :
         Object.defineProperty(rowEntry, 'schoolChildren', {value: 'None'});
       family.infants ?
-        Object.defineProperty(rowEntry, 'infants', {value: 'Yes'}) :
-        Object.defineProperty(rowEntry, 'infants', {value: 'No'});
+        Object.defineProperty(rowEntry, 'infants', {value: family.infants}) :
+        Object.defineProperty(rowEntry, 'infants', {value: 'None'});
       Object.defineProperty(rowEntry, 'phoneNumber', {value: family.phoneNumber});
       family.emailAddress ?
         Object.defineProperty(rowEntry, 'emailAddress', {value: family.emailAddress}) :
@@ -87,14 +88,14 @@ export class OrdersComponent implements OnInit, OnDestroy {
     return rowData;
   }
 
-  private schoolComparator(firstPoints: any, secondPoints: any) {
-    if (isNaN(firstPoints)) {
-      firstPoints = 0;
+  private noneComparator(first: any, second: any) {
+    if (isNaN(first)) {
+      first = 0;
     }
-    if (isNaN(secondPoints)) {
-      secondPoints = 0;
+    if (isNaN(second)) {
+      second = 0;
     }
-    return firstPoints > secondPoints ? 1 : -1;
+    return first > second ? 1 : -1;
   }
 
   updateOrders() {

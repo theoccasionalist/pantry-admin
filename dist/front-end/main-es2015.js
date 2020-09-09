@@ -964,7 +964,7 @@ FamilyPrintComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdef
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx.order.family.schoolChildren ? ctx.order.family.schoolChildren : "None");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx.order.family.infants ? "Yes" : "No");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx.order.family.infants ? ctx.order.family.infants : "None");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](15);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx.order.pickUpDate);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
@@ -1153,7 +1153,7 @@ FamilyComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineCo
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx.family.schoolChildren ? ctx.family.schoolChildren : "None");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx.family.infants ? "Yes" : "No");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx.family.infants ? ctx.family.infants : "None");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](15);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx.pickUpDate);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
@@ -1835,8 +1835,9 @@ class OrdersComponent {
             { headerName: 'Last Name', field: 'lastName' },
             { headerName: 'Family Size', field: 'familySize' },
             { headerName: 'Children', field: 'schoolChildren',
-                comparator: (firstSchool, secondSchool) => this.schoolComparator(firstSchool, secondSchool) },
-            { headerName: 'Infants', field: 'infants' },
+                comparator: (firstChildren, secondChildren) => this.noneComparator(firstChildren, secondChildren) },
+            { headerName: 'Infants', field: 'infants',
+                comparator: (firstInfants, secondInfants) => this.noneComparator(firstInfants, secondInfants) },
             { headerName: 'Phone', field: 'phoneNumber' },
             { headerName: 'Email', field: 'emailAddress' },
             { headerName: 'Location', field: 'location' },
@@ -1880,8 +1881,8 @@ class OrdersComponent {
                 Object.defineProperty(rowEntry, 'schoolChildren', { value: family.schoolChildren }) :
                 Object.defineProperty(rowEntry, 'schoolChildren', { value: 'None' });
             family.infants ?
-                Object.defineProperty(rowEntry, 'infants', { value: 'Yes' }) :
-                Object.defineProperty(rowEntry, 'infants', { value: 'No' });
+                Object.defineProperty(rowEntry, 'infants', { value: family.infants }) :
+                Object.defineProperty(rowEntry, 'infants', { value: 'None' });
             Object.defineProperty(rowEntry, 'phoneNumber', { value: family.phoneNumber });
             family.emailAddress ?
                 Object.defineProperty(rowEntry, 'emailAddress', { value: family.emailAddress }) :
@@ -1897,14 +1898,14 @@ class OrdersComponent {
         });
         return rowData;
     }
-    schoolComparator(firstPoints, secondPoints) {
-        if (isNaN(firstPoints)) {
-            firstPoints = 0;
+    noneComparator(first, second) {
+        if (isNaN(first)) {
+            first = 0;
         }
-        if (isNaN(secondPoints)) {
-            secondPoints = 0;
+        if (isNaN(second)) {
+            second = 0;
         }
-        return firstPoints > secondPoints ? 1 : -1;
+        return first > second ? 1 : -1;
     }
     updateOrders() {
         this.dataService.updateOrders();
