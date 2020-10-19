@@ -1,27 +1,27 @@
-# FrontEnd
+# Pantry Admin
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.12.
+This is an unbuildable sample of the source code for a food pantry administration application currently in development.
 
-## Development server
+# Order Overview
+![image](https://user-images.githubusercontent.com/28411165/96402230-55196080-11a3-11eb-92c0-0315bc0823fb.png)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+# Order Detail
+![image](https://user-images.githubusercontent.com/28411165/96402287-809c4b00-11a3-11eb-99e2-a2fe1b6bc998.png)
 
-## Code scaffolding
+# Order Print
+![image](https://user-images.githubusercontent.com/28411165/96402362-ab869f00-11a3-11eb-8eea-5880487115b5.png)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+# Shop Edit
+![image](https://user-images.githubusercontent.com/28411165/96402624-61ea8400-11a4-11eb-8176-38bf4e1ca5a9.png)
 
-## Build
+# Type Overview
+![image](https://user-images.githubusercontent.com/28411165/96402691-89415100-11a4-11eb-9280-6f864d7fba4b.png)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+# Type Edit and Detail
+![image](https://user-images.githubusercontent.com/28411165/96402756-b0981e00-11a4-11eb-9515-f5343406229b.png)
 
-## Running unit tests
+# Product Overview
+![image](https://user-images.githubusercontent.com/28411165/96402849-e5a47080-11a4-11eb-94e9-40eee49d9a75.png)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+# Product Edit and Detail
+![image](https://user-images.githubusercontent.com/28411165/96402908-079df300-11a5-11eb-9b23-66eb8aaedfb4.png)
