@@ -1,6 +1,6 @@
 # Pantry Admin
 
-This is an unbuildable sample of the source code for a food pantry administration application currently in testing.
+This is an unbuildable sample of the source code for a food pantry administration application that's currently in testing.
 
 # Order Overview
 ![image](https://user-images.githubusercontent.com/28411165/96402230-55196080-11a3-11eb-92c0-0315bc0823fb.png)
