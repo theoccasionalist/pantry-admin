@@ -1,6 +1,6 @@
 # Pantry Admin
 
-This is an unbuildable sample of the source code for a food pantry administration application that's currently the final stages of development.
+This is an unbuildable sample of the source code for a food pantry administration application that's currently the final stages of development and early stages of testing.
 
 ### Order Overview
 <ul>
