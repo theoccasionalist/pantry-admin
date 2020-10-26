@@ -3,6 +3,12 @@
 This is an unbuildable sample of the source code for a food pantry administration application that's currently in testing.
 
 # Order Overview
+<ul>
+  <li> Sortable per column </li>
+  <li> Filters per column </li>
+  <li> Easy order refresh </li>
+  <li> Paging </li>
+</ul>
 ![image](https://user-images.githubusercontent.com/28411165/96402230-55196080-11a3-11eb-92c0-0315bc0823fb.png)
 
 # Order Detail
