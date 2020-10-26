@@ -46,6 +46,14 @@ This is an unbuildable sample of the source code for a food pantry administratio
 
 ![image](https://user-images.githubusercontent.com/28411165/96402624-61ea8400-11a4-11eb-8176-38bf4e1ca5a9.png)
 
+### Set Sub-Types
+<ul>
+  <li> Drag and drop sub-type editing </li>
+  <li> Filters out ineligible sub-types on load and immediately on parent-type reassignments</li>
+</ul>
+
+![image](https://user-images.githubusercontent.com/28411165/97131077-8ea91900-1719-11eb-9f85-cf5bb176faee.png)
+
 ### Type Overview
 <ul>
   <li> Sortable per column </li>
@@ -71,7 +79,7 @@ This is an unbuildable sample of the source code for a food pantry administratio
 ![image](https://user-images.githubusercontent.com/28411165/96402756-b0981e00-11a4-11eb-9515-f5343406229b.png)
 
 <ul>
-  <li> Add limits at the type level (e.g., only receive 2 items from the juice category) </li>
+  <li> Add limits at the type level (e.g., only receive 2 items from the juice category for familys ranging in 2 - 4 members) </li>
   <li> Enable or disable quantity tracking within type (i.e., create bulk options) </li>
   <li> Custom validation for lower limit and upper limit of type allocation per family size </li>
 </ul>
@@ -96,3 +104,10 @@ This is an unbuildable sample of the source code for a food pantry administratio
 </ul>
 
 ![image](https://user-images.githubusercontent.com/28411165/96402908-079df300-11a5-11eb-9b23-66eb8aaedfb4.png)
+
+### Delete Modal
+<ul>
+  <li> Warning modal for all delete actions </li>
+</ul>
+
+![image](https://user-images.githubusercontent.com/28411165/97131294-2a3a8980-171a-11eb-926d-a65dac316276.png)
