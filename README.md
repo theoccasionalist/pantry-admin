@@ -1,6 +1,6 @@
 # Pantry Admin
 
-This is an unbuildable sample of the source code for a food pantry administration application that's currently in the final stages of development and early stages of testing.
+This is an unbuildable sample of the source code for a food pantry administration application that I built a while back.  In the end, we decided to go with a professional service--but I had a blast building it!  It's how I taught myself to build a MEAN stack application from scratch.
 
 ### Order Overview
 <ul>
